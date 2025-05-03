@@ -3,7 +3,7 @@ function Header() {
 	<nav class="navbar sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="">
-				<img src="/images/favicon.png">
+				<img src="/Showcase/images/favicon.png">
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#header" aria-controls="header" aria-label="Toggle navigation">
 				<i class="bi bi-list burger"></i>
@@ -20,7 +20,7 @@ function Header() {
 					<br />
 					<ul class="navbar-nav justify-content-center pe-3">
 						<li class="nav-item">
-							<a class="nav-link" href="/feature/blinded-by-the-dark.html">Blinded by the Dark</a>
+							<a class="nav-link" href="/Showcase/feature/blinded-by-the-dark.html">Blinded by the Dark</a>
 						</li>
 					</ul>
 				</div>
