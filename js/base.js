@@ -23,7 +23,7 @@ function insertHeader() {
 							<a class="nav-link" href="/Showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/Showcase/projects/showcase.html">CalicoCatio Showcase</a>
+							<a class="nav-link" href="/Showcase/projects/showcase.html">Showcase v4</a>
 						</li>
 					</ul>
 				</div>
