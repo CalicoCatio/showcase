@@ -14,16 +14,17 @@ function insertHeader() {
 					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
 				<div class="offcanvas-body">
-					<form class="d-flex mt-3" role="search">
-						<input class="form-control" type="search" placeholder="Search For A Page" aria-label="Search For A Page">
+					<form class="mt-3" role="search">
+						<input class="form-control" type="search" placeholder="Search For A Feature" aria-label="Search For A Feature" aria-describedby="featureSearchInfo">
+						<div id="featureSearchInfo" class="form-text">Results are sorted by the date that they were published (Newest to Oldest).</div>
 					</form>
 					<br />
-					<ul class="navbar-nav justify-content-center pe-3"> 
-						<li class="nav-item">
-							<a class="nav-link" href="/Showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>
-						</li>
+					<ul class="navbar-nav justify-content-center pe-3">
 						<li class="nav-item">
 							<a class="nav-link" href="/Showcase/projects/showcase.html">Showcase v4</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/Showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>
 						</li>
 					</ul>
 				</div>
@@ -122,4 +123,42 @@ function insertFooter() {
 		</footer>
 	`;
 	document.body.insertAdjacentHTML('beforeend', footer);
+}
+
+function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
+	let breadcrumb = `
+		<nav class="ms-3" aria-label="breadcrumb">
+			<ol class="breadcrumb mb-0">
+	`;
+
+	if (!name2) {
+		// Homepage only
+		breadcrumb += `
+			<li class="breadcrumb-item active" aria-current="page">${name1}</li>
+		`;
+	} else if (!name3) {
+		// 2-level breadcrumb
+		breadcrumb += `
+			<li class="breadcrumb-item">
+				<a href="${link1}">${name1}</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">${name2}</li>
+		`;
+	} else {
+		// 3-level breadcrumb
+		breadcrumb += `
+			<li class="breadcrumb-item">
+				<a href="${link1}">${name1}</a>
+			</li>
+			<li class="breadcrumb-item">${name2}</li>
+			<li class="breadcrumb-item active" aria-current="page">${name3}</li>
+		`;
+	}
+
+	breadcrumb += `
+			</ol>
+		</nav>
+	`;
+
+	document.querySelector('.navbar-brand').insertAdjacentHTML('afterend', breadcrumb);
 }
