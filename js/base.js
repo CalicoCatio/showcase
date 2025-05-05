@@ -1,3 +1,6 @@
+// Initialize popovers
+
+// Slap in the header
 function insertHeader() {
 	const header = `
 	<nav class="navbar sticky-top">
@@ -21,10 +24,10 @@ function insertHeader() {
 					<br />
 					<ul class="navbar-nav justify-content-center pe-3">
 						<li class="nav-item">
-							<a class="nav-link" href="/Showcase/projects/showcase.html">Showcase v4</a>
+							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-placement="left" data-bs-trigger="hover focus" data-bs-title="Showcase v4..." data-bs-content="is the fourth (and hopefully last) iteration of this very website." href="/Showcase/projects/showcase.html">Showcase v4</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/Showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>
+							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-placement="left" data-bs-trigger="hover focus" data-bs-title="Blinded by the Dark..." data-bs-content="is a 2D platformer minigame, originally made as a project in college." href="/Showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>
 						</li>
 					</ul>
 				</div>
@@ -33,8 +36,11 @@ function insertHeader() {
 	</nav>
 	`;
 	document.body.insertAdjacentHTML('afterbegin', header);
+	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+	const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 }
 
+// Slap in the footer
 function insertFooter() {
 	const footer = `
 		<footer class="shadow-sm">
@@ -125,6 +131,7 @@ function insertFooter() {
 	document.body.insertAdjacentHTML('beforeend', footer);
 }
 
+// Slap in a custom breadcrumb inside the header
 function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
 	let breadcrumb = `
 		<nav class="ms-3" aria-label="breadcrumb">
