@@ -79,32 +79,32 @@ function insertFooter() {
 						</h5>
 						<ul class="list-unstyled d-flex justify-content-center gap-3">
 							<li>
-								<a href="https://youtube.com/@ACalicoCatio" target="_blank" class="footer-link">
+								<a href="https://youtube.com/@ACalicoCatio" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-youtube"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://twitch.tv/calicocatio" target="_blank" class="footer-link">
+								<a href="https://twitch.tv/calicocatio" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-twitch"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://steamcommunity.com/id/CalicoCatio/" target="_blank" class="footer-link">
+								<a href="https://steamcommunity.com/id/CalicoCatio/" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-steam"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://discordapp.com/users/706284932254662694" target="_blank" class="footer-link">
+								<a href="https://discordapp.com/users/706284932254662694" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-discord"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://reddit.com/user/DogDoge167/" target="_blank" class="footer-link">
+								<a href="https://reddit.com/user/DogDoge167/" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-reddit"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://github.com/CalicoCatio" target="_blank" class="footer-link">
+								<a href="https://github.com/CalicoCatio" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-github"></i>
 								</a>
 							</li>

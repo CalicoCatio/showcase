@@ -96,6 +96,10 @@ footer {
     text-decoration: 0;
 }
 
+.footer-text-large {
+    font-size: 18pt;
+}
+
 .footer-link {
     color: #ffffffa6;
     text-decoration: none;
