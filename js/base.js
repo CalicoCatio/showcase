@@ -117,13 +117,11 @@ function insertFooter() {
 							</li>
 						</ul>
 					</div>
-				</div>
-			</div>
-			<div class="container-fluid footer-contain">
-				<div class="row">
-					<div class="col-12 footer-text d-flex justify-content-end align-items-end">
-						<span id="myVer">v0.1.0</span>
-					</div>
+					<span class="d-flex justify-content-end align-items-end">
+						<span class="footer-text">
+							<span id="myVer">v0.1.0</span>
+						</span>
+					</span>
 				</div>
 			</div>
 		</footer>
