@@ -1,6 +1,7 @@
 
 /* FAQ */
-#faqAccordion {
+#faqAccordion,
+#changelogAccordion {
     margin-top: 5vh;
 }
 
