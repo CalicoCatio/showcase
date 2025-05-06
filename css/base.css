@@ -83,11 +83,6 @@ p {
 
 
 /* Accordions */
-.accordion {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-}
-
 .accordion-button {
     color: #dee2e6 !important;
     background-color: #212529;
