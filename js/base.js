@@ -5,7 +5,7 @@ function insertHeader() {
 	const header = `
 	<nav class="navbar sticky-top">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="">
+			<a class="navbar-brand" href="/Showcase/">
 				<img src="/Showcase/images/global/favicon.png">
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#header" aria-controls="header" aria-label="Toggle navigation">
