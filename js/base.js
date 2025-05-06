@@ -6,7 +6,7 @@ function insertHeader() {
 	<nav class="navbar sticky-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="">
-				<img src="/Showcase/images/favicon.png">
+				<img src="/Showcase/images/global/favicon.png">
 			</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#header" aria-controls="header" aria-label="Toggle navigation">
 				<i class="bi bi-list burger"></i>
@@ -76,7 +76,7 @@ function insertFooter() {
 								</form>
 							</li>
 							<li class="d-flex justify-content-center align-items-end h-100">
-								<img class="d-inline h-100" src="/Showcase/images/gpl3.png">
+								<img class="d-inline h-100" src="/Showcase/images/global/gpl3.png" alt="GPL License v3">
 							</li>
 						</ul>
 					</div>
@@ -132,7 +132,7 @@ function insertFooter() {
 // Slap in a custom breadcrumb inside the header
 function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
 	let breadcrumb = `
-		<nav class="ms-3" aria-label="breadcrumb">
+		<nav class="text-truncate d-none d-sm-block" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
 	`;
 
@@ -163,6 +163,28 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
 	breadcrumb += `
 			</ol>
 		</nav>
+		<span class="d-block d-sm-none">
+	`;
+
+	// For phones, since the breadcrumbs are too big for their screens
+	if (!name2) {
+		// Homepage only
+		breadcrumb += `
+			${name1}
+		`;
+	} else if (!name3) {
+		// 2-level breadcrumb
+		breadcrumb += `
+			${name2}
+		`;
+	} else {
+		// 3-level breadcrumb
+		breadcrumb += `
+			${name3}
+		`;
+	}
+	breadcrumb += `
+		</span>
 	`;
 
 	document.querySelector('.navbar-brand').insertAdjacentHTML('afterend', breadcrumb);
