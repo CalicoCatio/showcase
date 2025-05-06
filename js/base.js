@@ -75,9 +75,6 @@ function insertFooter() {
 									<input type="button" class="btn btn-outline-secondary" value="Back to Top" onclick="window.location.href='#top'">
 								</form>
 							</li>
-							<li class="d-flex justify-content-center align-items-end h-100">
-								<img class="d-inline h-100" src="/Showcase/images/global/gpl3.png" alt="GPL License v3">
-							</li>
 						</ul>
 					</div>
 					<div class="col-lg-5 col-md-5 mb-2 mb-md-0">
