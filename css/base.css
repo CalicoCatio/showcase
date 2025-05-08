@@ -101,7 +101,7 @@ p {
 }
 
 .main-content {
-    min-height: 90vh;
+    min-height: calc(100vh - 95px);
 }
 
 .row { /* Bootstrap pushes margin to -12px for some reason */
