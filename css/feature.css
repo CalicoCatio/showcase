@@ -11,4 +11,5 @@
 }
 .feature-carousel .carousel-caption {
     background: #000000ad;
+    border-radius: 10px;
 }
