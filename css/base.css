@@ -64,6 +64,35 @@ html {
     background-image: linear-gradient(to bottom, #212529 75%, black 100%);
 }
 
+.blue-outline,
+.green-outline {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2pt;
+    padding-bottom: 3pt;
+    border: 2px solid;
+    border-radius: 10pt;
+}
+
+.green-outline {
+    border-color: green;
+    background: rgba(0, 128, 0, 0.5);
+}
+
+.blue-outline {
+    border-color: blue;
+    background: rgba(0, 0, 255, 0.5);
+}
+
+.popover-header {
+    line-height: 22pt;
+}
+
+.popover {
+    border: 2px solid rgb(50, 53, 57);
+    border-radius: 15px;
+}
+
 /* Base styles */
 p {
     font-size: 12pt;
