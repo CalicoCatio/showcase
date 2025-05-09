@@ -2,13 +2,16 @@
     border: 0.1vw solid white;
     border-radius: 1vw;
     padding: 0;
-    overflow: hidden
+    overflow: hidden;
+    aspect-ratio: 16/9;
 }
+
 @media (max-width: 1199px) {
     .feature-carousel {
         margin: 1vw;
     }
 }
+
 .feature-carousel .carousel-caption {
     background: #000000ad;
     border-radius: 10px;

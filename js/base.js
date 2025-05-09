@@ -18,16 +18,16 @@ function insertHeader() {
 				</div>
 				<div class="offcanvas-body">
 					<form class="mt-3" role="search">
-						<input class="form-control" type="search" placeholder="Search For A Project" aria-label="Search For A Project" aria-describedby="projectSearchInfo">
-						<div id="projectSearchInfo" class="form-text">Enter a tag or name of a project.</div>
+						<input id="projectSearch" class="form-control" type="search" placeholder="Search For A Project" aria-label="Search For A Project" aria-describedby="projectSearchInfo">
+						<div id="projectSearchInfo" class="form-text">Enter a #tag or name of a project.</div>
 					</form>
 					<br />
 					<ul class="navbar-nav justify-content-center pe-3">
 						<li class="nav-item">
-							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover focus" data-bs-title="Showcase v4<br /><span class='green-outline'>HTML, CSS, JS</span> <span class='blue-outline'>Bootstrap</span>" data-bs-content="Is the fourth (and hopefully last) iteration of this very website." href="/Showcase/projects/showcase.html">Showcase v4</a>
+							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Showcase v4<br /><span class='green-outline'>HTML, CSS, JS</span> <span class='blue-outline'>Bootstrap</span>" data-bs-content="Is the fourth (and hopefully last) iteration of this very website." href="/Showcase/projects/showcase.html">Showcase v4</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover focus" data-bs-title="Blinded by the Dark<br /><span class='green-outline'>C#</span> <span class='blue-outline'>Monogane</span>" data-bs-content="Is a 2D platformer minigame, originally made as a project in college." href="/Showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>
+							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Blinded by the Dark<br /><span class='green-outline'>C#</span> <span class='blue-outline'>Monogame</span>" data-bs-content="Is a 2D platformer minigame, originally made as a project in college." href="/Showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>
 						</li>
 					</ul>
 				</div>
@@ -39,6 +39,59 @@ function insertHeader() {
 	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
 	const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 }
+
+// Search
+
+const observer = new MutationObserver((mutationsList, observer) => {
+	const input = document.querySelector("#projectSearch");
+	const output = document.querySelector('.navbar-nav');
+	const items = document.querySelectorAll('.navbar-nav .nav-item');
+
+	if (input && output && items.length > 0) {
+		observer.disconnect();
+		input.addEventListener("input", async () => {
+			const query = input.value.trim();
+			if (query.length != 0) {
+				output.innerHTML = '';
+				if (query.charAt(0) === '#') {
+					items.forEach(function (item, i) {
+						const tempHolder = document.createElement('div');
+						tempHolder.innerHTML = item.querySelector('a').getAttribute('data-bs-title');
+						const tags = tempHolder.querySelectorAll('span');
+						tags.forEach(tag => {
+							// Yes Tag
+							if (query.substring(1).toUpperCase() == tag.textContent.toUpperCase()) {
+								output.insertAdjacentElement('afterbegin', item);
+							}
+						});
+					});
+					// No Tag
+					if (output.innerHTML.toString() == '') {
+						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link">There are no projects that have the tag ${query}.</li>`;
+					}
+				} else {
+					items.forEach(function (item, i) {
+						const name = item.querySelector('a').textContent;
+						// Yes Name
+						if (name.toUpperCase().includes(query.toUpperCase())) {
+							output.insertAdjacentElement('afterbegin', item);
+						}
+					});
+					if (output.innerHTML.toString() == '') {
+						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link">There no are projects by the name of ${query}.</li>`;
+					}
+				}
+			} else {
+				output.innerHTML = '';
+				items.forEach(function (item, i) {
+					output.insertAdjacentElement('afterbegin', item);
+				});
+			}
+		});
+	}
+});
+
+observer.observe(document.body, { childList: true, subtree: true });
 
 // Slap in the footer
 function insertFooter() {
