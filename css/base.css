@@ -66,7 +66,7 @@ html {
 
 .fade-in-nav {
     opacity: 0;
-    animation: fade-in-anim 2s linear 20s forwards;
+    animation: fade-in-anim 2s linear 5s forwards;
 }
 
 @keyframes fade-in-anim {
