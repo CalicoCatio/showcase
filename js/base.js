@@ -41,7 +41,6 @@ function insertHeader() {
 }
 
 // Search
-
 const observer = new MutationObserver((mutationsList, observer) => {
 	const input = document.querySelector("#projectSearch");
 	const output = document.querySelector('.navbar-nav');
@@ -92,6 +91,20 @@ const observer = new MutationObserver((mutationsList, observer) => {
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
+
+// Add the animation for the index page
+function clickHereNav() {
+	const wrapperDiv = document.createElement('div');
+	wrapperDiv.classList.add('insert-here', 'd-flex', 'align-items-center');
+	const toBeWrapped = document.querySelector('.navbar-toggler');
+	toBeWrapped.parentNode.insertBefore(wrapperDiv, toBeWrapped);
+	wrapperDiv.appendChild(toBeWrapped);
+
+	const clickHere = `
+		<span class="d-md-inline d-none fade-in-nav"><span class="pe-3">Click here to see my projects</span><i class="bi bi-arrow-right bounce-arrow"></i></span>
+	`;
+	document.querySelector('.insert-here').insertAdjacentHTML('afterbegin', clickHere);
+}
 
 // Slap in the footer
 function insertFooter() {
