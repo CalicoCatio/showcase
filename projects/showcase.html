@@ -66,7 +66,10 @@
             <div class="col-md-8 col-12">
                 <p class="mt-3 mb-3">
                     Showcase v4 is the fourth iteration of my showcase site, featuring many improvements, both ones visible to you and ones behind the scenes, allowing me to better maintain this site, while featuring more information about each project that is being showcased.
-                    Showcase v4 has had refactors for much of the codebase that was ported from v3, new additions not seen before in v3, as well as a complete visual overhaul.
+                    v4 has had refactors for much of the codebase that was ported from v3, new additions not seen before in v3, as well as a complete visual overhaul.
+                    v4 couldn't have been just another update to v3 due to the different ways the websites fundamentally function.
+                    v3 did not have any support for screen readers or other accesibility features; v4 doesn't explicitly support screen readers or other accesibility tools, but support should be much better on v4.
+                    v3 also did not follow the standard convention for naming custom classes, as well as having many different 'unconventional' solutions to certain 'quirks' with how the page was rendered.
                 </p>
             </div>
             <div class="col-md-2 d-md-block d-none"></div>
@@ -89,7 +92,7 @@
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#two" aria-expanded="false" aria-controls="one">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#two" aria-expanded="false" aria-controls="two">
                             Statistics
                         </button>
                     </h2>
@@ -105,7 +108,7 @@
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#three" aria-expanded="false" aria-controls="one">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#three" aria-expanded="false" aria-controls="three">
                             Design
                         </button>
                     </h2>
@@ -117,16 +120,16 @@
                             </ul>
                             The design from v4 is visually very similar to v3, down to the position of the <a href="https://getbootstrap.com/docs/5.3/components/carousel/" target="_blank">carousels</a> inside each showcase.
                             Behind the scenes, however, the site is radically different.
-                            v3 had a focus on making everything as custom as possible, even if it meant a lesser experience for the user.
+                            v3 had a focus on making everything as custom as possible, to avoid looking like just a template with the words filled in, even if it meant a lesser experience for the user.
                             v4 is designed to instead make use of bootstrap as much as possible, only using custom classes and CSS styles when absolutly necessary.
-                            This may seem like a bad idea, as if bootstrap goes down, v4 will practiacly be unusable, but bootstrap is open-source, and in use by some of the biggest websites in the world.
-                            Spotify, LinkedIn, Twitter, Duolingo, Lyft all use bootstrap for their websites, therefore if it is good enough for them, it is also good enough for me.
+                            This may seem like a bad idea, as if bootstrap goes down, v4 will practically be unusable, but bootstrap is open-source, and in use by some of the biggest websites in the world.
+                            Spotify, LinkedIn, Twitter, Duolingo, and Lyft all use bootstrap for their websites, therefore if it is good enough for them, it is also good enough for me.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#four" aria-expanded="false" aria-controls="one">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#four" aria-expanded="false" aria-controls="four">
                             Code
                         </button>
                     </h2>
@@ -136,13 +139,15 @@
                             <ul>
                                 <li>Ariel / CalicoCatio</li>
                             </ul>
-
+                            Just like the design, the code for v4 is designed to be as modular as possible. In v3, only the version number was managed by a JS function, in v4 the entire footer, as well as the header/navbar and the <a href="https://getbootstrap.com/docs/5.3/components/breadcrumb/" target="_blank">breadcrumbs</a>.
+                            This allows me to modify the design of the footer once, and have it replicated to all of the pages where a footer is present, which makes it much easier.
+                            v4 is also coded in VS 2022, whereas v3 was coded entirley inside of GitHub's online code editor, and yes, it was just as terrible as you might expect. Yes, VS Code would be better, but I can't be bothered to learn how to use it properly, as well as integrate into with GitHub's version control.
                         </div>
                     </div>
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#five" aria-expanded="false" aria-controls="one">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#five" aria-expanded="false" aria-controls="five">
                             Art
                         </button>
                     </h2>
@@ -160,7 +165,7 @@
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#six" aria-expanded="false" aria-controls="one">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#six" aria-expanded="false" aria-controls="six">
                             Goofs/Interesting Ancedotes
                         </button>
                     </h2>
@@ -174,7 +179,7 @@
                 </div>
                 <div class="accordion-item">
                     <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seven" aria-expanded="false" aria-controls="one">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seven" aria-expanded="false" aria-controls="seven">
                             Post Launch Updates
                         </button>
                     </h2>
