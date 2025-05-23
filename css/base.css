@@ -118,7 +118,7 @@ html {
 }
 
 .popover {
-    border: 2px solid rgb(50, 53, 57);
+    border: 1px solid #3a3d40;
     border-radius: 15px;
 }
 
@@ -136,11 +136,6 @@ p {
 .row { /* Bootstrap pushes margin to -12px for some reason */
     margin-left: 0;
     margin-right: 0;
-}
-
-.big-text {
-    color: #fffef0;
-    font-size: clamp(1rem, 7.5vh, 7.5vw);
 }
 
 /* Accordions */

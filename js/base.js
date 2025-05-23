@@ -92,20 +92,6 @@ const observer = new MutationObserver((mutationsList, observer) => {
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-// Add the animation for the index page
-function clickHereNav() {
-	const wrapperDiv = document.createElement('div');
-	wrapperDiv.classList.add('insert-here', 'd-flex', 'align-items-center');
-	const toBeWrapped = document.querySelector('.navbar-toggler');
-	toBeWrapped.parentNode.insertBefore(wrapperDiv, toBeWrapped);
-	wrapperDiv.appendChild(toBeWrapped);
-
-	const clickHere = `
-		<span class="d-md-inline d-none fade-in-nav"><span class="pe-3">Click here to see my projects</span><i class="bi bi-arrow-right bounce-arrow"></i></span>
-	`;
-	document.querySelector('.insert-here').insertAdjacentHTML('afterbegin', clickHere);
-}
-
 // Slap in the footer
 function insertFooter() {
 	const footer = `
@@ -182,7 +168,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v0.1.0</span>
+							<span id="myVer">v0.1.1</span>
 						</span>
 					</span>
 				</div>
