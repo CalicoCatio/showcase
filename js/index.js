@@ -6,15 +6,14 @@ function sleep(ms) {
 // Hello animation
 async function helloAnim() {
     const masterArray = [
-        ["Hi,", 1.5],
-        ["I'm Ariel.", 1.5],
+        ["Hi,", 1.25],
+        ["I'm Ariel.", 1.25],
         ["", 0.5],
-        ["Online,", 1.5],
-        ["I go by the name", 2],
-        ["CalicoCatio.", 1.5],
+        ["Online,", 1.25],
+        ["I go by the name CalicoCatio.", 1.5],
         ["", 0.5],
-        ["I am a video game maker", 2],
-        ["and video game player.", 2],
+        ["I am a video game maker", 1.5],
+        ["and video game player.", 1.5],
         ["", 2]
     ];
     while (true) {
