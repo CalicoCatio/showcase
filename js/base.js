@@ -1,9 +1,7 @@
-// Initialize popovers
-
 // Slap in the header
 function insertHeader() {
 	const header = `
-	<nav class="navbar sticky-top">
+	<nav class="navbar fixed-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/showcase/">
 				<img src="/showcase/images/global/favicon.png">
@@ -36,8 +34,28 @@ function insertHeader() {
 	</nav>
 	`;
 	document.body.insertAdjacentHTML('afterbegin', header);
+	// Initialize popovers
 	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
 	const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+
+	// Hide scrollbar when offcanvas is open
+	const NavDOM = document.querySelector('.navbar');
+	const orignalPadding = parseFloat(getComputedStyle(document.querySelector('.navbar')).paddingRight);
+	console.log(orignalPadding);
+
+	NavDOM.addEventListener('show.bs.offcanvas', function () {
+		document.documentElement.style.overflow = 'hidden';
+		document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
+		document.querySelector('.navbar').style.paddingRight = `${orignalPadding + getScrollbarWidth()}px`;
+	});
+	NavDOM.addEventListener('hide.bs.offcanvas', function () {
+		document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
+	});
+	NavDOM.addEventListener('hidden.bs.offcanvas', function () {
+		document.documentElement.style.overflow = '';
+		document.body.style.paddingRight = 0;
+		document.querySelector('.navbar').style.paddingRight = `${orignalPadding}px`;
+	});
 }
 
 // Search
@@ -237,4 +255,14 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
 	`;
 
 	document.querySelector('.navbar-brand').insertAdjacentHTML('afterend', breadcrumb);
+}
+
+// Add the image inspector
+if (document.querySelector('.image-inspector')) {
+	document.querySelectorAll('.image-inspector').forEach((button, index, array) => {
+		button.addEventListener('click', () => {
+			const image = button.children[0];
+
+		});
+	});
 }

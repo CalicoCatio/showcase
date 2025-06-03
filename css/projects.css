@@ -16,3 +16,7 @@
     background: #000000ad;
     border-radius: 10px;
 }
+
+.accordion-body ul {
+    margin-bottom: 0;
+}

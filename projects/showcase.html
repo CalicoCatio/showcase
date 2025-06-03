@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CalicoCatio showcase - showcase v4</title>
+    <title>CalicoCatio Showcase - Showcase v4</title>
     <link rel="icon" href="/showcase/images/global/favicon.png" type="image/png">
 
     <!-- CSS + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/showcase/css/base.css">
-    <link rel="stylesheet" href="/showcase/css/feature.css">
+    <link rel="stylesheet" href="/showcase/css/projects.css">
 </head>
 <body onload="insertHeader(); insertFooter(); insertBreadcrumb('Home', '/showcase/', 'Projects', 'Showcase v4')" ;>
     <div class="main-content">
@@ -26,25 +26,25 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="/showcase/images/features/showcase/1.png" class="d-block w-100" alt="showcase v1's homepage">
+                        <button class="image-inspector"><img src="/showcase/images/features/showcase/1.png" class="d-block w-100" alt="Showcase v1's homepage"></button>
                         <div class="carousel-caption d-none d-md-block">
                             <p>Showcase v1's homepage</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="/showcase/images/features/showcase/2.png" class="d-block w-100" alt="showcase v2's homepage">
+                        <img src="/showcase/images/features/showcase/2.png" class="d-block w-100" alt="Showcase v2's homepage">
                         <div class="carousel-caption d-none d-md-block">
                             <p>Showcase v2's homepage</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="/showcase/images/features/showcase/3.png" class="d-block w-100" alt="showcase v3's homepage">
+                        <img src="/showcase/images/features/showcase/3.png" class="d-block w-100" alt="Showcase v3's homepage">
                         <div class="carousel-caption d-none d-md-block">
                             <p>Showcase v3's homepage</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="/showcase/images/features/showcase/4.png" class="d-block w-100" alt="showcase v4's homepage">
+                        <img src="/showcase/images/features/showcase/4.png" class="d-block w-100" alt="Showcase v4's homepage">
                         <div class="carousel-caption d-none d-md-block">
                             <p>Showcase v4's homepage</p>
                         </div>
@@ -139,7 +139,7 @@
                             </ul>
                             Just like the design, the code for v4 is designed to be as modular as possible. In v3, only the version number was managed by a JS function, in v4 the entire footer, as well as the header/<a href="https://getbootstrap.com/docs/5.3/components/navbar/" target="_blank">navbar</a> and the <a href="https://getbootstrap.com/docs/5.3/components/breadcrumb/" target="_blank">breadcrumbs</a>.
                             This allows me to modify the design of the footer once, and have it replicated to all of the pages where a footer is present, which makes it much easier.
-                            v4 is also coded in VS 2022, whereas v3 was coded entirely inside of GitHub's online code editor, and yes, it was just as terrible as you might expect. 
+                            v4 is also coded in VS 2022, whereas v3 was coded entirely inside of GitHub's online code editor, and yes, it was just as terrible as you might expect.
                             Yes, VS Code would be even better, but I can't be bothered to learn how to use it properly, as well as integrate into with GitHub's version control.
                         </div>
                     </div>
@@ -193,8 +193,9 @@
         </div>
     </div>
     <!-- JS -->
-    <script src="/showcase/js/base.js"></script>
+    <script src="/showcase/js/utils.js"></script>
     <script src="/showcase/js/projects.js"></script>
+    <script src="/showcase/js/base.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
 </html>

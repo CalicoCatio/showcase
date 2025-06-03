@@ -1,14 +1,10 @@
 // Notify user if they are on a phone
 function phoneModal() {
-    console.log("hi");
     const hasSeenModal = sessionStorage.getItem('hasSeenPhoneModal');
 
     if (hasSeenModal == true) return; // Don't show again if asked not to
 
-    console.log("hello");
-
     if (window.innerWidth < 998) {
-        console.log(":)");
         const modalHTML = `
         <div class="modal fade" id="phoneModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -28,9 +24,24 @@ function phoneModal() {
         </div>
         `;
         document.body.insertAdjacentHTML('beforeend', modalHTML);
-        const myModal = new bootstrap.Modal(document.querySelector('#phoneModal'));
-        const dismissBtn = document.querySelector('#dismissForever')
-        myModal.show();
+        const modal = new bootstrap.Modal(document.querySelector('#phoneModal'));
+        const dismissBtn = document.querySelector('#dismissForever');
+        const modalDOM = document.querySelector('#phoneModal')
+
+        // Hide scrollbar when modal is open
+        modalDOM.addEventListener('show.bs.modal', function () {
+            document.documentElement.style.overflow = 'hidden';
+            document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
+        });
+        modalDOM.addEventListener('hide.bs.modal', function () {
+            document.documentElement.style.overflow = '';
+            document.body.style.paddingRight = 0;
+        });
+        modalDOM.addEventListener('hidden.bs.modal', function () {
+            document.body.style.paddingRight = 0;
+        });
+
+        modal.show();
 
         // Mark as seen after it's shown
         dismissBtn.addEventListener('click', () => {

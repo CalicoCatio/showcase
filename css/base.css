@@ -7,6 +7,7 @@ html, body {
     background-size: 100% 100%;
     background-attachment: fixed;
     position: relative;
+    text-align: justify;
 }
 
 html {
@@ -124,12 +125,20 @@ html {
 
 /* Base styles */
 p {
-    font-size: 12pt;
+    font-size: 14pt;
     padding-left: 10px;
     padding-right: 10px;
 }
 
+.p-text {
+    font-size: 14pt;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: calc(1.75 * 14pt);
+}
+
 .main-content {
+    margin-top: 95px;
     min-height: calc(100vh - 95px);
 }
 
