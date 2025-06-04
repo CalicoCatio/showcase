@@ -6,9 +6,11 @@ function insertHeader() {
 			<a class="navbar-brand" href="/showcase/">
 				<img src="/showcase/images/global/favicon.png">
 			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#header" aria-controls="header" aria-label="Toggle navigation">
-				<i class="bi bi-list burger"></i>
-			</button>
+			<div id="navbar-end">
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#header" aria-controls="header" aria-label="Toggle navigation">
+					<i class="bi bi-list burger"></i>
+				</button>
+			</div>
 			<div class="offcanvas offcanvas-end" tabindex="-1" id="header" aria-labelledby="header-label">
 				<div class="offcanvas-header">
 					<h5 class="offcanvas-title" id="header-label">Where to?</h5>
@@ -34,38 +36,20 @@ function insertHeader() {
 	</nav>
 	`;
 	document.body.insertAdjacentHTML('afterbegin', header);
+
 	// Initialize popovers
 	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
 	const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-
-	// Hide scrollbar when offcanvas is open
-	const NavDOM = document.querySelector('.navbar');
-	const orignalPadding = parseFloat(getComputedStyle(document.querySelector('.navbar')).paddingRight);
-	console.log(orignalPadding);
-
-	NavDOM.addEventListener('show.bs.offcanvas', function () {
-		document.documentElement.style.overflow = 'hidden';
-		document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
-		document.querySelector('.navbar').style.paddingRight = `${orignalPadding + getScrollbarWidth()}px`;
-	});
-	NavDOM.addEventListener('hide.bs.offcanvas', function () {
-		document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
-	});
-	NavDOM.addEventListener('hidden.bs.offcanvas', function () {
-		document.documentElement.style.overflow = '';
-		document.body.style.paddingRight = 0;
-		document.querySelector('.navbar').style.paddingRight = `${orignalPadding}px`;
-	});
 }
 
 // Search
-const observer = new MutationObserver((mutationsList, observer) => {
+const searchObserver = new MutationObserver((mutationsList, searchObserver) => {
 	const input = document.querySelector("#projectSearch");
 	const output = document.querySelector('.navbar-nav');
 	const items = document.querySelectorAll('.navbar-nav .nav-item');
 
 	if (input && output && items.length > 0) {
-		observer.disconnect();
+		searchObserver.disconnect();
 		input.addEventListener("input", async () => {
 			const query = input.value.trim();
 			if (query.length != 0) {
@@ -108,7 +92,7 @@ const observer = new MutationObserver((mutationsList, observer) => {
 	}
 });
 
-observer.observe(document.body, { childList: true, subtree: true });
+searchObserver.observe(document.body, { childList: true, subtree: true });
 
 // Slap in the footer
 function insertFooter() {
@@ -256,6 +240,62 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
 
 	document.querySelector('.navbar-brand').insertAdjacentHTML('afterend', breadcrumb);
 }
+
+// Hide the scrollbar when offcanvas/modals are open
+const scrollbarObserver = new MutationObserver((mutations, scrollbarObserver) => {
+	// Offcanvas
+	if (document.querySelector('.navbar')) {
+		const navDOM = document.querySelector('.navbar');
+		if (!navDOM._scrollbarListeners) {
+			navDOM._scrollbarListeners = true;
+			const orignalPadding = parseFloat(getComputedStyle(document.querySelector('.navbar')).paddingRight);
+
+			navDOM.addEventListener('show.bs.offcanvas', function () {
+				document.documentElement.style.overflow = 'hidden';
+				document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
+				document.querySelector('.navbar').style.paddingRight = `${orignalPadding + getScrollbarWidth()}px`;
+			});
+
+			navDOM.addEventListener('hide.bs.offcanvas', function () {
+				document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
+			});
+
+			navDOM.addEventListener('hidden.bs.offcanvas', function () {
+				document.documentElement.style.overflow = '';
+				document.body.style.paddingRight = 0;
+				document.querySelector('.navbar').style.paddingRight = `${orignalPadding}px`;
+			});
+		}
+	}
+
+	// Modals
+	if (document.querySelector('.modal')) {
+		document.querySelectorAll('.modal').forEach((modal, index, modalArray) => {
+			if (!modal._scrollbarListeners) {
+				modal._scrollbarListeners = true;
+				const orignalPadding = parseFloat(getComputedStyle(document.querySelector('.navbar')).paddingRight);
+
+				modal.addEventListener('show.bs.modal', function () {
+					document.documentElement.style.overflow = 'hidden';					
+					document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
+					document.querySelector('.navbar').style.paddingRight = `${orignalPadding + getScrollbarWidth()}px`;
+				});
+
+				modal.addEventListener('hide.bs.modal', function () {
+					
+				});
+
+				modal.addEventListener('hidden.bs.modal', function () {
+					document.documentElement.style.overflow = '';
+					document.body.style.paddingRight = 0;
+					document.querySelector('.navbar').style.paddingRight = `${orignalPadding}px`;
+				});
+			}
+		});
+	}
+});
+
+scrollbarObserver.observe(document.body, { childList: true, subtree: true });
 
 // Add the image inspector
 if (document.querySelector('.image-inspector')) {

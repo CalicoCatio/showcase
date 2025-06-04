@@ -1,13 +1,21 @@
 /* Base Styles */
 html, body {
-    color: #ffffffa6;
     min-height: 100vh;
     width: 100%;
-    background: linear-gradient(to top, #212529 0%, black 100%);
     background-size: 100% 100%;
     background-attachment: fixed;
     position: relative;
     text-align: justify;
+}
+
+[data-bs-theme="light"] body {
+    color: #7f6a00a6;
+    background: linear-gradient(to top, #d5d9dd 0%, white 100%);
+}
+
+[data-bs-theme="dark"] body {
+    color: #ffffffa6;
+    background: linear-gradient(to top, #212529 0%, black 100%);
 }
 
 html {
@@ -16,15 +24,20 @@ html {
 }
 
 /* Navbar */
-.navbar {
+
+[data-bs-theme="light"] .navbar {
+    background-image: linear-gradient(to bottom, #d5d9dd 0%, white 100%);
+}
+
+[data-bs-theme="dark"] .navbar {
     background-image: linear-gradient(to bottom, #212529 0%, black 100%);
+}
+
+.navbar {
     padding: 15px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     height: 95px;
-    /*-webkit-box-shadow: inset 0 2px 0 #fff, 0 5px 10px rgb(0, 0, 0);
-        These two cause problems
-    top: -2px !important;*/
 }
 
 .navbar > .container-fluid,
@@ -40,14 +53,27 @@ html {
     text-align: center;
 }
 
+.navbar-settings,
 .navbar-toggler,
 .navbar-toggler:hover,
 .navbar-toggler:focus {
     border: 0;
+    margin-left: 5px!important;
+    margin-right: 5px!important;
 }
 
-.navbar-toggler > .bi-list {
+[data-bs-theme="light"] .navbar-settings,
+[data-bs-theme="light"] .navbar-toggler > .bi-list {
+    color: black;
+}
+
+[data-bs-theme="dark"] .navbar-settings,
+[data-bs-theme="dark"] .navbar-toggler > .bi-list {
     color: white;
+}
+
+.navbar-settings,
+.navbar-toggler > .bi-list {
     font-size: 24pt;
 }
 
@@ -57,7 +83,6 @@ html {
 
 .offcanvas-title {
     text-align: left;
-    color: #fffee6;
     font-size: 24pt;
 }
 
@@ -65,31 +90,27 @@ html {
     background-image: linear-gradient(to bottom, #212529 75%, black 100%);
 }
 
-.fade-in-nav {
-    opacity: 0;
-    animation: fade-in-anim 2s linear 5s forwards;
+.gear-rotate {
+    transform-box: view-box;
+    display: inline-block;
 }
 
-@keyframes fade-in-anim {
-    to {
-        opacity: 1;
-    }
+.gear-rotate:hover {
+    transform-origin: center;
+    animation: gear-rotate 1s ease-in-out 0s forwards infinite;
 }
 
-.bounce-arrow {
-    position: relative;
-    animation: bounce-anim 1.5s ease-in-out 0s infinite forwards;
-}
-
-@keyframes bounce-anim {
+@keyframes gear-rotate {
     0% {
-        left: -5px;
+        transform: rotate(0deg);
     }
-    50% {
-        left: 5px;
+
+    75% {
+        transform: rotate(45deg);
     }
+
     100% {
-        left: -5px;
+        transform: rotate(45deg);
     }
 }
 
@@ -123,6 +144,20 @@ html {
     border-radius: 15px;
 }
 
+/* Toasts */
+
+.div-box {
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.success {
+}
+
+.fail {
+
+}
+
 /* Base styles */
 p {
     font-size: 14pt;
@@ -145,6 +180,13 @@ p {
 .row { /* Bootstrap pushes margin to -12px for some reason */
     margin-left: 0;
     margin-right: 0;
+}
+
+.btn-stealth {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
 }
 
 /* Accordions */
@@ -198,7 +240,6 @@ footer {
 }
 
 .footer-text {
-    color: #fffee6;
     text-decoration: 0;
 }
 
@@ -206,13 +247,24 @@ footer {
     font-size: 18pt;
 }
 
-.footer-link {
+[data-bs-theme="light"] .footer-link {
+    color: #7f6a00a6;
+}
+
+[data-bs-theme="dark"] .footer-link {
     color: #ffffffa6;
+}
+
+.footer-link {
     text-decoration: none;
     margin: 5px;
 }
 
-.footer-link:hover {
+[data-bs-theme="light"] .footer-link:hover {
+    color: #7f6a00cc;
+}
+
+[data-bs-theme="dark"] .footer-link:hover {
     color: #ffffffcc;
 }
 
