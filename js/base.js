@@ -248,22 +248,34 @@ const scrollbarObserver = new MutationObserver((mutations, scrollbarObserver) =>
 		const navDOM = document.querySelector('.navbar');
 		if (!navDOM._scrollbarListeners) {
 			navDOM._scrollbarListeners = true;
-			const orignalPadding = parseFloat(getComputedStyle(document.querySelector('.navbar')).paddingRight);
+
+			const orignalPaddingNav = parseFloat(getComputedStyle(navDOM).paddingRight);
+
+			const scrollWidth = window.getScrollbarWidth();
 
 			navDOM.addEventListener('show.bs.offcanvas', function () {
 				document.documentElement.style.overflow = 'hidden';
-				document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
-				document.querySelector('.navbar').style.paddingRight = `${orignalPadding + getScrollbarWidth()}px`;
+				document.body.style.paddingRight = `${scrollWidth}px`;
+				navDOM.style.paddingRight = `${orignalPaddingNav + scrollWidth}px`; // Line 269
+
+				const toasts = document.querySelector('.toast-container');
+				if (toasts) {
+					toasts.style.marginRight = `${scrollWidth}px`;
+				}
 			});
 
 			navDOM.addEventListener('hide.bs.offcanvas', function () {
-				document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
+				document.body.style.paddingRight = `${window.scrollWidth}px`;
 			});
 
 			navDOM.addEventListener('hidden.bs.offcanvas', function () {
 				document.documentElement.style.overflow = '';
 				document.body.style.paddingRight = 0;
-				document.querySelector('.navbar').style.paddingRight = `${orignalPadding}px`;
+				navDOM.style.paddingRight = `${orignalPaddingNav}px`;
+				const toasts = document.querySelector('.toast-container');
+				if (toasts) {
+					toasts.style.marginRight = '';
+				}
 			});
 		}
 	}
@@ -273,22 +285,30 @@ const scrollbarObserver = new MutationObserver((mutations, scrollbarObserver) =>
 		document.querySelectorAll('.modal').forEach((modal, index, modalArray) => {
 			if (!modal._scrollbarListeners) {
 				modal._scrollbarListeners = true;
-				const orignalPadding = parseFloat(getComputedStyle(document.querySelector('.navbar')).paddingRight);
+				const nav = document.querySelector('.navbar');
+				if (nav) {
+					orignalPaddingNav = parseFloat(getComputedStyle(nav).paddingRight);
+				}
+				const scrollWidth = window.getScrollbarWidth();
 
 				modal.addEventListener('show.bs.modal', function () {
 					document.documentElement.style.overflow = 'hidden';					
-					document.body.style.paddingRight = `${window.getScrollbarWidth()}px`;
-					document.querySelector('.navbar').style.paddingRight = `${orignalPadding + getScrollbarWidth()}px`;
-				});
-
-				modal.addEventListener('hide.bs.modal', function () {
-					
+					document.body.style.paddingRight = `${scrollWidth}px`;
+					nav.style.paddingRight = `${orignalPaddingNav + scrollWidth}px`;
+					const toasts = document.querySelector('.toast-container');
+					if (toasts) {
+						toasts.style.marginRight = `${scrollWidth}px`;
+					}
 				});
 
 				modal.addEventListener('hidden.bs.modal', function () {
 					document.documentElement.style.overflow = '';
 					document.body.style.paddingRight = 0;
-					document.querySelector('.navbar').style.paddingRight = `${orignalPadding}px`;
+					nav.style.paddingRight = `${orignalPaddingNav}px`;
+					const toasts = document.querySelector('.toast-container');
+					if (toasts) {
+						toasts.style.marginRight = '';
+					}
 				});
 			}
 		});

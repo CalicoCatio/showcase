@@ -1,14 +1,12 @@
 // Grab important local storage stuffs
-
-// Themes
 if (localStorage.getItem('theme')) {
-	const themeInt = localStorage.getItem('theme');
+	settingsChanged('theme', false);
 } else {
 	localStorage.setItem('theme', 2);
 }
 
 if (localStorage.getItem('animations')) {
-	const animationsInt = localStorage.getItem('animations');
+	settingsChanged('animations', false);
 } else {
 	localStorage.setItem('animations', 2);
 }
@@ -26,47 +24,48 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<h5 class="modal-title">Settings</h5>
 					</div>
 					<div class="modal-body">
-						Color Theme
+						Theme
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="colorTheme" id="lightModeTheme">
-							<label class="form-check-label" for="lightModeTheme">
+							<input class="form-check-input" type="radio" name="theme" id="theme0">
+							<label class="form-check-label" for="theme0">
 								Light Mode
 							</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="colorTheme" id="darkModeTheme">
-							<label class="form-check-label" for="darkModeTheme">
+							<input class="form-check-input" type="radio" name="theme" id="theme1">
+							<label class="form-check-label" for="theme1">
 								Dark Mode
 							</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="colorTheme" id="autoTheme">
-							<label class="form-check-label" for="autoTheme">
-								Auto
+							<input class="form-check-input" type="radio" name="theme" id="theme2">
+							<label class="form-check-label" for="theme2">
+								Auto Detect
 							</label>
 						</div>
 						<hr>
 						Animations
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="animations" id="onAnim">
-							<label class="form-check-label" for="onAnim">
+							<input class="form-check-input" type="radio" name="animations" id="anim0">
+							<label class="form-check-label" for="anim0">
 								On
 							</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="animations" id="offAnim">
-							<label class="form-check-label" for="offAnim">
+							<input class="form-check-input" type="radio" name="animations" id="anim1">
+							<label class="form-check-label" for="anim1">
 								Off
 							</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="animations" id="autoAnim">
-							<label class="form-check-label" for="autoAnim">
-								Auto
+							<input class="form-check-input" type="radio" name="animations" id="anim2">
+							<label class="form-check-label" for="anim2">
+								Auto Detect
 							</label>
 						</div>
 					</div>
 					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-danger" id="resetSettings">Reset Settings</button>
 						<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
 					</div>
 				</div>
@@ -79,23 +78,30 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		document.body.insertAdjacentHTML('beforeend', modalHTML);
 		document.querySelector('.navbar-toggler').insertAdjacentHTML('beforebegin', buttonHTML);
 
-		// Color Theme
-		document.querySelectorAll('input[name="colorTheme"]').forEach((input, index, array) => {
+		// Apply defaults
+		document.querySelector('#settingsModal').querySelector(`#theme${localStorage.getItem('theme')}`).checked = true;
+		document.querySelector('#settingsModal').querySelector(`#anim${localStorage.getItem('animations')}`).checked = true;
+
+		document.querySelector('#settingsModal').querySelectorAll('input').forEach((input, index) => {
 			input.addEventListener('change', () => {
 				if (input.checked) {
-					localStorage.setItem('theme', index);
-					settingsChanged('theme');
+					localStorage.setItem(`${input.getAttribute('name')}`, `${parseInt(input.getAttribute('id').match(/\d+$/)[0])}`);
+					settingsChanged(`${input.getAttribute('name') }`, true);
 				}
 			});
 		});
-		// Animations
-		document.querySelectorAll('input[name="animations"]').forEach((input, index, array) => {
-			input.addEventListener('change', () => {
-				if (input.checked) {
-					localStorage.setItem('animations', index);
-					settingsChanged('animations');
-				}
-			});
+
+		// Handle resets
+		resetButton = document.querySelector('#settingsModal').querySelector('#resetSettings');
+		resetButton.addEventListener('click', () => {
+			if (resetButton.innerHTML == 'Reset Settings') {
+				resetButton.innerHTML = 'Are you sure?';
+			} else if (resetButton.innerHTML == 'Are you sure?') {
+				resetButton.innerHTML = 'This will reset ALL settings.';
+			} else if (resetButton.innerHTML = 'This will reset ALL settings.') {
+				localStorage.clear();
+				location.reload();
+			}
 		});
 	}
 });
@@ -103,41 +109,116 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 settingsObserver.observe(document.body, { childList: true, subtree: true });
 
 // Apply settings changes
-function settingsChanged(event) {
+function settingsChanged(event, throwToast) {
 	if (event === 'theme') {
 		setType = null;
-		switch (localStorage.getItem('theme')) {
-			case '0': // Light
-				document.querySelector('HTML').setAttribute('data-bs-theme', 'light');
-				setType = 'light';
-				break;
-			case '1': // Dark
-				document.querySelector('HTML').setAttribute('data-bs-theme', 'dark');
-				setType = 'dark';
-				break;
-			case '2': // Auto
-				if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+		try {
+			switch (localStorage.getItem('theme')) {
+				case '0': // Light
 					document.querySelector('HTML').setAttribute('data-bs-theme', 'light');
-				} else {
+					setType = '<strong>light mode</strong>';
+					break;
+				case '1': // Dark
 					document.querySelector('HTML').setAttribute('data-bs-theme', 'dark');
-				}
-				setType = 'auto';
-				break;
+					setType = '<strong>dark mode</strong>';
+					break;
+				case '2': // Auto
+					if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+						document.querySelector('HTML').setAttribute('data-bs-theme', 'light');
+						setType = '<strong>auto detect</strong> (light mode)';
+					} else {
+						document.querySelector('HTML').setAttribute('data-bs-theme', 'dark');
+						setType = '<strong>auto detect</strong> (dark mode)';
+					}
+					break;
+				default:
+					if (throwToast) {
+						window.throwToast(0, 'Theme Change Error', 'Your theme could not be changed due to an error. Try again later');
+					}
+					console.warn(`THEME CHANGE BLOCKED: Theme Setting is out of bounds! (${localStorage.getItem('theme')})`);
+					break;
+			}
+			if (throwToast) {
+				window.throwToast(1, 'Theme Changed', `Your theme has sucessfully been changed to ${setType}.`);
+			}
+		} catch (error) {
+			if (throwToast) {
+				window.throwToast(0, 'Theme Change Error', 'Your theme could not be changed due to an error. Try again later');
+			}
+			console.warn(error);
 		}
-		console.log(setType);
-		window.throwToast(1, "Theme Changed", `Your color theme has sucessfully been changed to ${setType}.`);
 	} else if (event === 'animations') {
-		switch (localStorage.getItem('animations')) {
-			case '0': // On
-				setType = 'on';
-				break;
-			case '1': // Off
-				setType = 'off';
-				break;
-			case '2': // Auto
-				setType = 'auto';
-				break;
+		try {
+			switch (localStorage.getItem('animations')) {
+				case '0': // On
+					const animOn = document.querySelector('#anim-enforcer');
+
+					if (animOn) {
+						document.body.removeChild(animOn);
+					}
+					setType = '<strong>on</strong>';
+					break;
+				case '1': // Off
+					css = `
+					<style id="anim-enforcer">
+						* {
+							animation: none !important;
+							transition: none !important;
+						}
+					</style>
+					`;
+					setType = '<strong>off</strong>';
+					const animOff = document.querySelector('#anim-enforcer');
+
+					if (animOff) {
+						const styleEl = document.createElement('div');
+						styleEl.innerHTML = css;
+						document.body.replaceChild(styleEl.firstElementChild, animOff);
+					} else {
+						document.body.insertAdjacentHTML('beforeend', css);
+					}
+					break;
+				case '2': // Auto
+					css = `
+					<style id="anim-enforcer">
+						@media (prefers-reduced-motion: reduce) {
+							* {
+								animation: none !important;
+								transition: none !important;
+							}
+						}
+					</style>
+					`;
+					const animAuto = document.querySelector('#anim-enforcer');
+
+					if (animAuto) {
+						const styleEl = document.createElement('div');
+						styleEl.innerHTML = css;
+						document.body.replaceChild(styleEl.firstElementChild, animAuto);
+					} else {
+						document.body.insertAdjacentHTML('beforeend', css);
+					}
+					if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+						setType = '<strong>auto detect</strong> (on)';
+					} else {
+						setType = '<strong>auto detect</strong> (off)';
+					}
+					break;
+				default:
+					if (throwToast) {
+						window.throwToast(0, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Try again later');
+					}
+					console.warn(`ANIMATION CHANGE BLOCKED: Animation Setting is out of bounds! (${localStorage.getItem('animations')})`);
+					break;
+			}
+			if (throwToast) {
+				window.throwToast(1, 'Animation Preference Changed', `Your animation preference has sucessfully been changed to ${setType}.`);
+			}
+		} catch (error) {
+			if (throwToast) {
+				window.throwToast(0, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Try again later');
+			}
+			console.warn(error);
 		}
-		window.throwToast(1, "Animation Preference Changed", `Your animation preference has sucessfully been changed to ${setType}.`);
 	}
 }

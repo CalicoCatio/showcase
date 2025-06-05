@@ -48,13 +48,7 @@ function throwToast(type, title, body) {
 		</div>
 	`;
 
-	if (document.querySelector('.toast-container')) {
-		document.querySelector('.toast-container').insertAdjacentHTML('afterbegin', toastHTML);
-	} else {
-		document.body.insertAdjacentHTML('beforeend', extraHTML)
-		document.querySelector('.toast-container').insertAdjacentHTML('beforeend', toastHTML);
-	}
-
+	document.querySelector('.toast-container').insertAdjacentHTML('afterbegin', toastHTML);
 	const toastDOM = document.querySelector('#toast');
 	const toast = new bootstrap.Toast(toastDOM);
 	toast.show();
@@ -63,3 +57,16 @@ function throwToast(type, title, body) {
 		toastDOM.remove();
 	});
 }
+
+function addToastCointainer() {
+	extraHTML = `
+		<div class="toast-container position-fixed bottom-0 end-0 p-3">
+		</div>
+	`;
+
+	if (!document.querySelector('.toast-container')) {
+		document.body.insertAdjacentHTML('beforeend', extraHTML);
+	}
+}
+
+addToastCointainer();

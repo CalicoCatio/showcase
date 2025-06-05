@@ -1,5 +1,12 @@
+[data-bs-theme="light"] .feature-carousel {
+    border: 0.2vw solid black;
+}
+
+[data-bs-theme="dark"] .feature-carousel {
+    border: 0.2vw solid white;  
+}
+
 .feature-carousel {
-    border: 0.1vw solid white;
     border-radius: 1vw;
     padding: 0;
     overflow: hidden;
