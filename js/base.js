@@ -157,7 +157,7 @@ function insertFooter() {
 								</a>
 							</li>
 							<li>
-								<a href="https://reddit.com/user/DogDoge167/" target="_blank" class="footer-link footer-text-large">
+								<a href="https://www.reddit.com/user/CalicoCatio/" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-reddit"></i>
 								</a>
 							</li>
