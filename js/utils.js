@@ -1,4 +1,3 @@
-
 function getScrollbarWidth() {
 
 	const outer = document.createElement('div');
@@ -16,13 +15,10 @@ function getScrollbarWidth() {
 
 	return scrollbarWidth;
 }
-window.getScrollbarWidth = getScrollbarWidth;
-
 
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
-window.sleep = sleep;
 
 function throwToast(type, title, body) {
 	if (type == 0) {

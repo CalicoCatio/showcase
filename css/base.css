@@ -5,7 +5,6 @@ html, body {
     background-size: 100% 100%;
     background-attachment: fixed;
     position: relative;
-    text-align: justify;
 }
 
 [data-bs-theme="light"] body {
@@ -21,6 +20,7 @@ html, body {
 html {
     overscroll-behavior-x: none;
     overflow-x: hidden;
+    text-align: justify;
 }
 
 /* Navbar */
