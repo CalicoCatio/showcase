@@ -24,7 +24,6 @@ html {
 }
 
 /* Navbar */
-
 [data-bs-theme="light"] .navbar {
     background-image: linear-gradient(to bottom, #d8e0e9 0%, white 100%);
 }
@@ -97,7 +96,7 @@ html {
 }
 
 .gear-rotate:hover::before {
-    animation: gear-rotate 1s ease-in-out 0s forwards infinite;
+    animation: gear-rotate 0.5s ease 0s forwards infinite;
 }
 
 @keyframes gear-rotate {
@@ -197,6 +196,18 @@ p {
 }
 
 /* Accordions */
+[data-bs-theme="light"] .accordion-item {
+    border-color: gray;
+    color: #212529 !important;
+    background-color: #ced4da;
+}
+
+[data-bs-theme="dark"] .accordion-item {
+    border-color: gray;
+    color: #dee2e6 !important;
+    background-color: #212529;
+}
+
 [data-bs-theme="light"] .accordion-button {
     color: #212529 !important;
     background-color: #ced4da;
@@ -242,19 +253,19 @@ p {
 }
 
 [data-bs-theme="light"] .accordion-button:hover {
-    box-shadow: 0 0 0 0.25rem rgba(225, 225, 225, 0.4);
+    box-shadow: 0 0 0 0.25rem rgba(225, 225, 225, 0.7);
 }
 
 [data-bs-theme="dark"] .accordion-button:hover {
-    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.7);
 }
 
 [data-bs-theme="light"] .accordion-button:hover:not(.collapsed) {
-    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.7);
 }
 
 [data-bs-theme="dark"] .accordion-button:hover:not(.collapsed) {
-    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.7);
 }
 
 [data-bs-theme="light"] .accordion-body {

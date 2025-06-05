@@ -1,7 +1,14 @@
 /* Hello Anim stuff */
+[data-bs-theme="light"] .big-text {
+    color: #00010f;
+}
+
+[data-bs-theme="dark"] .big-text {
+    color: #fffef0;
+}
+
 .big-text {
     text-align: center;
-    color: #fffef0;
     font-size: clamp(1rem, 15vh, 15vw);
 }
 
