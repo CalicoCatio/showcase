@@ -24,44 +24,28 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<h5 class="modal-title">Settings</h5>
 					</div>
 					<div class="modal-body">
-						Theme
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="theme" id="theme0">
-							<label class="form-check-label" for="theme0">
-								Light Mode
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="theme" id="theme1">
-							<label class="form-check-label" for="theme1">
-								Dark Mode
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="theme" id="theme2">
-							<label class="form-check-label" for="theme2">
-								Auto Detect
-							</label>
+						<p class="d-flex justify-content-center">Theme</p>
+						<div class="d-flex justify-content-center">
+							<input type="radio" class="btn-check" name="theme" id="theme0" autocomplete="off">
+							<label class="btn btn-outline-light m-1" for="theme0">Light Mode</label>
+
+							<input type="radio" class="btn-check" name="theme" id="theme1" autocomplete="off">
+							<label class="btn btn-outline-light m-1" for="theme1">Dark Mode</label>
+
+							<input type="radio" class="btn-check" name="theme" id="theme2" autocomplete="off">
+							<label class="btn btn-outline-light m-1" for="theme2">Auto Detect</label>
 						</div>
 						<hr>
-						Animations
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="animations" id="anim0">
-							<label class="form-check-label" for="anim0">
-								On
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="animations" id="anim1">
-							<label class="form-check-label" for="anim1">
-								Off
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="animations" id="anim2">
-							<label class="form-check-label" for="anim2">
-								Auto Detect
-							</label>
+						<p class="d-flex justify-content-center">Animations</p>
+						<div class="d-flex justify-content-center">
+							<input type="radio" class="btn-check" name="animations" id="anim0" autocomplete="off">
+							<label class="btn btn-outline-light m-1" for="anim0">On</label>
+
+							<input type="radio" class="btn-check" name="animations" id="anim1" autocomplete="off">
+							<label class="btn btn-outline-light m-1" for="anim1">Off</label>
+
+							<input type="radio" class="btn-check" name="animations" id="anim2" autocomplete="off">
+							<label class="btn btn-outline-light m-1" for="anim2">Auto Detect</label>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -82,6 +66,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		document.querySelector('#settingsModal').querySelector(`#theme${localStorage.getItem('theme')}`).checked = true;
 		document.querySelector('#settingsModal').querySelector(`#anim${localStorage.getItem('animations')}`).checked = true;
 
+		// Change stuffs
 		document.querySelector('#settingsModal').querySelectorAll('input').forEach((input, index) => {
 			input.addEventListener('change', () => {
 				if (input.checked) {
@@ -115,18 +100,22 @@ function settingsChanged(event, throwToast) {
 		try {
 			switch (localStorage.getItem('theme')) {
 				case '0': // Light
+					swapButtonTypes(0);
 					document.querySelector('HTML').setAttribute('data-bs-theme', 'light');
 					setType = '<strong>light mode</strong>';
 					break;
 				case '1': // Dark
+					swapButtonTypes(1);
 					document.querySelector('HTML').setAttribute('data-bs-theme', 'dark');
 					setType = '<strong>dark mode</strong>';
 					break;
 				case '2': // Auto
 					if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+						swapButtonTypes(0);
 						document.querySelector('HTML').setAttribute('data-bs-theme', 'light');
 						setType = '<strong>auto detect</strong> (light mode)';
 					} else {
+						swapButtonTypes(1);
 						document.querySelector('HTML').setAttribute('data-bs-theme', 'dark');
 						setType = '<strong>auto detect</strong> (dark mode)';
 					}
@@ -161,7 +150,8 @@ function settingsChanged(event, throwToast) {
 				case '1': // Off
 					css = `
 					<style id="anim-enforcer">
-						* {
+						*,
+						*::before {
 							animation: none !important;
 							transition: none !important;
 						}
@@ -182,7 +172,8 @@ function settingsChanged(event, throwToast) {
 					css = `
 					<style id="anim-enforcer">
 						@media (prefers-reduced-motion: reduce) {
-							* {
+							*,
+							*::before {
 								animation: none !important;
 								transition: none !important;
 							}
@@ -199,9 +190,9 @@ function settingsChanged(event, throwToast) {
 						document.body.insertAdjacentHTML('beforeend', css);
 					}
 					if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-						setType = '<strong>auto detect</strong> (on)';
-					} else {
 						setType = '<strong>auto detect</strong> (off)';
+					} else {
+						setType = '<strong>auto detect</strong> (on)';
 					}
 					break;
 				default:
@@ -220,5 +211,24 @@ function settingsChanged(event, throwToast) {
 			}
 			console.warn(error);
 		}
+	}
+}
+
+function swapButtonTypes(type) {
+	switch (type) {
+		case 0:
+			if (document.querySelector('#settingsModal').querySelector('.btn-outline-light')) {
+				document.querySelector('#settingsModal').querySelectorAll('.btn-outline-light').forEach((input) => {
+					input.classList.replace('btn-outline-light', 'btn-outline-dark');
+				});
+			}
+			break;
+		case 1:
+			if (document.querySelector('#settingsModal').querySelector('.btn-outline-dark')) {
+				document.querySelector('#settingsModal').querySelectorAll('.btn-outline-dark').forEach((input) => {
+					input.classList.replace('btn-outline-dark', 'btn-outline-light');
+				});
+			}
+			break;
 	}
 }
