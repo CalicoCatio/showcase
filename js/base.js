@@ -1,15 +1,3 @@
-// If the screen is small, don't justify text.
-function unJustify() {
-	if (window.innerWidth < 576) {
-		document.querySelector('html').style.setProperty('text-align', 'left', 'important');
-		console.log(document.querySelector('HTML').style.textAlign);
-	} else {
-		document.querySelector('html').style.setProperty('text-align', '');
-	}
-}
-window.addEventListener('resize', unJustify);
-unJustify();
-
 // Slap in the header
 function insertHeader() {
 	const header = `

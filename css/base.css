@@ -208,6 +208,10 @@ p {
     background-color: #212529;
 }
 
+.accordion-item {
+    text-align: left;
+}
+
 [data-bs-theme="light"] .accordion-button {
     color: #212529 !important;
     background-color: #ced4da;

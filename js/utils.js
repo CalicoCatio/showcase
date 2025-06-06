@@ -43,7 +43,6 @@ function throwToast(type, title, body) {
 		<div class="toast-container position-fixed bottom-0 end-0 p-3">
 		</div>
 	`;
-
 	document.querySelector('.toast-container').insertAdjacentHTML('afterbegin', toastHTML);
 	const toastDOM = document.querySelector('#toast');
 	const toast = new bootstrap.Toast(toastDOM);
@@ -54,7 +53,7 @@ function throwToast(type, title, body) {
 	});
 }
 
-function addToastCointainer() {
+function addToastContainer() {
 	extraHTML = `
 		<div class="toast-container position-fixed bottom-0 end-0 p-3">
 		</div>
@@ -65,4 +64,4 @@ function addToastCointainer() {
 	}
 }
 
-addToastCointainer();
+addToastContainer();
