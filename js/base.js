@@ -317,3 +317,7 @@ const scrollbarObserver = new MutationObserver((mutations, scrollbarObserver) =>
 });
 
 scrollbarObserver.observe(document.body, { childList: true, subtree: true });
+
+// These are always there by default
+insertHeader();
+insertFooter();
