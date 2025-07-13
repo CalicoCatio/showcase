@@ -113,6 +113,24 @@ html {
     }
 }
 
+/* Dots */
+.background-dot {
+    position: absolute;
+    border: min(0.5vw, 0.5vh) solid gray;
+    border-radius: 50%;
+    z-index: -1000;
+    animation: dot-fade-in 0.5s linear;
+}
+
+@keyframes dot-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 /* Popovers */
 .blue-outline,
 .green-outline {
