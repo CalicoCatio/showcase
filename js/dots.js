@@ -98,6 +98,7 @@ function update() {
         const dotY = dot.y;
         const directionRad = dot.directionDeg * (Math.PI / 180);
         let dotspeed = dot.speed;
+        const dotRadius = dot.radius
 
         const newX = dotX + Math.cos(directionRad) * dotspeed;
         const newY = dotY + Math.sin(directionRad) * dotspeed;
@@ -109,17 +110,17 @@ function update() {
         dot.radius = Math.min(mainContent.offsetWidth / 200, mainContent.offsetHeight / 200);
 
         // Offscreen? Add new
-        if (parseFloat(newX) > mainContent.offsetWidth) {
+        if (parseFloat(newX) > mainContent.offsetWidth + dotRadius) {
             dotArray.splice(index, 1);
             addDot();
-        } else if (parseFloat(newX) < 0) {
+        } else if (parseFloat(newX) < 0 - dotRadius) {
             dotArray.splice(index, 1);
             addDot();
-        } else if (parseFloat(newY) > mainContent.offsetHeight) {
+        } else if (parseFloat(newY) > mainContent.offsetHeight + dotRadius) {
             dotArray.splice(index, 1);
             addDot();
         }
-        else if (parseFloat(newY) < 0) {
+        else if (parseFloat(newY) < 0 - dotRadius) {
             dotArray.splice(index, 1);
             addDot();
         } else {
