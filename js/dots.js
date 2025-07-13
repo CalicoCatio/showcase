@@ -10,6 +10,7 @@ canvas = mainContent.appendChild(canvas);
 ctx = canvas.getContext("2d");
 
 dotArray = [];
+lineArray = [];
 cursorX = 0;
 cursorY = 0;
 MIN_DIST_TO_MOUSE = 75;
@@ -82,7 +83,7 @@ function update() {
     dotArray.forEach((dot) => {
         const dotX = dot.x;
         const dotY = dot.y;
-        let distToCursor = Math.sqrt(Math.pow((cursorX - parseFloat(dotX)), 2) + Math.pow((cursorY - parseFloat(dotY)), 2));
+        let distToCursor = Math.sqrt(Math.pow((cursorX - dotX), 2) + Math.pow((cursorY - dotY), 2));
         if (distToCursor < MIN_DIST_TO_MOUSE) {
             let dy = cursorY - dotY;
             let dx = cursorX - dotX;
@@ -110,17 +111,17 @@ function update() {
         dot.radius = Math.min(mainContent.offsetWidth / 200, mainContent.offsetHeight / 200);
 
         // Offscreen? Add new
-        if (parseFloat(newX) > mainContent.offsetWidth + dotRadius) {
+        if (newX > mainContent.offsetWidth + dotRadius) {
             dotArray.splice(index, 1);
             addDot();
-        } else if (parseFloat(newX) < 0 - dotRadius) {
+        } else if (newX < 0 - dotRadius) {
             dotArray.splice(index, 1);
             addDot();
-        } else if (parseFloat(newY) > mainContent.offsetHeight + dotRadius) {
+        } else if (newY > mainContent.offsetHeight + dotRadius) {
             dotArray.splice(index, 1);
             addDot();
         }
-        else if (parseFloat(newY) < 0 - dotRadius) {
+        else if (newY < 0 - dotRadius) {
             dotArray.splice(index, 1);
             addDot();
         } else {
@@ -129,9 +130,22 @@ function update() {
     });
 
     // Draw lines
-    dotArray.forEach((dot) => {
-        
+    dotArray.forEach((dot1) => {
+        dotArray.forEach((dot2) => {
+            const pairExists = lineArray.some(pair =>
+                (pair[0] === dot1 && pair[1] === dot2) || (pair[0] === dot2 && pair[1] === dot1)
+            );
+            if (!pairExists) {
+                let distToDot2 = Math.sqrt(Math.pow((dot1.x - dot2.x), 2) + Math.pow((dot1.y - dot2.y), 2));
+                if (distToDot2 < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
+                    lineArray.push([dot1, dot2]);
+                    drawLine(dot1, dot2, distToDot2);
+                }
+            }
+        });
     });
+    // Line array gets cleared after every frame
+    lineArray = [];
 
     // Calculate delta time
     now = performance.now()
@@ -160,5 +174,19 @@ function drawDot(dot) {
     ctx.globalAlpha = dot.opacity;
 
     ctx.fill();
+    ctx.globalAlpha = 1;
+}
+
+function drawLine(dot1, dot2, distance) {
+
+    let alpha = 1 - distance / MAX_DISTANCE_BETWEEN_CONNECTIONS;
+    alpha = Math.min(Math.abs(alpha), 1);
+
+    ctx.beginPath();
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = 'lightgray';
+    ctx.moveTo(dot1.x, dot1.y);
+    ctx.lineTo(dot2.x, dot2.y);
+    ctx.stroke();
     ctx.globalAlpha = 1;
 }
