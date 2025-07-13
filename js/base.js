@@ -60,24 +60,25 @@ const searchObserver = new MutationObserver((mutationsList, searchObserver) => {
 						tempHolder.innerHTML = item.querySelector('a').getAttribute('data-bs-title');
 						const tags = tempHolder.querySelectorAll('span');
 						tags.forEach(tag => {
-							// Yes Tag
+							// There is a project with tag Tag
 							if (query.substring(1).toUpperCase() == tag.textContent.toUpperCase()) {
 								output.insertAdjacentElement('afterbegin', item);
 							}
 						});
 					});
-					// No Tag
+					// There is not a project with tag Tag
 					if (output.innerHTML.toString() == '') {
 						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link">There are no projects that have the tag ${query}.</li>`;
 					}
 				} else {
 					items.forEach(function (item, i) {
 						const name = item.querySelector('a').textContent;
-						// Yes Name
+						// There is a project with name Name
 						if (name.toUpperCase().includes(query.toUpperCase())) {
 							output.insertAdjacentElement('afterbegin', item);
 						}
 					});
+					// There is not a project with name Name
 					if (output.innerHTML.toString() == '') {
 						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link">There no are projects by the name of ${query}.</li>`;
 					}
@@ -316,13 +317,3 @@ const scrollbarObserver = new MutationObserver((mutations, scrollbarObserver) =>
 });
 
 scrollbarObserver.observe(document.body, { childList: true, subtree: true });
-
-// Add the image inspector
-if (document.querySelector('.image-inspector')) {
-	document.querySelectorAll('.image-inspector').forEach((button, index, array) => {
-		button.addEventListener('click', () => {
-			const image = button.children[0];
-
-		});
-	});
-}
