@@ -15,7 +15,7 @@ lineArray = [];
 cursorX = 0;
 cursorY = 0;
 MIN_DIST_TO_MOUSE = 75;
-DOT_COUNT = Math.max(canvas.width / 25, canvas.height / 25);
+DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
 MAX_SPEED = 2;
 MIN_SPEED = 1;
 MAX_DISTANCE_BETWEEN_CONNECTIONS = 100;
@@ -95,23 +95,24 @@ function update() {
             addDot();
         }
     } else if (DOT_COUNT < dotArray.length) {
-        dotArray.splice(dotArray.length, DOT_COUNT - dotArray.length);
+        dotArray.splice(DOT_COUNT, dotArray.length - DOT_COUNT);
     }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Check if next to cursor and move in oposite dir
-    dotArray.forEach((dot) => {
-        const dotX = dot.x;
-        const dotY = dot.y;
-        let distToCursor = Math.sqrt(Math.pow((cursorX - dotX), 2) + Math.pow((cursorY - dotY), 2));
-        if (distToCursor < MIN_DIST_TO_MOUSE) {
-            let dy = cursorY - dotY;
-            let dx = cursorX - dotX;
-            dot.directionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
-            dot.speed = Math.min(Math.abs(distToCursor - 50) + 1, MAX_SPEED*2);
-        }
-    });
-
+    // Check if next to cursor and move in oposite dir (no detection for touchscreens due to how touch and hold is handled)
+    if (!window.isTouchDevice()) {
+        dotArray.forEach((dot) => {
+            const dotX = dot.x;
+            const dotY = dot.y;
+            let distToCursor = Math.sqrt(Math.pow((cursorX - dotX), 2) + Math.pow((cursorY - dotY), 2));
+            if (distToCursor < MIN_DIST_TO_MOUSE) {
+                let dy = cursorY - dotY;
+                let dx = cursorX - dotX;
+                dot.directionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
+                dot.speed = Math.min(Math.abs(distToCursor - 50) + 1, MAX_SPEED * 2);
+            }
+        });
+    }
 
     // Move dot
     const scrollWidth = window.getScrollbarWidth();
