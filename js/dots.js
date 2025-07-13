@@ -24,7 +24,6 @@ deltaTime = 0;
 
 // Resize canvas
 function canvasResize() {
-    console.log('hi');
     const dpr = window.devicePixelRatio || 1;
     canvas.width = mainContent.offsetWidth * dpr;
     canvas.height = mainContent.offsetHeight * dpr;
