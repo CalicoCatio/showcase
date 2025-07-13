@@ -83,8 +83,15 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 			} else if (resetButton.innerHTML == 'Are you sure?') {
 				resetButton.innerHTML = 'This will reset ALL settings.';
 			} else if (resetButton.innerHTML = 'This will reset ALL settings.') {
-				localStorage.clear();
-				location.reload();
+				try {
+					localStorage.clear();
+					// False = Error message, True = Not error
+					window.throwToast(true, 'Settings Reset', 'Your settings were reset to the default.');
+				} catch (error) {
+					window.throwToast(false, 'Reset Settings Error', 'Your settings could not be reset due to an error. Try again later');
+					console.warn(error);
+				}
+				
 			}
 		});
 	}
@@ -128,15 +135,16 @@ function settingsChanged(event, firstLoad) {
 					}
 					break;
 				default:
-					window.throwToast(0, 'Theme Change Error', 'Your theme could not be changed due to an error. Reset your settings and try again.');
+					// False = Error message, True = Not error
+					window.throwToast(false, 'Theme Change Error', 'Your theme could not be changed due to an error. Reload the page and try again.');
 					console.warn(`THEME CHANGE BLOCKED: Theme Setting is out of bounds! (${localStorage.getItem('theme')})`);
 					break;
 			}
 			if (!firstLoad) {
-				window.throwToast(1, 'Theme Changed', `Your theme has sucessfully been changed to ${setType}.`);
+				window.throwToast(true, 'Theme Changed', `Your theme has been changed to ${setType}.`);
 			}
 		} catch (error) {
-			window.throwToast(0, 'Theme Change Error', 'Your theme could not be changed properly due to an error. Try again later');
+			window.throwToast(false, 'Theme Change Error', 'Your theme could not be changed due to an error. Try again later');
 			console.warn(error);
 		}
 	} else if (event === 'animations') {
@@ -199,15 +207,16 @@ function settingsChanged(event, firstLoad) {
 					}
 					break;
 				default:
-					window.throwToast(0, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Reset your settings and try again.');
+					// False = Error message, True = Not error
+					window.throwToast(false, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Reload the page and try again.');
 					console.warn(`ANIMATION CHANGE BLOCKED: Animation Setting is out of bounds! (${localStorage.getItem('animations')})`);
 					break;
 			}
 			if (!firstLoad) {
-				window.throwToast(1, 'Animation Preference Changed', `Your animation preference has sucessfully been changed to ${setType}.`);
+				window.throwToast(true, 'Animation Preference Changed', `Your animation preference has been changed to ${setType}.`);
 			}
 		} catch (error) {
-			window.throwToast(0, 'Animation Preference Change Error', 'Your animation preference could not be changed properly due to an error. Try again later');
+			window.throwToast(false, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Try again later');
 			console.warn(error);
 		}
 	}

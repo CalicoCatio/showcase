@@ -21,9 +21,9 @@ function sleep(ms) {
 }
 
 function throwToast(type, title, body) {
-	if (type == 0) {
+	if (type == false) {
 		type = 'fail';
-	} else if (type == 1) {
+	} else if (type == true) {
 		type = 'success';
 	}
 	toastHTML = `
