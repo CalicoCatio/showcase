@@ -80,7 +80,7 @@ function addDot() {
     let dot = {};
     dot.x = Math.random() * mainContent.offsetWidth + 1;
     dot.y = Math.random() * mainContent.offsetHeight + 1;
-    dot.radius = Math.min(window.screen.width / 200, window.screen.height / 200);
+    dot.radius = Math.min(window.screen.width / 300, window.screen.height / 300);
     dot.directionDeg = Math.random() * 360 + 1;
     dot.speed = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
     dot.opacity = 0;
@@ -129,7 +129,7 @@ function update() {
         dot.y = newY;
 
         // If screen size changes, the dot size has to, too.
-        dot.radius = Math.min(window.screen.width / 200, window.screen.height / 200);
+        dot.radius = Math.min(window.screen.width / 300, window.screen.height / 300);
 
         // Offscreen? Add new
         if (newX > mainContent.offsetWidth + dotRadius + scrollWidth) {
