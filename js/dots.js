@@ -5,6 +5,7 @@ canvas.style.position = 'absolute';
 canvas.style.top = '0';
 canvas.style.zIndex = '-10';
 canvas.id = 'dotsCanvas';
+canvas.style.padding = '0';
 canvas = mainContent.appendChild(canvas);
 ctx = canvas.getContext("2d");
 
