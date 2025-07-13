@@ -30,7 +30,8 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<h5 class="modal-title">Settings</h5>
 					</div>
 					<div class="modal-body">
-
+						<p class="d-flex justify-content-center">Some settings will reload the page to apply.</p>
+						<hr>
 						<p class="d-flex justify-content-center">Theme</p>
 						<div class="d-flex justify-content-center">
 							<input type="radio" class="btn-check" name="theme" id="theme0" autocomplete="off">
@@ -248,18 +249,12 @@ function settingsChanged(event, firstLoad) {
 						script.src = '/showcase/js/dots.js';
 						document.body.appendChild(script);
 						setType = '<strong>shown</strong>';
-					} else {
-
 					}
 					break;
 				case '1': // Off
-					if (!firstLoad) {
-						document.querySelector('script[src*="/showcase/js/dots.js"]').remove();
-						document.body.querySelector('#dotsCanvas').remove();
-						setType = '<strong>hidden</strong>';
-					} else {
-
-					}
+					document.querySelector('script[src*="/showcase/js/dots.js"]').remove();
+					document.body.querySelector('#dotsCanvas').remove();
+					setType = '<strong>hidden</strong>';
 					break;
 				default:
 					// False = Error message, True = Not error
@@ -268,7 +263,7 @@ function settingsChanged(event, firstLoad) {
 					break;
 			}
 			if (!firstLoad) {
-				window.throwToast(true, 'Background Changed', `The background has been ${setType}.`);
+				location.reload();
 			}
 		} catch (error) {
 			window.throwToast(false, 'Background Change Error', 'The background could not be changed due to an error. Try again later.');

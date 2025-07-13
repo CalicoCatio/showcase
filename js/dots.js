@@ -3,6 +3,7 @@ mainContent = document.body.querySelector('.main-content');
 canvas = document.createElement('canvas');
 canvas.style.position = 'absolute';
 canvas.style.top = '0';
+canvas.style.left = '0';
 canvas.style.zIndex = '-10';
 canvas.id = 'dotsCanvas';
 canvas.style.padding = '0';
@@ -26,7 +27,14 @@ deltaTime = 0;
 // Resize canvas
 function canvasResize() {
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = mainContent.offsetWidth * dpr;
+    if (!(document.documentElement.style.overflow == 'hidden')) {
+        canvas.width = mainContent.offsetWidth * dpr;
+        canvas.style.top = '0px';
+    } 
+    else {
+        canvas.width = mainContent.offsetWidth + window.getScrollbarWidth() * dpr;
+        canvas.style.top = `${document.body.querySelector('.navbar').offsetHeight}px`;
+    }
     canvas.height = mainContent.offsetHeight * dpr;
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -42,6 +50,18 @@ document.querySelectorAll('.accordion-collapse').forEach(item => {
     item.addEventListener('shown.bs.collapse', canvasResize);
     item.addEventListener('hidden.bs.collapse', canvasResize);
 });
+
+// Check for when scrollbar is removed (it gets removed for modals)
+observer = new MutationObserver(() => {
+    const overflow = window.getComputedStyle(document.documentElement).overflow;
+    if (overflow === 'hidden') {
+        canvasResize();
+    } else {
+        canvasResize();
+    }
+});
+
+observer.observe(document.documentElement, { attributes: true, attributeFilter: ['style'] });
 
 // Grab mouse pos
 document.addEventListener('mousemove', (e) => {
@@ -60,7 +80,7 @@ function addDot() {
     let dot = {};
     dot.x = Math.random() * mainContent.offsetWidth + 1;
     dot.y = Math.random() * mainContent.offsetHeight + 1;
-    dot.radius = Math.min(mainContent.offsetWidth / 200, mainContent.offsetHeight / 200);
+    dot.radius = Math.min(window.screen.width / 200, window.screen.height / 200);
     dot.directionDeg = Math.random() * 360 + 1;
     dot.speed = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
     dot.opacity = 0;
@@ -94,6 +114,7 @@ function update() {
 
 
     // Move dot
+    const scrollWidth = window.getScrollbarWidth();
     dotArray.forEach((dot, index) => {
         const dotX = dot.x;
         const dotY = dot.y;
@@ -108,10 +129,10 @@ function update() {
         dot.y = newY;
 
         // If screen size changes, the dot size has to, too.
-        dot.radius = Math.min(mainContent.offsetWidth / 200, mainContent.offsetHeight / 200);
+        dot.radius = Math.min(window.screen.width / 200, window.screen.height / 200);
 
         // Offscreen? Add new
-        if (newX > mainContent.offsetWidth + dotRadius) {
+        if (newX > mainContent.offsetWidth + dotRadius + scrollWidth) {
             dotArray.splice(index, 1);
             addDot();
         } else if (newX < 0 - dotRadius) {
