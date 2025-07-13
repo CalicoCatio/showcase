@@ -1,7 +1,7 @@
 btnColor = 'btn-outline-light';
 // Apply defaults
 if (localStorage.getItem('theme')) {
-	settingsChanged('theme', true);
+	settingsChanged('theme', true); // True for first load only, false otherwise
 } else {
 	localStorage.setItem('theme', 2);
 }
@@ -12,11 +12,17 @@ if (localStorage.getItem('animations')) {
 	localStorage.setItem('animations', 2);
 }
 
+if (!localStorage.getItem('dots')) {
+	settingsChanged('dots', true);
+} else {
+	localStorage.setItem('dots', 0); // Using int instead of bool so three option settings are possible (0 = true)
+}
+
 // Add the settings modal
 const settingsObserver = new MutationObserver((mutationsList, settingsObserver) => {
 	if (document.querySelector(".navbar-toggler")) {
 		settingsObserver.disconnect();
-		const modalHTML = `
+		modalHTML = `
 		<div class="modal fade" id="settingsModal" tabindex="-1" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -24,6 +30,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<h5 class="modal-title">Settings</h5>
 					</div>
 					<div class="modal-body">
+
 						<p class="d-flex justify-content-center">Theme</p>
 						<div class="d-flex justify-content-center">
 							<input type="radio" class="btn-check" name="theme" id="theme0" autocomplete="off">
@@ -36,6 +43,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 							<label class="btn ${btnColor} m-1" for="theme2">Auto Detect</label>
 						</div>
 						<hr>
+
 						<p class="d-flex justify-content-center">Animations</p>
 						<div class="d-flex justify-content-center">
 							<input type="radio" class="btn-check" name="animations" id="anim0" autocomplete="off">
@@ -46,6 +54,16 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 
 							<input type="radio" class="btn-check" name="animations" id="anim2" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="anim2">Auto Detect</label>
+						</div>
+						<hr>
+
+						<p class="d-flex justify-content-center">Animated Background</p>
+						<div class="d-flex justify-content-center">
+							<input type="radio" class="btn-check" name="dots" id="dot0" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="dot0">On</label>
+
+							<input type="radio" class="btn-check" name="dots" id="dot1" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="dot1">Off</label>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -59,11 +77,13 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		const buttonHTML = `
 		<button class="btn-stealth navbar-settings" data-bs-toggle="modal" data-bs-target="#settingsModal"><i class="bi bi-gear gear-rotate"></i></button>
 		`;
+
 		document.body.insertAdjacentHTML('beforeend', modalHTML);
 		document.querySelector('.navbar-toggler').insertAdjacentHTML('beforebegin', buttonHTML);
 
 		document.querySelector('#settingsModal').querySelector(`#theme${localStorage.getItem('theme')}`).checked = true;
 		document.querySelector('#settingsModal').querySelector(`#anim${localStorage.getItem('animations')}`).checked = true;
+		document.querySelector('#settingsModal').querySelector(`#dot${localStorage.getItem('dots')}`).checked = true;
 
 		// Change stuffs
 		document.querySelector('#settingsModal').querySelectorAll('input').forEach((input, index) => {
@@ -108,7 +128,7 @@ function settingsChanged(event, firstLoad) {
 				case '0': // Light
 					if (!firstLoad)
 						swapButtonTypes(0);
-					else 
+					else
 						btnColor = 'btn-outline-dark'
 					document.querySelector('HTML').setAttribute('data-bs-theme', 'light');
 					setType = '<strong>light mode</strong>';
@@ -144,7 +164,7 @@ function settingsChanged(event, firstLoad) {
 				window.throwToast(true, 'Theme Changed', `Your theme has been changed to ${setType}.`);
 			}
 		} catch (error) {
-			window.throwToast(false, 'Theme Change Error', 'Your theme could not be changed due to an error. Try again later');
+			window.throwToast(false, 'Theme Change Error', 'Your theme could not be changed due to an error. Try again later.');
 			console.warn(error);
 		}
 	} else if (event === 'animations') {
@@ -216,7 +236,42 @@ function settingsChanged(event, firstLoad) {
 				window.throwToast(true, 'Animation Preference Changed', `Your animation preference has been changed to ${setType}.`);
 			}
 		} catch (error) {
-			window.throwToast(false, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Try again later');
+			window.throwToast(false, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Try again later.');
+			console.warn(error);
+		}
+	} else if (event === 'dots') {
+		try {
+			switch (localStorage.getItem('dots')) {
+				case '0': // On
+					if (!firstLoad) {
+						const script = document.createElement('script');
+						script.src = '/showcase/js/dots.js';
+						document.body.appendChild(script);
+						setType = '<strong>shown</strong>';
+					} else {
+
+					}
+					break;
+				case '1': // Off
+					if (!firstLoad) {
+						document.querySelector('script[src*="/showcase/js/dots.js"]').remove();
+						document.body.querySelector('#dotsCanvas').remove();
+						setType = '<strong>hidden</strong>';
+					} else {
+
+					}
+					break;
+				default:
+					// False = Error message, True = Not error
+					window.throwToast(false, 'Background Change Error', 'The background could not be changed due to an error. Reload the page and try again.');
+					console.warn(`BACKGROUND CHANGE BLOCKED: Background Setting is out of bounds! (${localStorage.getItem('theme')})`);
+					break;
+			}
+			if (!firstLoad) {
+				window.throwToast(true, 'Background Changed', `The background has been ${setType}.`);
+			}
+		} catch (error) {
+			window.throwToast(false, 'Background Change Error', 'The background could not be changed due to an error. Try again later.');
 			console.warn(error);
 		}
 	}
