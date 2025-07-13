@@ -84,7 +84,6 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		document.querySelector('#settingsModal').querySelector(`#theme${localStorage.getItem('theme')}`).checked = true;
 		document.querySelector('#settingsModal').querySelector(`#anim${localStorage.getItem('animations')}`).checked = true;
 		document.querySelector('#settingsModal').querySelector(`#dot${localStorage.getItem('dots')}`).checked = true;
-		console.log(`${localStorage.getItem('dots')}`);
 
 		// Change stuffs
 		document.querySelector('#settingsModal').querySelectorAll('input').forEach((input, index) => {
