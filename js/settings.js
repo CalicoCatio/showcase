@@ -12,7 +12,7 @@ if (localStorage.getItem('animations')) {
 	localStorage.setItem('animations', 2);
 }
 
-if (!localStorage.getItem('dots')) {
+if (localStorage.getItem('dots')) {
 	settingsChanged('dots', true);
 } else {
 	localStorage.setItem('dots', 0); // Using int instead of bool so three option settings are possible (0 = true)
@@ -84,6 +84,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		document.querySelector('#settingsModal').querySelector(`#theme${localStorage.getItem('theme')}`).checked = true;
 		document.querySelector('#settingsModal').querySelector(`#anim${localStorage.getItem('animations')}`).checked = true;
 		document.querySelector('#settingsModal').querySelector(`#dot${localStorage.getItem('dots')}`).checked = true;
+		console.log(`${localStorage.getItem('dots')}`);
 
 		// Change stuffs
 		document.querySelector('#settingsModal').querySelectorAll('input').forEach((input, index) => {
