@@ -15,7 +15,8 @@
     <!-- JS needed onload-->
     <script src="/showcase/js/preloadTheme.js"></script>
 </head>
-<body onload="insertBreadcrumb('Home', '/showcase/', 'Projects', 'Showcase v4')" ;>
+<!-- You may be wondering what the code after projects is. That triggers the offcanvas navbar and adds an underline -->
+<body onload="insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Projects', 'class=&quot;text-decoration-underline&quot; style=&quot;cursor: pointer&quot; data-bs-toggle=&quot;offcanvas&quot; data-bs-target=&quot;#header&quot; aria-controls=&quot;header&quot;', 'Showcase v4')" ;>
     <div class="main-content">
         <div class="row d-flex align-items-start justify-content-center">
             <div class="col-xl-2 d-none d-xl-block"></div>

@@ -15,7 +15,7 @@
     <!-- JS needed onload-->
     <script src="/showcase/js/preloadTheme.js"></script>
 </head>
-<body onload="insertBreadcrumb('Home', '/showcase/', 'Info', 'Changelog')">
+<body onload="insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Info', '', 'Changelog')">
     <div class="main-content row d-flex align-items-start justify-content-center">
         <div class="col-md-2 d-none d-md-block"></div>
         <div class="col-md-8 col-12 accordion mt-3 mb-3" id="changelogAccordion">
@@ -29,8 +29,8 @@
                     <div class="accordion-body">
                         Additions:
                         <ul>
-                            <li>Added Blinded by the Dark feature page.</li>
-                            <li>Added showcase v4 feature page.</li>
+                            <li>Added <a href="/showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a> feature page.</li>
+                            <li>Added <a href="/showcase/projects/showcase.html">Showcase</a> feature page.</li>
                             <li>Added breadcrumbs to the navbar, utilizing a dynamic JS framework to construct them.</li>
                             <ul>
                                 <li>Note: Breadcrumbs only show for devices with a large enough screen width, phones in vertical will not see the breadcrumbs.</li>
@@ -47,17 +47,17 @@
                             <li>Ported over header/navbar from showcase v3.</li>
                             <li>Ported over favicon from showcase v2.</li>
                             <li>Ported over footer from showcase v3.</li>
-                            <li>Ported over FAQ page from showcase v3.</li>
-                            <li>Ported over changelog page from showcase v3.</li>
+                            <li>Ported over <a href="/showcase/info/faq.html">FAQ</a> page from showcase v3.</li>
+                            <li>Ported over <a href="/showcase/info/changelog.html">Changelog</a> page from showcase v3.</li>
                         </ul>
                         Removals:
                         <ul>
                             <li>Removed links to sections that were ported from showcase v3.</li>
-                            <li>Removed showcase v3 FAQ questions from ported FAQ page.</li>
+                            <li>Removed showcase v3 FAQ questions from ported <a href="/showcase/info/faq.html">FAQ</a> page.</li>
                         </ul>
                         Improvements/Fixes:
                         <ul>
-                            <li>Overhauled changelog page to use accordions.</li>
+                            <li>Overhauled <a href="/showcase/info/changelog.html">Changelog</a> page to use accordions.</li>
                             <li>Improved how headers/navbars and footers are loaded onto pages, sitewide.</li>
                             <li>
                                 Gave phones and other small devices access to project pages.
@@ -65,7 +65,7 @@
                                     <li>But at the cost of less access to features designed for desktop use.</li>
                                 </ul>
                             </li>
-                            <li>Improved how FAQ page handles desktop aspect ratios.</li>
+                            <li>Improved how <a href="/showcase/info/faq.html">FAQ</a> page handles desktop aspect ratios.</li>
                             <li>Fixed how accordions are colored, sitewide.</li>
                             <li>Reduced number of HTML tags needed for footer, without reducing form/function.</li>
                             <li>Reduced number of CSS classes needed for footer, without reducing form/function.</li>
@@ -84,16 +84,16 @@
                         Additions:
                         <ul>
                             <li>Added a custom dynamic JS/CSS hybrid animation system.</li>
-                            <li>Used the aforementioned animation system on the homepage.</li>
+                            <li>Used the aforementioned animation system on the <a href="/showcase/">Homepage</a>.</li>
                         </ul>
                         Removals:
                         <ul>
-                            <li>Removed the 'Click Here' popup on the homepage.</li>
+                            <li>Removed the 'Click Here' popup on the <a href="/showcase/">Homepage</a>.</li>
                             <li>Removed mention of Duolingo from the showcase v4's showcase design paragraph, due to their use of AI.</li>
                         </ul>
                         Improvements/Fixes:
                         <ul>
-                            <li>Added missing showcase v4 image to showcase v4 showcase.</li>
+                            <li>Added missing showcase v4 image to <a href="/showcase/projects/showcase.html">Showcase</a> showcase.</li>
                             <li>Replaced all images in the showcase v4 showcase with ones that have the scrollbar removed.</li>
                             <li>Added release dates to the changelog - in EST.</li>
                             <li>Various spelling, grammar, and clarity improvements to text, sitewide.</li>
@@ -118,7 +118,7 @@
                                 <li>Added setting to disable/enable animations.</li>
                                 <li>Added the ability to reset all settings to the default.</li>
                             </ul>
-                            <li>Added content to the About page.</li>
+                            <li>Added content to the <a href="/showcase/info/about.html">About</a> page.</li>
                         </ul>
                         Overhauls:
                         <ul>
@@ -167,14 +167,23 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#five" aria-expanded="false" aria-controls="one">
-                        v0.2.1a | July 14, 2025
+                        v0.2.2 | July 14, 2025
                     </button>
                 </h2>
                 <div id="five" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
                     <div class="accordion-body">
+                        Additions:
+                        <ul>
+                            <li>Added support for button links in the breadcrumbs.</li>
+                            <li>Used aforementioned support to add "links" to the project page.</li>
+                            <ul>
+                                <li>The project page is actually just the offcanvas navbar, which is why links is in quotes.</li>
+                            </ul>
+                        </ul>
                         Improvements/Fixes:
                         <ul>
                             <li>Fixed a bug where the dots canvas enlarged the size of the webpage.</li>
+                            <li>Added links to relevent subpages referenced in the changelog.</li>
                             <li>Changed the default state of 'Animated Background'.</li>
                             <ul>
                                 <li>Default state is <strong>hidden</strong>.</li>
@@ -184,6 +193,7 @@
                                 <li>v0.0.0.x updates have to include at least one improvement or fix.</li>
                                 <li>v0.0.X updates have to include at least one addition.</li>
                                 <li>v0.X.0 updates have to include at least one overhaul.</li>
+                                <li>If more than one update happens on the same day, they are rolled into the same update.</li>
                             </ul>
                         </ul>
                     </div>

@@ -171,7 +171,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v0.2.1a</span>
+							<span id="myVer">v0.2.2</span>
 						</span>
 					</span>
 				</div>
@@ -182,7 +182,7 @@ function insertFooter() {
 }
 
 // Slap in a custom breadcrumb inside the header
-function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
+function insertBreadcrumb(name1, link1 = null, name2 = null, link2 = null, name3 = null) {
 	let breadcrumb = `
 		<nav class="text-truncate d-none d-sm-block" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
@@ -197,7 +197,7 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
 		// 2-level breadcrumb
 		breadcrumb += `
 			<li class="breadcrumb-item">
-				<a href="${link1}">${name1}</a>
+				<a ${link1}>${name1}</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">${name2}</li>
 		`;
@@ -205,9 +205,11 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, name3 = null) {
 		// 3-level breadcrumb
 		breadcrumb += `
 			<li class="breadcrumb-item">
-				<a href="${link1}">${name1}</a>
+				<a ${link1}>${name1}</a>
 			</li>
-			<li class="breadcrumb-item">${name2}</li>
+			<li class="breadcrumb-item">
+				<a ${link2}>${name2}</a>
+			</li>
 			<li class="breadcrumb-item active" aria-current="page">${name3}</li>
 		`;
 	}
