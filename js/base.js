@@ -68,7 +68,7 @@ const searchObserver = new MutationObserver((mutationsList, searchObserver) => {
 					});
 					// There is not a project with tag Tag
 					if (output.innerHTML.toString() == '') {
-						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link">There are no projects that have the tag ${query}.</li>`;
+						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link text-center">There are no projects that have the tag ${query}.</li>`;
 					}
 				} else {
 					items.forEach(function (item, i) {
@@ -80,7 +80,7 @@ const searchObserver = new MutationObserver((mutationsList, searchObserver) => {
 					});
 					// There is not a project with name Name
 					if (output.innerHTML.toString() == '') {
-						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link">There no are projects by the name of ${query}.</li>`;
+						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link text-center">There no are projects by the name of ${query}.</li>`;
 					}
 				}
 			} else {

@@ -3,12 +3,16 @@ async function helloAnim() {
     const masterArray = [
         ["Hi,", 1.25],
         ["I'm Ariel.", 1.25],
-        ["", 0.5],
+        ["", 0.25],
         ["Online,", 1.25],
         ["I go by the name CalicoCatio.", 1.5],
-        ["", 0.5],
-        ["I am a video game maker", 1.5],
-        ["and video game player.", 1.5],
+        ["", 0.25],
+        ["I am a video game player", 1.5],
+        ["and video game maker.", 1.5],
+        ["", 0.25],
+        ["This website is dedicated those games,", 2],
+        ["", 0.25],
+        ["and other things I have made.", 2],
         ["", 2]
     ];
     while (true) {
