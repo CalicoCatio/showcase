@@ -12,11 +12,12 @@ if (localStorage.getItem('animations')) {
 	localStorage.setItem('animations', 2);
 }
 
-if (localStorage.getItem('dots')) {
-	settingsChanged('dots', true);
-} else {
+
+if (!localStorage.getItem('dots')) {
 	localStorage.setItem('dots', 0); // Using int instead of bool so three option settings are possible (0 = true)
-}
+} 
+settingsChanged('dots', true);
+
 
 // Add the settings modal
 const settingsObserver = new MutationObserver((mutationsList, settingsObserver) => {
@@ -30,7 +31,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<h5 class="modal-title">Settings</h5>
 					</div>
 					<div class="modal-body">
-						<p class="d-flex justify-content-center">Some settings will reload the page to apply.</p>
+						<p class="d-flex justify-content-center text-center">Some settings will reload the page to apply.</p>
 						<hr>
 						<p class="d-flex justify-content-center">Theme</p>
 						<div class="d-flex justify-content-center">
@@ -106,8 +107,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 			} else if (resetButton.innerHTML = 'This will reset ALL settings.') {
 				try {
 					localStorage.clear();
-					// False = Error message, True = Not error
-					window.throwToast(true, 'Settings Reset', 'Your settings were reset to the default.');
+					location.reload();
 				} catch (error) {
 					window.throwToast(false, 'Reset Settings Error', 'Your settings could not be reset due to an error. Try again later');
 					console.warn(error);
@@ -244,17 +244,12 @@ function settingsChanged(event, firstLoad) {
 		try {
 			switch (localStorage.getItem('dots')) {
 				case '0': // On
-					if (!firstLoad) {
-						const script = document.createElement('script');
-						script.src = '/showcase/js/dots.js';
-						document.body.appendChild(script);
-						setType = '<strong>shown</strong>';
-					}
+					const script = document.createElement('script');
+					script.src = '/showcase/js/dots.js';
+					document.body.appendChild(script);
 					break;
 				case '1': // Off
-					document.querySelector('script[src*="/showcase/js/dots.js"]').remove();
-					document.body.querySelector('#dotsCanvas').remove();
-					setType = '<strong>hidden</strong>';
+					// Default state is off, so nothing needs to happen here (thanks to location.reload() @ line 261)
 					break;
 				default:
 					// False = Error message, True = Not error

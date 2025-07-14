@@ -28,17 +28,14 @@ deltaTime = 0;
 function canvasResize() {
     const dpr = window.devicePixelRatio || 1;
     if (!(document.documentElement.style.overflow == 'hidden')) {
-        canvas.width = mainContent.offsetWidth * dpr;
+        canvas.width = mainContent.offsetWidth;
         canvas.style.top = '0px';
     } 
     else {
-        canvas.width = mainContent.offsetWidth + window.getScrollbarWidth() * dpr;
+        canvas.width = mainContent.offsetWidth + window.getScrollbarWidth();
         canvas.style.top = `${document.body.querySelector('.navbar').offsetHeight}px`;
     }
-    canvas.height = mainContent.offsetHeight * dpr;
-
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.scale(dpr, dpr);
+    canvas.height = mainContent.offsetHeight;
 
     DOT_COUNT = Math.max(canvas.width/25, canvas.height/25);
 }
@@ -100,7 +97,7 @@ function update() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // Check if next to cursor and move in oposite dir (no detection for touchscreens due to how touch and hold is handled)
-    if (!window.isTouchDevice()) {
+    if (window.isTouchDevice()) {
         dotArray.forEach((dot) => {
             const dotX = dot.x;
             const dotY = dot.y;
@@ -113,6 +110,7 @@ function update() {
             }
         });
     }
+    
 
     // Move dot
     const scrollWidth = window.getScrollbarWidth();
