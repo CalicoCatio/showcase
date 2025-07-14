@@ -97,7 +97,7 @@ function update() {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // Check if next to cursor and move in oposite dir (no detection for touchscreens due to how touch and hold is handled)
-    if (window.isTouchDevice()) {
+    if (!window.isTouchDevice()) {
         dotArray.forEach((dot) => {
             const dotX = dot.x;
             const dotY = dot.y;
