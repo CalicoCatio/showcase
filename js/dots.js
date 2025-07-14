@@ -118,17 +118,14 @@ function update() {
         const dotX = dot.x;
         const dotY = dot.y;
         const directionRad = dot.directionDeg * (Math.PI / 180);
-        let dotspeed = dot.speed;
-        const dotRadius = dot.radius
+        const dotspeed = dot.speed;
+        let dotRadius = dot.radius
 
         const newX = dotX + Math.cos(directionRad) * dotspeed;
         const newY = dotY + Math.sin(directionRad) * dotspeed;
 
-        dot.x = newX;
-        dot.y = newY;
-
         // If screen size changes, the dot size has to, too.
-        dot.radius = Math.min(window.screen.width / 300, window.screen.height / 300);
+        dotRadius = Math.min(window.screen.width / 300, window.screen.height / 300);
 
         // Offscreen? Add new
         if (newX > mainContent.offsetWidth + dotRadius + scrollWidth) {
@@ -147,6 +144,10 @@ function update() {
         } else {
             drawDot(dot);
         }
+
+        dot.x = newX;
+        dot.y = newY;
+        dot.radius = dotRadius;
     });
 
     // Draw lines
@@ -184,17 +185,20 @@ function update() {
 requestAnimationFrame(update);
 
 function drawDot(dot) {
+    let dotOp = dot.opacity
     ctx.beginPath();
     ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
     ctx.fillStyle = 'gray';
 
-    dot.opacity += 1 * deltaTime;
-    if (dot.opacity > 1) dot.opacity = 1;
+    dotOp += 1 * deltaTime;
+    if (dotOp > 1) dotOp = 1;
 
-    ctx.globalAlpha = dot.opacity;
+    ctx.globalAlpha = dotOp;
 
     ctx.fill();
     ctx.globalAlpha = 1;
+
+    dot.opacity = dotOp;
 }
 
 function drawLine(dot1, dot2, distance) {
@@ -203,7 +207,7 @@ function drawLine(dot1, dot2, distance) {
     alpha = Math.min(Math.abs(alpha), 1);
 
     ctx.beginPath();
-    ctx.globalAlpha = alpha;
+    ctx.globalAlpha = Math.min(alpha, dot1.opacity, dot2.opacity);
     ctx.strokeStyle = 'lightgray';
     ctx.moveTo(dot1.x, dot1.y);
     ctx.lineTo(dot2.x, dot2.y);
