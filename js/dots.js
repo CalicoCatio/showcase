@@ -131,14 +131,14 @@ function update() {
         if (newX > mainContent.offsetWidth + MAX_DISTANCE_BETWEEN_CONNECTIONS + scrollWidth) {
             dotArray.splice(index, 1);
             addDot();
-        } else if (newX < 0 - dotRadius) {
+        } else if (newX < 0 - MAX_DISTANCE_BETWEEN_CONNECTIONS) {
             dotArray.splice(index, 1);
             addDot();
         } else if (newY > mainContent.offsetHeight + MAX_DISTANCE_BETWEEN_CONNECTIONS) {
             dotArray.splice(index, 1);
             addDot();
         }
-        else if (newY < 0 - dotRadius) {
+        else if (newY < 0 - MAX_DISTANCE_BETWEEN_CONNECTIONS) {
             dotArray.splice(index, 1);
             addDot();
         } else {
