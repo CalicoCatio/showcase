@@ -128,13 +128,13 @@ function update() {
         dotRadius = Math.min(window.screen.width / 300, window.screen.height / 300);
 
         // Offscreen? Add new
-        if (newX > mainContent.offsetWidth + dotRadius + scrollWidth) {
+        if (newX > mainContent.offsetWidth + MAX_DISTANCE_BETWEEN_CONNECTIONS + scrollWidth) {
             dotArray.splice(index, 1);
             addDot();
         } else if (newX < 0 - dotRadius) {
             dotArray.splice(index, 1);
             addDot();
-        } else if (newY > mainContent.offsetHeight + dotRadius) {
+        } else if (newY > mainContent.offsetHeight + MAX_DISTANCE_BETWEEN_CONNECTIONS) {
             dotArray.splice(index, 1);
             addDot();
         }
@@ -179,6 +179,10 @@ function update() {
     if (now - lastTime >= 1000) {
         frameCount = 0;
         lastTime = now;
+    }
+
+    if (document.querySelector('#dotCount')) {
+        document.querySelector('#dotCount').textContent = `${dotArray.length}`;
     }
 
     requestAnimationFrame(update);
