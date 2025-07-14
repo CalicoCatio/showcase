@@ -184,7 +184,12 @@
                         <ul>
                             <li>Fixed a bug where the dots canvas enlarged the size of the webpage.</li>
                             <li>Added links to relevent subpages referenced in the Changelog.</li>
-                            <li>Slight performance increase relating to the Animated Background/</li>
+                            <li>Fixed a bug where lines not drawn to/from the center each dot.</li>
+                            <li>Slight performance increase relating to the Animated Background.</li>
+                            <ul>
+                                <li>Increase in caching of key variables used in real-time/every frame.</li>
+                                <li>Removed one forEach loop, cutting out 75 unneeded operations that were carried out each frame.</li>
+                            </ul>
                             <li>Changed the default state of Animated Background setting.</li>
                             <ul>
                                 <li>Default state is <strong>hidden</strong>.</li>

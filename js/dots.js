@@ -145,6 +145,19 @@ function update() {
             drawDot(dot);
         }
 
+        dotArray.forEach((dot2) => {
+            const pairExists = lineArray.some(pair =>
+                (pair[0] === dot && pair[1] === dot2) || (pair[0] === dot2 && pair[1] === dot)
+            );
+            if (!pairExists) {
+                let distToDot2 = Math.sqrt(Math.pow((newX - dot2.x), 2) + Math.pow((newY - dot2.y), 2));
+                if (distToDot2 < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
+                    lineArray.push([dot, dot2]);
+                    drawLine(dot, dot2, distToDot2);
+                }
+            }
+        });
+
         dot.x = newX;
         dot.y = newY;
         dot.radius = dotRadius;
@@ -152,18 +165,7 @@ function update() {
 
     // Draw lines
     dotArray.forEach((dot1) => {
-        dotArray.forEach((dot2) => {
-            const pairExists = lineArray.some(pair =>
-                (pair[0] === dot1 && pair[1] === dot2) || (pair[0] === dot2 && pair[1] === dot1)
-            );
-            if (!pairExists) {
-                let distToDot2 = Math.sqrt(Math.pow((dot1.x - dot2.x), 2) + Math.pow((dot1.y - dot2.y), 2));
-                if (distToDot2 < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
-                    lineArray.push([dot1, dot2]);
-                    drawLine(dot1, dot2, distToDot2);
-                }
-            }
-        });
+        
     });
     // Line array gets cleared after every frame
     lineArray = [];
