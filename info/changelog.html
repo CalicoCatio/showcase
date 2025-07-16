@@ -189,8 +189,8 @@
                             <li>Fixed a bug where some text, when broken into multiple lines, would stop being centered.</li>
                             <li>Slight performance increase relating to the Animated Background.</li>
                             <ul>
-                                <li>Increase in caching of key variables used every frame.</li>
-                                <li>Removed one forEach loop, cutting out <span id="dotCount"></span> unneeded operations that were carried out each frame.</li>
+                                <li>Increased caching of key variables used every frame.</li>
+                                <li>Removed an uneeded forEach loop, cutting out <span id="dotCount"></span> unneeded operations that were carried out each frame.</li>
                             </ul>
                             <li>Changed the default state of Animated Background setting.</li>
                             <ul>
@@ -220,10 +220,12 @@
                             <li>Disabled selecting text on the <a href="/showcase/">Homepage</a>.</li>
                             <li>Slight performance increase relating to the Animated Background.</li>
                             <ul>
-                                <li>Increase in caching of key variables used every frame.</li>
-                                <li>Removed another forEach loop, cutting out <span id="dotCount"></span> more unneeded operations that were carried out each frame.</li>
+                                <li>Increased caching (again) of key variables used every frame.</li>
+                                <li>Removed another forEach loop, concatenating operations that are carried out each frame.</li>
+                                <li>Stopped using square root to calculate distance (using X<sup>2</sup> instead).</li>
                             </ul>
-</div>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
