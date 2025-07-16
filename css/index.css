@@ -8,6 +8,7 @@
 }
 
 .big-text {
+    user-select: none;
     text-align: center;
     font-size: clamp(1rem, 15vh, 15vw);
 }
