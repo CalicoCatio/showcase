@@ -37,7 +37,16 @@ function canvasResize() {
     }
     canvas.height = mainContent.offsetHeight;
 
-    DOT_COUNT = Math.max(canvas.width/25, canvas.height/25);
+    DOT_COUNT = Math.max(canvas.width / 25, canvas.height / 25);
+
+    // Change dot count when canvas size changes
+    if (DOT_COUNT > dotArray.length) {
+        for (let i = dotArray.length; i < DOT_COUNT; i++) {
+            addDot();
+        }
+    } else if (DOT_COUNT < dotArray.length) {
+        dotArray.splice(DOT_COUNT, dotArray.length - DOT_COUNT);
+    }
 }
 
 canvasResize();
@@ -86,15 +95,6 @@ function addDot() {
 }
 
 function update() {
-    // Add/remove dots
-    if (DOT_COUNT > dotArray.length) {
-        for (let i = dotArray.length; i < DOT_COUNT; i++) {
-            addDot();
-        }
-    } else if (DOT_COUNT < dotArray.length) {
-        dotArray.splice(DOT_COUNT, dotArray.length - DOT_COUNT);
-    }
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Stuff that changes only between frames
@@ -138,8 +138,8 @@ function update() {
         // Interact with dots
         if (!window.isTouchDevice()) {
 
-            // Purposefully lacking Math.sqrt
-            let distToCursorSquared = Math.pow((cursorX - dotX), 2) + Math.pow((cursorY - dotY), 2);
+            // Purposefully lacking Math.sqrt and using X * X over Math.Pow
+            let distToCursorSquared = (cursorX - dotX)*(cursorX - dotX) + (cursorY - dotY)*(cursorY - dotY);
             if (distToCursorSquared < MIN_DIST_TO_MOUSE * MIN_DIST_TO_MOUSE) {
                 let dy = cursorY - newY;
                 let dx = cursorX - newX;
@@ -150,15 +150,19 @@ function update() {
 
         // Draw lines
         dotArray.forEach((dot2) => {
-            const pairExists = lineArray.some(pair =>
-                (pair[0] === dot && pair[1] === dot2) || (pair[0] === dot2 && pair[1] === dot)
-            );
-            if (!pairExists) {
-                // Purposefully lacking Math.sqrt
-                let distToDot2Squared = Math.pow((newX - dot2.x), 2) + Math.pow((newY - dot2.y), 2);
-                if (distToDot2Squared < MAX_DISTANCE_BETWEEN_CONNECTIONS * MAX_DISTANCE_BETWEEN_CONNECTIONS) {
-                    lineArray.push([dot, dot2]);
-                    drawLine(dot, dot2, distToDot2Squared);
+            const dot2X = dot2.x;
+            const dot2Y = dot2.y;
+            if (((Math.abs(newX - dot2X)) < MAX_DISTANCE_BETWEEN_CONNECTIONS || (Math.abs(newY - dot2Y)) < MAX_DISTANCE_BETWEEN_CONNECTIONS)) {
+                const pairExists = lineArray.some(pair =>
+                    (pair[0] === dot && pair[1] === dot2) || (pair[0] === dot2 && pair[1] === dot)
+                );
+                if (!pairExists) {
+                    // Purposefully lacking Math.sqrt and using X * X over Math.Pow
+                    let distToDot2Squared = (newX - dot2X)*(newX - dot2X) + (newY - dot2Y)*(newY - dot2Y);
+                    if (distToDot2Squared < MAX_DISTANCE_BETWEEN_CONNECTIONS * MAX_DISTANCE_BETWEEN_CONNECTIONS) {
+                        lineArray.push([dot, dot2]);
+                        drawLine(dot, dot2, distToDot2Squared);
+                    }
                 }
             }
         });

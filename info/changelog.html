@@ -218,11 +218,13 @@
                         Improvements/Fixes:
                         <ul>
                             <li>Disabled selecting text on the <a href="/showcase/">Homepage</a>.</li>
-                            <li>Slight performance increase relating to the Animated Background.</li>
+                            <li>Large performance increase relating to the Animated Background.</li>
                             <ul>
+                                <li>If the x (or y) distance alone is greater than the max distance between lines, the check to draw a line is skipped.</li>
+                                <li>Moved code that only needs occasional updates outside of the every-frame update function.</li>
                                 <li>Increased caching (again) of key variables used every frame.</li>
                                 <li>Removed another forEach loop, concatenating operations that are carried out each frame.</li>
-                                <li>Stopped using square root to calculate distance (using X<sup>2</sup> instead).</li>
+                                <li>Stopped using square root to calculate distance (using X*X instead).</li>
                             </ul>
                         </ul>
                     </div>
