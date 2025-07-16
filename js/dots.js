@@ -76,11 +76,6 @@ document.addEventListener('mousemove', (e) => {
     cursorY = e.clientY - rect.top;
 });
 
-// Add in the dots
-for (let i = 0; i < DOT_COUNT; i++) {
-    addDot();
-}
-
 // Add in a dot
 function addDot() {
     let dot = {};
@@ -144,7 +139,7 @@ function update() {
                 let dy = cursorY - newY;
                 let dx = cursorX - newX;
                 dotDirectionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
-                dotSpeed = Math.min(Math.abs(distToCursor - 50) + 1, MAX_SPEED * 2);
+                dotSpeed = Math.min(Math.abs(Math.sqrt(distToCursorSquared) - 50) + 1, MAX_SPEED * 2);
             }
         }
 
