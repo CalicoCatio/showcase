@@ -136,7 +136,7 @@ function insertFooter() {
 						<h5 class="text-uppercase d-flex justify-content-center footer-text">
 							Socials
 						</h5>
-						<ul class="list-unstyled d-flex justify-content-center gap-3">
+						<ul class="list-unstyled mb-0 d-flex justify-content-center gap-3">
 							<li>
 								<a href="https://youtube.com/@ACalicoCatio" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-youtube"></i>
