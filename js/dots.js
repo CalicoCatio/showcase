@@ -96,55 +96,59 @@ function update() {
     }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // Check if next to cursor and move in oposite dir (no detection for touchscreens due to how touch and hold is handled)
-    if (!window.isTouchDevice()) {
-        dotArray.forEach((dot) => {
-            const dotX = dot.x;
-            const dotY = dot.y;
+
+    // Stuff that changes only between frames
+    const scrollWidth = window.getScrollbarWidth();
+    const canvasWidth = mainContent.offsetWidth;
+    const canvasHeight = mainContent.offsetHeight;
+
+
+    dotArray.forEach((dot, index) => {
+        // Stuff that changes between dots
+        const dotX = dot.x;
+        const dotY = dot.y;
+
+        let dotSpeed = dot.speed;
+        let dotDirectionDeg = dot.directionDeg;
+        let dotRadius = dot.radius
+
+        // Interact with dots
+        if (!window.isTouchDevice()) {
+            
             let distToCursor = Math.sqrt(Math.pow((cursorX - dotX), 2) + Math.pow((cursorY - dotY), 2));
             if (distToCursor < MIN_DIST_TO_MOUSE) {
                 let dy = cursorY - dotY;
                 let dx = cursorX - dotX;
-                dot.directionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
-                dot.speed = Math.min(Math.abs(distToCursor - 50) + 1, MAX_SPEED * 2);
+                dotDirectionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
+                dotSpeed = Math.min(Math.abs(distToCursor - 50) + 1, MAX_SPEED * 2);
             }
-        });
-    }
-    
+        }
 
-    // Move dot
-    const scrollWidth = window.getScrollbarWidth();
-    dotArray.forEach((dot, index) => {
-        const dotX = dot.x;
-        const dotY = dot.y;
-        const directionRad = dot.directionDeg * (Math.PI / 180);
-        const dotspeed = dot.speed;
-        let dotRadius = dot.radius
-
-        const newX = dotX + Math.cos(directionRad) * dotspeed;
-        const newY = dotY + Math.sin(directionRad) * dotspeed;
+        // Move dots (dotDirectionDeg * (Math.PI / 180) converts to radians)
+        const newX = dotX + Math.cos(dotDirectionDeg * (Math.PI / 180)) * dotSpeed;
+        const newY = dotY + Math.sin(dotDirectionDeg * (Math.PI / 180)) * dotSpeed;
 
         // If screen size changes, the dot size has to, too.
         dotRadius = Math.min(window.screen.width / 300, window.screen.height / 300);
 
         // Offscreen? Add new
-        if (newX > mainContent.offsetWidth + MAX_DISTANCE_BETWEEN_CONNECTIONS + scrollWidth) {
+        if (newX > canvasWidth + MAX_DISTANCE_BETWEEN_CONNECTIONS + scrollWidth) {
             dotArray.splice(index, 1);
             addDot();
         } else if (newX < 0 - MAX_DISTANCE_BETWEEN_CONNECTIONS) {
             dotArray.splice(index, 1);
             addDot();
-        } else if (newY > mainContent.offsetHeight + MAX_DISTANCE_BETWEEN_CONNECTIONS) {
+        } else if (newY > canvasHeight + MAX_DISTANCE_BETWEEN_CONNECTIONS) {
             dotArray.splice(index, 1);
             addDot();
-        }
-        else if (newY < 0 - MAX_DISTANCE_BETWEEN_CONNECTIONS) {
+        } else if (newY < 0 - MAX_DISTANCE_BETWEEN_CONNECTIONS) {
             dotArray.splice(index, 1);
             addDot();
         } else {
             drawDot(dot);
         }
 
+        // Draw lines
         dotArray.forEach((dot2) => {
             const pairExists = lineArray.some(pair =>
                 (pair[0] === dot && pair[1] === dot2) || (pair[0] === dot2 && pair[1] === dot)
@@ -161,12 +165,10 @@ function update() {
         dot.x = newX;
         dot.y = newY;
         dot.radius = dotRadius;
+        dot.speed = dotSpeed;
+        dot.directionDeg = dotDirectionDeg;
     });
 
-    // Draw lines
-    dotArray.forEach((dot1) => {
-        
-    });
     // Line array gets cleared after every frame
     lineArray = [];
 
