@@ -37,7 +37,7 @@ function canvasResize() {
     }
     canvas.height = mainContent.offsetHeight;
 
-    DOT_COUNT = Math.max(canvas.width / 25, canvas.height / 25);
+    DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
 
     // Change dot count when canvas size changes
     if (DOT_COUNT > dotArray.length) {

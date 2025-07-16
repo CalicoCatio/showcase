@@ -1,0 +1,15 @@
+.highlight-anim {
+    animation: grow 1s alternate 2;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(1);
+    }
+    90% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(2);
+    }
+}

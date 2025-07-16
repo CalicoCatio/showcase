@@ -102,8 +102,8 @@ function insertFooter() {
 			<div class="container-fluid footer-contain">
 				<div class="row mt-4">
 					<div class="col-lg-5 col-md-5 mb-2 mb-md-0">
-						<h5 class="text-uppercase d-flex justify-content-center footer-text">
-							info
+						<h5 class="text-uppercase d-flex justify-content-center footer-text" id="infoHeader">
+							Info
 						</h5>
 						<ul class="list-unstyled mb-0">
 							<li class="d-flex justify-content-center">
