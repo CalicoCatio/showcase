@@ -7,16 +7,22 @@ function scrollToBottom() {
         
         if (info) {
             info.scrollIntoView({ behavior: 'smooth' });
-            const listen1 = addEventListener("scrollend", () => {
-                listen1.remove();
+            const handler1 = () => {
+
+                window.removeEventListener("scrollend", handler1);
+                
+
                 info.classList.add('highlight-anim');
-                const listen2 = info.addEventListener('animationend', () => {
-                    listen2.remove();
+
+                const handler2 = () => {
+                    window.removeEventListener("scrollend", handler2);
                     info.classList.remove('highlight-anim');
                     isActive = false;
-                });
-            });
-            
+                }
+                addEventListener("animationend", handler2);
+            }
+            addEventListener("scrollend", handler1);
         }
     }
 }
+
