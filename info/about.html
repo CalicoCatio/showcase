@@ -16,7 +16,7 @@
     <script src="/showcase/js/preloadTheme.js"></script>
 </head>
 <body onload="insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Info', 'class=&quot;text-decoration-underline&quot; style=&quot;cursor: pointer&quot; onclick=&quot;scrollToBottom()&quot;', 'About')">
-    <div class="main-content row">
+    <main class="main-content row">
         <div class="col-lg-3 col-md-2 d-none d-md-block"></div>
         <div class="p-text col-lg-6 col-md-8 col-12 mb-4 project-desc">
             Hi, I'm Ariel.
@@ -28,35 +28,34 @@
             <br />
             I decided to make games, websites and other things like them for one reason.
             The feeling of pure satisfaction after I complete a project, or push a new update is unlike any other, and is a feeling that I am constantly chasing.
-            This doesn't mean that my work is not of good quality (or at least what I would like to think is good quality), for two reasons.
-            Knowing that I did this properly, or at least to the best of my abilities is why I enjoy it so much, and because it makes things in the future easier.
+            Knowing that I completed a project, properly, or at least to the best of my abilities is where I derive my satisfaction.
             <br />
             <br />
             Heres a good example: After Showcase v1, which was a project in high school, I wanted to make a more competent showcase site.
             Enter v2, which wasn't a school project, and just for me; I learnt a lot making that website, and it was lots of fun.
             One of the things that I added was a little strip of text that showed the version of the website.
             I added this because I love to look back on how far I have come, which is also why v2, v3, and now v4 all feature changelog pages, easily accessible in their respective footers.
-            When I went to update v2 however, I had to manually change each page's HTML since I didn't know about JS at the time (I was still learning the basics as part of the class where I made v1).
-            When I moved over to v3, not only did I start using <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>, I changed how the version is displayed, so that a JS function held the actual value, and it was added to the DOM when the page was loaded
-            (<em>Technically</em>, the JS function actually replaced the stand-in <strong>v0.0.1</strong> with the actual version), and it was pretty seamless.
+            When I went to update v2 however, I had to manually change each page's <abbr title="HyperText Markup Language">HTML</abbr> since I didn't know about <abbr title="JavaScript">JS</abbr> at the time (I was still learning the basics as part of the class where I made v1).
+            When I moved over to v3, not only did I start using <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>, I changed how the version is displayed, so that a <abbr title="JavaScript">JS</abbr> function held the actual value, and it was added to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank"><abbr title="Document Object Model">DOM</abbr></a> when the page was loaded
+            (<em>Technically</em>, the <abbr title="JavaScript">JS</abbr> function actually replaced the stand-in <strong>v0.0.1</strong> with the actual version), and it was pretty seamless.
             I quickly ran into the issue that when I wanted to change the navbar or the footer, I would then have to go to each page and apply the changes manually.
             I had ended up in the same problem as before.
-            That is why with v4, I am instead holding the entirety of both the navbar and the footer inside a JS function (that adds them to the DOM when the page gets loaded).
+            That is why with v4, I am instead holding the entirety of both the navbar and the footer inside a <abbr title="JavaScript">JS</abbr> function (that adds them to the <abbr title="Document Object Model">DOM</abbr> when the page gets loaded).
             I have also debated putting the project pages into their own function in much the same way since they tend to be similar.
             However, I have decided against doing so, since I plan to customize each page with their own custom features that enhance specifically that project's page.
             <br />
             <br />
             Another improvement that I made was the addition of links to other websites.
-            After showing v3 to my parents, it was clear to me that I had to add a better way of explaining more complex or not well known coding concepts (from the perspective of someone who isn't a CS major), like <a href="https://en.wikipedia.org/wiki/Finite-state_machine" target="_blank">FSM</a>s.
+            After showing v3 to my parents, it was clear to me that I had to add a better way of explaining more complex or not well known coding concepts (from the perspective of someone who isn't a CS major), like <a href="https://en.wikipedia.org/wiki/Finite-state_machine" target="_blank"><abbr title="Finite State Machine">FSM</abbr></a>s.
             I also made all links to exterior sites open in another tab so that someone who is interested in learning more can do so, without losing their current position in the text that they were reading here.
             <br />
             <br />
-            For v1, v2, v3, and v4, all of the code written was by me, or written by AI in a manner that complies with my own ethical standards (you can find more information about this on the <a href="/showcase/info/faq.html">FAQ</a> page).
+            For v1, v2, v3, and v4, all of the code written was by me, or written by AI in a manner that complies with my own ethical standards (you can find more information about this on the <a href="/showcase/info/faq.html"><abbr title="Frequently Asked Questions">FAQ</abbr></a> page).
             Aside from Bootstrap (and <a href="https://nodejs.org/" target="_blank">Node.js</a> for a <em>smidge</em> of backend when needed), I don't use any other libraries, frameworks or outside code for my websites.
             <br />
         </div>
         <div class="col-lg-3 col-md-2 d-none d-md-block-"></div>
-    </div>
+    </main>
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script src="/showcase/js/utils.js"></script>

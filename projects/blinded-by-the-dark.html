@@ -17,7 +17,7 @@
 </head>
 <!-- You may be wondering what the code after projects is. That triggers the offcanvas navbar and adds an underline -->
 <body onload="insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Projects', 'class=&quot;text-decoration-underline&quot; style=&quot;cursor: pointer&quot; data-bs-toggle=&quot;offcanvas&quot; data-bs-target=&quot;#header&quot; aria-controls=&quot;header&quot;', 'Blinded by the Dark')">
-    <div class="main-content">
+    <main class="main-content">
         <div class="row d-flex align-items-start justify-content-center">
             <div class="col-xl-2 d-none d-xl-block"></div>
             <div id="featureCarousel" class="feature-carousel col-xl-8 d-none d-md-block col-12 accordion carousel slide carousel-fade mt-3 mb-3" data-bs-theme="light">
@@ -61,7 +61,7 @@
         <div class="row d-flex align-items-start justify-content-center">
             <div class="col-lg-2 col-md-1 d-md-block d-none"></div>
             <div class="col-lg-8 col-md-10 col-12 project-desc">
-                <p class="mt-3 mb-3">
+                <p class="mt-3 mb-3 text-start">
                     Blinded by the Dark is a 2D horor-like platformer in the dark, originally made as a project in college.
                     I decided to show it off (with permission from the other developers, of course) as a celebration of my first ever 'game'.
                     I have made smaller projects in Luau (a variant of <a href="https://en.wikipedia.org/wiki/Lua" target="_blank">Lua</a> made for <a href="https://en.wikipedia.org/wiki/Roblox" target="_blank">ROBLOX</a> games) and in <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>, but this was the first one that I felt comfortable actually calling a game.
@@ -142,8 +142,8 @@
                             </ul>
                             <br />
                             The player controller, as well as the custom physics that comes along with it, enemy AI (and physics) as well as the flaslight were all products of Jacob's handywork.
-                            I handled the more boring tasks like the <a href="https://en.wikipedia.org/wiki/Finite-state_machine" target="_blank">FSM</a> and the UI.
-                            I also made the level loader and high level frameworks for managing the UI and the game (while in the gameplay mode of the FSM).
+                            I handled the more boring tasks like the <a href="https://en.wikipedia.org/wiki/Finite-state_machine" target="_blank"><abbr title="Finite State Machine">FSM</abbr></a> and the UI.
+                            I also made the level loader and high level frameworks for managing the UI and the game (while in the gameplay mode of the <abbr title="Finite State Machine">FSM</abbr>).
                             George refactored my level loader to work with square assets, as the loader was orignally made with rectangular ones in mind, and also implemented all of his artwork.
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                         <div class="accordion-body">
                             <ul>
                                 <li>Internally, Blinded by the Dark is called Working-Title, as we didn't come up with the name until after starting development.</li>
-                                <li>Blinded by the Dark's codebase is a clash of two different programing styles, since we had no time for pre-production; but VS 2022 still gave v0.3 a maintainability score of 81/100.</li>
+                                <li>Blinded by the Dark's codebase is a clash of two different programing styles, since we had no time for pre-production; but <abbr title="Visual Studio 2022">VS 2022</abbr> still gave v0.3 a maintainability score of 81/100.</li>
                                 <li>The flashlight is actually just a really large texture that covers most of the screen—no fancy lighting required!</li>
                                 <li>Since the level loader was changed from rectangles to squares, the enemies no longer stop themselves from walking off the edge.</li>
                                 <li>Blinded by the Dark features just four levels, but on my first try it still took me over 20 minutes to beat.</li>
@@ -209,7 +209,7 @@
             </div>
             <div class="col-lg-2 col-md-1 d-none d-md-block"></div>
         </div>
-    </div>
+    </main>
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
     <script src="/showcase/js/utils.js"></script>

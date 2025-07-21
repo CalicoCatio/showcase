@@ -113,7 +113,7 @@ function insertFooter() {
 							</li>
 							<li class="d-flex justify-content-center">
 								<a href="/showcase/info/faq.html" class="footer-link">
-									FAQ
+									<abbr title="Frequently Asked Questions">FAQ</abbr>
 								</a>
 							</li>
 							<li class="d-flex justify-content-center">
@@ -171,7 +171,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v0.2.3</span>
+							<span id="myVer">v0.2.3a</span>
 						</span>
 					</span>
 				</div>

@@ -85,7 +85,11 @@ html {
     font-size: 24pt;
 }
 
-.offcanvas {
+[data-bs-theme="light"] .offcanvas {
+    background-image: linear-gradient(to bottom, #d8e0e9 0%, white 100%);
+}
+
+[data-bs-theme="dark"] .offcanvas {
     background-image: linear-gradient(to bottom, #212529 75%, black 100%);
 }
 
