@@ -182,6 +182,14 @@ p {
     line-height: calc(1.75 * 14pt);
 }
 
+a abbr {
+    cursor: pointer!important;
+}
+
+a:has(abbr) {
+    text-decoration: underline dotted !important;
+}
+
 .main-content {
     margin-top: 95px;
     min-height: calc(100vh - 95px);
