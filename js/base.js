@@ -113,7 +113,7 @@ function insertFooter() {
 							</li>
 							<li class="d-flex justify-content-center">
 								<a href="/showcase/info/faq.html" class="footer-link">
-									<abbr title="Frequently Asked Questions">FAQ</abbr>
+									FAQ
 								</a>
 							</li>
 							<li class="d-flex justify-content-center">

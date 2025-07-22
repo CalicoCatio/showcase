@@ -15,7 +15,7 @@
     <!-- JS needed onload-->
     <script src="/showcase/js/preloadTheme.js"></script>
 </head>
-<body onload="insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Info', 'class=&quot;text-decoration-underline&quot; style=&quot;cursor: pointer&quot; onclick=&quot;scrollToBottom()&quot;', '<abbr title=&quot;Frequently Asked Questions&quot;>FAQ</abbr>');">
+<body onload="insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Info', 'class=&quot;text-decoration-underline&quot; style=&quot;cursor: pointer&quot; onclick=&quot;scrollToBottom()&quot;', 'FAQ');">
     <main class="main-content row d-flex align-items-start justify-content-center">
         <div class="col-md-2 d-md-block d-none"></div>
         <div class="col-md-8 col-12 accordion mt-3 mb-3" id="faqAccordion">
@@ -29,7 +29,7 @@
                     <div class="accordion-body">
                         I belive that AI is a useful tool, but shouldn't be abused.
                         I use AI when I want to ask a specific question about my own code, as well as to help in debugging.
-                        I do not use AI to generate code unless the implementation is something that I could reasonably make on my own (within a few minutes, and without outside resources, such as the offical documentation).
+                        I do not use AI generated code in prod.
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                 <div id="two" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                     <div class="accordion-body">
                         I use <a href="https://visualstudio.microsoft.com/vs/" target="_blank">Visual Studio 2022</a>.
-                        You may see Visual Studio 2022 abbreviated as <abbr title="Visual Studio 2022">VS 2022</abbr> on other pages.
+                        You may see Visual Studio 2022 abbreviated as VS 2022 on other pages.
                         I also use <a href="https://github.com/" target="_blank">GitHub</a> for version control.
                     </div>
                 </div>
