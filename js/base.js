@@ -35,11 +35,11 @@ function insertHeader() {
 		</div>
 	</nav>
 	`;
-	document.body.insertAdjacentHTML('afterbegin', header);
 
-	// Initialize popovers
 	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-	const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+	[...popoverTriggerList].map(el => new bootstrap.Popover(el));
+
+	document.body.insertAdjacentHTML('afterbegin', header);
 }
 
 // Search
