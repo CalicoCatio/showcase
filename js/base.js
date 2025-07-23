@@ -36,8 +36,8 @@ function insertHeader() {
 	</nav>
 	`;
 
-	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-	[...popoverTriggerList].map(el => new bootstrap.Popover(el));
+	const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+	const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
 	document.body.insertAdjacentHTML('afterbegin', header);
 }
