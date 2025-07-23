@@ -24,10 +24,10 @@ function insertHeader() {
 					<br />
 					<ul class="navbar-nav justify-content-center pe-3">
 						<li class="nav-item">
-							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Showcase v4<br /><span class='green-outline'>HTML, CSS, JS</span> <span class='blue-outline'>Bootstrap</span>" data-bs-content="Is the fourth (and hopefully last) iteration of this very website." href="/showcase/projects/showcase.html">Showcase v4</a>
+							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Showcase v4<br /><span class='green-outline'>HTML, CSS, JS</span> <span class='blue-outline'>Bootstrap</span>" data-bs-content="Is the fourth (and hopefully last) iteration of this very website." href="/showcase/projects/showcase">Showcase v4</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Blinded by the Dark<br /><span class='green-outline'>C#</span> <span class='blue-outline'>Monogame</span>" data-bs-content="Is a 2D platformer minigame, originally made as a project in college." href="/showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>
+							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Blinded by the Dark<br /><span class='green-outline'>C#</span> <span class='blue-outline'>Monogame</span>" data-bs-content="Is a 2D platformer minigame, originally made as a project in college." href="/showcase/projects/blinded-by-the-dark">Blinded by the Dark</a>
 						</li>
 					</ul>
 				</div>
@@ -107,17 +107,17 @@ function insertFooter() {
 						</h5>
 						<ul class="list-unstyled mb-0">
 							<li class="d-flex justify-content-center">
-								<a href="/showcase/info/about.html" class="footer-link">
+								<a href="/showcase/info/about" class="footer-link">
 									About
 								</a>
 							</li>
 							<li class="d-flex justify-content-center">
-								<a href="/showcase/info/faq.html" class="footer-link">
+								<a href="/showcase/info/faq" class="footer-link">
 									FAQ
 								</a>
 							</li>
 							<li class="d-flex justify-content-center">
-								<a href="/showcase/info/changelog.html" class="footer-link">
+								<a href="/showcase/info/changelog" class="footer-link">
 									Changelog
 								</a>
 							</li>
