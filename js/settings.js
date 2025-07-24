@@ -1,23 +1,74 @@
 btnColor = 'btn-outline-light';
-// Apply defaults
+// Apply defaults (0 = Light, 1 = Dark, 2 = Auto)
 if (localStorage.getItem('theme')) {
 	settingsChanged('theme', true); // True for first load only, false otherwise
 } else {
 	localStorage.setItem('theme', 2);
 }
 
+// Apply defaults (0 = Off, 1 = On, 2 = Auto)
 if (localStorage.getItem('animations')) {
-	settingsChanged('animations', true);
+	settingsChanged('animations', true); // True for first load only, false otherwise
 } else {
 	localStorage.setItem('animations', 2);
 }
 
-
+// Apply defaults (0 = Off, 1 = On)
 if (!localStorage.getItem('dots')) {
-	localStorage.setItem('dots', 0); // Using int instead of bool so three option settings are possible (0 = true)
+	localStorage.setItem('dots', 1);
 } 
 settingsChanged('dots', true);
 
+// To comply with Browser/OS level settings
+let animOverride = {
+	disabled: '',
+	animInfo: '',
+	dotsInfo: '',
+	modifiedStyle: ''
+};
+
+function changeOSLevelAnim(motion, firstLoad = false) {
+	if (motion.matches) {
+		if (localStorage.getItem('animations') == 1) {
+			localStorage.setItem('animations', 0);
+			settingsChanged('animations', firstLoad);
+			if (!firstLoad) {
+				document.body.querySelector('#anim0').checked = true; // Dots doesn't need this since that setting change reloads the page
+			}
+		} if (localStorage.getItem('dots') == 1) {
+			localStorage.setItem('dots', 0);
+			settingsChanged('dots', firstLoad);
+		}
+		animOverride.disabled = 'disabled';
+		animOverride.animInfo = 'Animation Setting is overriden by OS or Browser level setting.';
+		animOverride.dotsInfo = 'Animated Background is overriden by OS or Browser level setting.'
+		animOverride.modifiedStyle = 'm-0';
+		if (!firstLoad) {
+			document.body.querySelector('#animStyle').classList.add(`${animOverride.modifiedStyle}`);
+			document.body.querySelector('#animInfo').textContent = animOverride.animInfo;
+			document.body.querySelector('#animDots').textContent = animOverride.dotsInfo;
+			document.body.querySelectorAll('.anim-override').forEach((element) => {
+				element.disabled = true;
+			});
+		}
+	} else {
+		animOverride.disabled = '';
+		animOverride.animInfo = '';
+		animOverride.dotsInfo = 'Changing this setting will reload the page.'
+		animOverride.modifiedStyle = '';
+		if (!firstLoad) {
+			document.body.querySelector('#animStyle').classList.remove('m-0');
+			document.body.querySelector('#animInfo').textContent = animOverride.animInfo;
+			document.body.querySelector('#animDots').textContent = animOverride.dotsInfo;
+			document.body.querySelectorAll('.anim-override').forEach((element) => {
+				element.disabled = false;
+			});
+		}
+	}
+}
+
+changeOSLevelAnim(window.matchMedia('(prefers-reduced-motion: reduce)'), true);
+window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', changeOSLevelAnim);
 
 // Add the settings modal
 const settingsObserver = new MutationObserver((mutationsList, settingsObserver) => {
@@ -31,8 +82,6 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<h5 class="modal-title">Settings</h5>
 					</div>
 					<div class="modal-body">
-						<p class="d-flex justify-content-center text-center">Some settings will reload the page to apply.</p>
-						<hr>
 						<p class="d-flex justify-content-center">Theme</p>
 						<div class="d-flex justify-content-center">
 							<input type="radio" class="btn-check" name="theme" id="theme0" autocomplete="off">
@@ -46,26 +95,28 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						</div>
 						<hr>
 
-						<p class="d-flex justify-content-center">Animations</p>
+						<p class="d-flex justify-content-center ${animOverride.modifiedStyle}" id="animStyle">Animations</p>
+						<p class="form-text text-center"" id="animInfo">${animOverride.animInfo}</p>
 						<div class="d-flex justify-content-center">
-							<input type="radio" class="btn-check" name="animations" id="anim0" autocomplete="off">
-							<label class="btn ${btnColor} m-1" for="anim0">On</label>
+							<input type="radio" class="btn-check anim-override" ${animOverride.disabled} name="animations" id="anim1" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="anim1">On</label>
 
-							<input type="radio" class="btn-check" name="animations" id="anim1" autocomplete="off">
-							<label class="btn ${btnColor} m-1" for="anim1">Off</label>
+							<input type="radio" class="btn-check" name="animations" id="anim0" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="anim0">Off</label>
 
 							<input type="radio" class="btn-check" name="animations" id="anim2" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="anim2">Auto Detect</label>
 						</div>
 						<hr>
 
-						<p class="d-flex justify-content-center">Animated Background</p>
+						<p class="d-flex justify-content-center m-0">Animated Background</p>
+						<p class="form-text text-center"" id="animDots">${animOverride.dotsInfo}</p>
 						<div class="d-flex justify-content-center">
-							<input type="radio" class="btn-check" name="dots" id="dot0" autocomplete="off">
-							<label class="btn ${btnColor} m-1" for="dot0">On</label>
+							<input type="radio" class="btn-check anim-override" ${animOverride.disabled}  name="dots" id="dot1" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="dot1">On</label>
 
-							<input type="radio" class="btn-check" name="dots" id="dot1" autocomplete="off">
-							<label class="btn ${btnColor} m-1" for="dot1">Off</label>
+							<input type="radio" class="btn-check" name="dots" id="dot0" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="dot0">Off</label>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -171,21 +222,14 @@ function settingsChanged(event, firstLoad) {
 	} else if (event === 'animations') {
 		try {
 			switch (localStorage.getItem('animations')) {
-				case '0': // On
-					const animOn = document.querySelector('#anim-enforcer');
-
-					if (animOn) {
-						document.body.removeChild(animOn);
-					}
-					setType = '<strong>on</strong>';
-					break;
-				case '1': // Off
+				case '0': // Off
 					css = `
 					<style id="anim-enforcer">
 						*,
 						*::before {
 							animation: none !important;
 							transition: none !important;
+							--bs-accordion-btn-icon-transition: none !important;
 						}
 					</style>
 					`;
@@ -199,6 +243,14 @@ function settingsChanged(event, firstLoad) {
 					} else {
 						document.body.insertAdjacentHTML('beforeend', css);
 					}
+					break;
+				case '1': // On
+					const animOn = document.querySelector('#anim-enforcer');
+
+					if (animOn) {
+						document.body.removeChild(animOn);
+					}
+					setType = '<strong>on</strong>';
 					break;
 				case '2': // Auto
 					css = `
@@ -242,14 +294,14 @@ function settingsChanged(event, firstLoad) {
 		}
 	} else if (event === 'dots') {
 		try {
-			switch (localStorage.getItem('dots')) {
-				case '0': // On
+			switch (localStorage.getItem('dots')) { // Yes, I could use an if but for the sake of consistency, I won't
+				case '0': // Off
+					// Default state is off, so nothing needs to happen here (thanks to location.reload() @ line 274)
+					break;
+				case '1': // On
 					const script = document.createElement('script');
 					script.src = '/showcase/js/dots.js';
 					document.body.appendChild(script);
-					break;
-				case '1': // Off
-					// Default state is off, so nothing needs to happen here (thanks to location.reload() @ line 261)
 					break;
 				default:
 					// False = Error message, True = Not error
