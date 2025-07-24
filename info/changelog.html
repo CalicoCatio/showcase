@@ -29,8 +29,8 @@
                     <div class="accordion-body">
                         Additions:
                         <ul>
-                            <li>Added <a href="/showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a> feature page.</li>
-                            <li>Added <a href="/showcase/projects/showcase.html">Showcase</a> feature page.</li>
+                            <li>Added <a href="/showcase/projects/blinded-by-the-dark">Blinded by the Dark</a> feature page.</li>
+                            <li>Added <a href="/showcase/projects/showcase">Showcase</a> feature page.</li>
                             <li>Added breadcrumbs to the navbar, utilizing a dynamic JS framework to construct them.</li>
                             <ul>
                                 <li>The full breadcrumb will only show for devices with a large enough screen width, otherwise only the final page will be shown.</li>
@@ -47,13 +47,13 @@
                             <li>Ported over header/navbar from showcase v3.</li>
                             <li>Ported over favicon from showcase v2.</li>
                             <li>Ported over footer from showcase v3.</li>
-                            <li>Ported over <a href="/showcase/info/faq.html">FAQ</a> page from showcase v3.</li>
+                            <li>Ported over <a href="/showcase/info/faq">FAQ</a> page from showcase v3.</li>
                             <li>Ported over Changelog page from showcase v3.</li>
                         </ul>
                         Removals:
                         <ul>
                             <li>Removed links to sections that were not ported over from showcase v3.</li>
-                            <li>Removed showcase v3 FAQ questions from ported <a href="/showcase/info/faq.html">FAQ</a> page.</li>
+                            <li>Removed showcase v3 FAQ questions from ported <a href="/showcase/info/faq">FAQ</a> page.</li>
                         </ul>
                         Improvements/Fixes:
                         <ul>
@@ -65,7 +65,7 @@
                                     <li>However, they cannot access features designed soley for desktop use.</li>
                                 </ul>
                             </li>
-                            <li>Improved how <a href="/showcase/info/faq.html">FAQ</a> page handles desktop aspect ratios.</li>
+                            <li>Improved how <a href="/showcase/info/faq">FAQ</a> page handles desktop aspect ratios.</li>
                             <li>Fixed how accordions are colored, sitewide.</li>
                             <li>Reduced number of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a> tags needed for footer, without reducing form/function.</li>
                             <li>Reduced number of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">CSS</a> classes needed for footer, without reducing form/function.</li>
@@ -93,9 +93,9 @@
                         </ul>
                         Improvements/Fixes:
                         <ul>
-                            <li>Added missing showcase v4 image to <a href="/showcase/projects/showcase.html">Showcase</a> showcase.</li>
+                            <li>Added missing showcase v4 image to <a href="/showcase/projects/showcase">Showcase</a> showcase.</li>
                             <li>Added release dates to the Changelog - in EST.</li>
-                            <li>Replaced all images in the <a href="/showcase/projects/showcase.html">Showcase</a> showcase with ones that have the scrollbar removed.</li>
+                            <li>Replaced all images in the <a href="/showcase/projects/showcase">Showcase</a> showcase with ones that have the scrollbar removed.</li>
                             <li>Various spelling, grammar, and clarity improvements to text, sitewide.</li>
                         </ul>
                     </div>
@@ -118,7 +118,7 @@
                                 <li>Added setting to disable/enable animations.</li>
                                 <li>Added the ability to reset all settings to the default.</li>
                             </ul>
-                            <li>Added content to the <a href="/showcase/info/about.html">About</a> page.</li>
+                            <li>Added content to the <a href="/showcase/info/about">About</a> page.</li>
                         </ul>
                         Overhauls:
                         <ul>
@@ -159,7 +159,7 @@
                         <ul>
                             <li>Changed the order of changes in the Changelog, similar changes are now listed next to each other.</li>
                             <li>Changed default state of header/navbar and footer, so they are added to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank">DOM</a> by default.</li>
-                            <li>Simplified some of the description of <a href="/showcase/projects/blinded-by-the-dark.html">Blinded by the Dark</a>, noting how it will not be released to the public in the near future.</li>
+                            <li>Simplified some of the description of <a href="/showcase/projects/blinded-by-the-dark">Blinded by the Dark</a>, noting how it will not be released to the public in the near future.</li>
                         </ul>
                     </div>
                 </div>
@@ -256,15 +256,33 @@
                             <li>Fixed <code>aria-controls</code> marking the wrong accordion on the Changelog page.</li>
                             <li>Fixed info breadcrumb not working when INFO was within the viewport.</li>
                             <li>Clarified sections of the Changelog.</li>
-                            <li>Clarified sections of the <a href="/showcase/info/about.html">About</a> page.</li>
-                            <li>Added indentations to the <a href="/showcase/info/about.html">About</a> page.</li>
-                            <li>Widened <a href="/showcase/info/about.html">About</a> page at various screen widths.</li>
+                            <li>Clarified sections of the <a href="/showcase/info/about">About</a> page.</li>
+                            <li>Added indentations to the <a href="/showcase/info/about">About</a> page.</li>
+                            <li>Widened <a href="/showcase/info/about">About</a> page at various screen widths.</li>
                             <li>Updated from <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> v5.3.5 to v5.3.7.</li>
                             <li>Accessibility improvements:</li>
                             <ul>
                                 <li>Changed the <code>&lt;div&gt;</code> that holds the main content of the page to be a <code>&lt;main&gt;</code>.</li>
                                 <li>Added more links, and changed some from default Wikipedia entries to websites with more specific examples.</li>
                             </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#seven" aria-expanded="false" aria-controls="seven">
+                        v0.2.3b | July 24, 2025
+                    </button>
+                </h2>
+                <div id="seven" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
+                    <div class="accordion-body">
+                        Improvements/Fixes:
+                        <ul>
+                            <li>Fixed phantom scrollbar appearing when the navbar is opened in rare occasions.</li>
+                            <li>Fixed inline links still using the <code>.html</code> extension.</li>
+                            <li>Clarified my stance on AI within the AI question on the <a href="/showcase/info/faq">FAQ</a> page</li>
+                            <li>Split AI <a href="/showcase/info/faq">FAQ</a> question into code and non-code parts.</li>
                         </ul>
                     </div>
                 </div>

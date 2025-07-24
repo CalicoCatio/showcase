@@ -171,7 +171,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v0.2.3a</span>
+							<span id="myVer">v0.2.3b</span>
 						</span>
 					</span>
 				</div>
@@ -254,21 +254,16 @@ const scrollbarObserver = new MutationObserver((mutations, scrollbarObserver) =>
 
 			const orignalPaddingNav = parseFloat(getComputedStyle(navDOM).paddingRight);
 
-			const scrollWidth = window.getScrollbarWidth();
-
 			navDOM.addEventListener('show.bs.offcanvas', function () {
+				const scrollWidth = window.getScrollbarWidth();
 				document.documentElement.style.overflow = 'hidden';
 				document.body.style.paddingRight = `${scrollWidth}px`;
-				navDOM.style.paddingRight = `${orignalPaddingNav + scrollWidth}px`; // Line 269
+				navDOM.style.paddingRight = `${orignalPaddingNav + scrollWidth}px`;
 
 				const toasts = document.querySelector('.toast-container');
 				if (toasts) {
 					toasts.style.marginRight = `${scrollWidth}px`;
 				}
-			});
-
-			navDOM.addEventListener('hide.bs.offcanvas', function () {
-				document.body.style.paddingRight = `${window.scrollWidth}px`;
 			});
 
 			navDOM.addEventListener('hidden.bs.offcanvas', function () {
@@ -292,9 +287,9 @@ const scrollbarObserver = new MutationObserver((mutations, scrollbarObserver) =>
 				if (nav) {
 					orignalPaddingNav = parseFloat(getComputedStyle(nav).paddingRight);
 				}
-				const scrollWidth = window.getScrollbarWidth();
 
 				modal.addEventListener('show.bs.modal', function () {
+					const scrollWidth = window.getScrollbarWidth();
 					document.documentElement.style.overflow = 'hidden';					
 					document.body.style.paddingRight = `${scrollWidth}px`;
 					nav.style.paddingRight = `${orignalPaddingNav + scrollWidth}px`;
