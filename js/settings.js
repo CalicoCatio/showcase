@@ -66,7 +66,7 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 		}
 	}
 }
-
+changeOSLevelAnim();
 changeOSLevelAnim(window.matchMedia('(prefers-reduced-motion: reduce)'), true);
 window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', changeOSLevelAnim);
 
