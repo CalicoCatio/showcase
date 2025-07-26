@@ -37,11 +37,11 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			}
 		} if (localStorage.getItem('dots') == 1) {
 			localStorage.setItem('dots', 0);
-			settingsChanged('dots', firstLoad);
+			settingsChanged('dots', false);
 		}
 		animOverride.disabled = 'disabled';
-		animOverride.animInfo = 'Animation Setting is overriden by OS or Browser level setting.';
-		animOverride.dotsInfo = 'Animated Background is overriden by OS or Browser level setting.'
+		animOverride.animInfo = 'Animation Setting is being overriden by OS or Browser level setting.';
+		animOverride.dotsInfo = 'Animated Background is being overriden by OS or Browser level setting.'
 		animOverride.modifiedStyle = 'm-0';
 		if (!firstLoad) {
 			document.body.querySelector('#animStyle').classList.add(`${animOverride.modifiedStyle}`);
@@ -50,6 +50,7 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			document.body.querySelectorAll('.anim-override').forEach((element) => {
 				element.disabled = true;
 			});
+			window.throwToast(true, 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>Off</strong>.');
 		}
 	} else {
 		animOverride.disabled = '';
@@ -63,10 +64,10 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			document.body.querySelectorAll('.anim-override').forEach((element) => {
 				element.disabled = false;
 			});
+			window.throwToast(true, 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>On</strong>.')
 		}
 	}
 }
-changeOSLevelAnim();
 changeOSLevelAnim(window.matchMedia('(prefers-reduced-motion: reduce)'), true);
 window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', changeOSLevelAnim);
 
@@ -183,13 +184,13 @@ function settingsChanged(event, firstLoad) {
 					else
 						btnColor = 'btn-outline-dark'
 					document.querySelector('HTML').setAttribute('data-bs-theme', 'light');
-					setType = '<strong>light mode</strong>';
+					setType = '<strong>Light Mode</strong>';
 					break;
 				case '1': // Dark
 					if (!firstLoad)
 						swapButtonTypes(1);
 					document.querySelector('HTML').setAttribute('data-bs-theme', 'dark');
-					setType = '<strong>dark mode</strong>';
+					setType = '<strong>Dark Mode</strong>';
 					break;
 				case '2': // Auto
 					if (window.matchMedia('(prefers-color-scheme: light)').matches) {
@@ -198,12 +199,12 @@ function settingsChanged(event, firstLoad) {
 						else
 							btnColor = 'btn-outline-dark'
 						document.querySelector('HTML').setAttribute('data-bs-theme', 'light');
-						setType = '<strong>auto detect</strong> (light mode)';
+						setType = '<strong>Auto Detect</strong> (Light Mode)';
 					} else {
 						if (!firstLoad)
 							swapButtonTypes(1);
 						document.querySelector('HTML').setAttribute('data-bs-theme', 'dark');
-						setType = '<strong>auto detect</strong> (dark mode)';
+						setType = '<strong>Auto Detect</strong> (Dark Mode)';
 					}
 					break;
 				default:
@@ -233,7 +234,7 @@ function settingsChanged(event, firstLoad) {
 						}
 					</style>
 					`;
-					setType = '<strong>off</strong>';
+					setType = '<strong>Off</strong>';
 					const animOff = document.querySelector('#anim-enforcer');
 
 					if (animOff) {
@@ -250,7 +251,7 @@ function settingsChanged(event, firstLoad) {
 					if (animOn) {
 						document.body.removeChild(animOn);
 					}
-					setType = '<strong>on</strong>';
+					setType = '<strong>On</strong>';
 					break;
 				case '2': // Auto
 					css = `
@@ -274,9 +275,9 @@ function settingsChanged(event, firstLoad) {
 						document.body.insertAdjacentHTML('beforeend', css);
 					}
 					if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-						setType = '<strong>auto detect</strong> (off)';
+						setType = '<strong>Auto Detect</strong> (Off)';
 					} else {
-						setType = '<strong>auto detect</strong> (on)';
+						setType = '<strong>Auto Detect</strong> (On)';
 					}
 					break;
 				default:
