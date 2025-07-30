@@ -31,10 +31,12 @@
                         <ul>
                             <li>Added <a href="/showcase/projects/blinded-by-the-dark">Blinded by the Dark</a> feature page.</li>
                             <li>Added <a href="/showcase/projects/showcase">Showcase</a> feature page.</li>
-                            <li>Added breadcrumbs to the navbar, utilizing a dynamic JS framework to construct them.</li>
-                            <ul>
-                                <li>The full breadcrumb will only show for devices with a large enough screen width, otherwise only the final page will be shown.</li>
-                            </ul>
+                            <li>
+                                Added breadcrumbs to the navbar, utilizing a dynamic JS framework to construct them.
+                                <ul>
+                                    <li>The full breadcrumb will only show for devices with a large enough screen width, otherwise only the final page will be shown.</li>
+                                </ul>
+                            </li>
                             <li>Added FAQ question about AI usage.</li>
                             <li>Added FAQ question about what programs I use.</li>
                         </ul>
@@ -112,12 +114,14 @@
                         Additions:
                         <ul>
                             <li>Added new notification system.</li>
-                            <li>Added settings modal utlizing the notification system.</li>
-                            <ul>
-                                <li>Added setting to change between light and dark themes.</li>
-                                <li>Added setting to disable/enable animations.</li>
-                                <li>Added the ability to reset all settings to the default.</li>
-                            </ul>
+                            <li>
+                                Added settings modal utlizing the notification system.
+                                <ul>
+                                    <li>Added setting to change between light and dark themes.</li>
+                                    <li>Added setting to disable/enable animations.</li>
+                                    <li>Added the ability to reset all settings to the default.</li>
+                                </ul>
+                            </li>
                             <li>Added content to the <a href="/showcase/info/about">About</a> page.</li>
                         </ul>
                         Overhauls:
@@ -131,10 +135,12 @@
                             <li>Fixed larger than normal spaces being generated inside accordions.</li>
                             <li>Fixed content being shifted to the left when the navbar is opened.</li>
                             <li>Fixed content being shifted to the left when a modal is triggered.</li>
-                            <li>Changed <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a> default theme from dark to light.</li>
-                            <ul>
-                                <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JS</a> will override the default.</li>
-                            </ul>
+                            <li>
+                                Changed <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a> default theme from dark to light.
+                                <ul>
+                                    <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">JS</a> will override the default.</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -150,10 +156,12 @@
                         Additions:
                         <ul>
                             <li>Added custom Animated Background.</li>
-                            <li>Added setting to hide the Animated Background.</li>
-                            <ul>
-                                <li>Default state is <strong>shown</strong>.</li>
-                            </ul>
+                            <li>
+                                Added setting to hide the Animated Background.
+                                <ul>
+                                    <li>Default state is <strong>shown</strong>.</li>
+                                </ul>
+                            </li>
                         </ul>
                         Improvements/Fixes:
                         <ul>
@@ -177,33 +185,41 @@
                             <li>Added backgrounds to text that previously did not, in order to make it easier to distinguish from the Animated Background.</li>
                             <li>Added links to relevent subpages referenced in the Changelog.</li>
                             <li>Added support for button based links in the breadcrumbs via a refactor.</li>
-                            <li>Used aforementioned support to add "links" to the project page.</li>
-                            <ul>
-                                <li>The project "page" isn't linked using an <code>&lt;a&gt;</code> tag, which is why it is in quotes.</li>
-                            </ul>
+                            <li>
+                                Used aforementioned support to add "links" to the project page.
+                                <ul>
+                                    <li>The project "page" isn't linked using an <code>&lt;a&gt;</code> tag, which is why it is in quotes.</li>
+                                </ul>
+                            </li>
                         </ul>
                         Improvements/Fixes:
                         <ul>
                             <li>Fixed a bug where the dots canvas enlarged the size of the webpage.</li>
                             <li>Fixed a bug where lines were not drawn to/from the center each dot.</li>
                             <li>Fixed a bug where some text, when broken into multiple lines, would stop being centered.</li>
-                            <li>Slight performance increase relating to the Animated Background.</li>
-                            <ul>
-                                <li>Increased caching of key variables used every frame.</li>
-                                <li>Removed an uneeded <code>forEach</code> loop, cutting out <span id="dotCount"></span> unneeded operations that were carried out each frame.</li>
-                            </ul>
-                            <li>Changed the default state of Animated Background setting.</li>
-                            <ul>
-                                <li>Default state is <strong>hidden</strong>.</li>
-                            </ul>
+                            <li>
+                                Slight performance increase relating to the Animated Background.
+                                <ul>
+                                    <li>Increased caching of key variables used every frame.</li>
+                                    <li>Removed an uneeded <code>forEach</code> loop, cutting out <span id="dotCount"></span> unneeded operations that were carried out each frame.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Changed the default state of Animated Background setting.
+                                <ul>
+                                    <li>Default state is <strong>hidden</strong>.</li>
+                                </ul>
+                            </li>
                             <li>Animated Background is no longer interactable if the device is a touchscreen.</li>
-                            <li>Changed how updates are classified externally.</li>
-                            <ul>
-                                <li>v0.0.0.x updates have to include at least one improvement or fix.</li>
-                                <li>v0.0.X updates have to include at least one addition.</li>
-                                <li>v0.X.0 updates have to include at least one overhaul.</li>
-                                <li>If more than one update happens on the same day, they are all rolled into the same update.</li>
-                            </ul>
+                            <li>
+                                Changed how updates are classified externally.
+                                <ul>
+                                    <li>v0.0.0.x updates have to include at least one improvement or fix.</li>
+                                    <li>v0.0.X updates have to include at least one addition.</li>
+                                    <li>v0.X.0 updates have to include at least one overhaul.</li>
+                                    <li>If more than one update happens on the same day, they are all rolled into the same update.</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -218,22 +234,26 @@
                     <div class="accordion-body">
                         Additions:
                         <ul>
-                            <li>Added "links" to the info page using the breadcrumb refactor introduced in v0.2.2.</li>
-                            <ul>
-                                <li>The info "page" isn't linked using an <code>&lt;a&gt;</code> tag, which is why it is in quotes.</li>
-                            </ul>
+                            <li>
+                                Added "links" to the info page using the breadcrumb refactor introduced in v0.2.2.
+                                <ul>
+                                    <li>The info "page" isn't linked using an <code>&lt;a&gt;</code> tag, which is why it is in quotes.</li>
+                                </ul>
+                            </li>
                         </ul>
                         Improvements/Fixes:
                         <ul>
                             <li>Disabled selecting text on the <a href="/showcase/">Homepage</a>.</li>
-                            <li>Large performance increase relating to the Animated Background.</li>
-                            <ul>
-                                <li>If the x (or y) distance alone is greater than the max distance between lines, the check to draw a line is skipped.</li>
-                                <li>Moved code that only needs occasional updates outside of the every-frame update function.</li>
-                                <li>Increased caching (again) of key variables used every frame.</li>
-                                <li>Removed another <code>forEach</code> loop, concatenating operations that are carried out each frame.</li>
-                                <li>Stopped using square root to calculate distance (using <code>X*X</code> instead).</li>
-                            </ul>
+                            <li>
+                                Large performance increase relating to the Animated Background.
+                                <ul>
+                                    <li>If the x (or y) distance alone is greater than the max distance between lines, the check to draw a line is skipped.</li>
+                                    <li>Moved code that only needs occasional updates outside of the every-frame update function.</li>
+                                    <li>Increased caching (again) of key variables used every frame.</li>
+                                    <li>Removed another <code>forEach</code> loop, concatenating operations that are carried out each frame.</li>
+                                    <li>Stopped using square root to calculate distance (using <code>X*X</code> instead).</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -260,11 +280,13 @@
                             <li>Added indentations to the About page.</li>
                             <li>Widened About page at various screen widths.</li>
                             <li>Updated from <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> v5.3.5 to v5.3.7.</li>
-                            <li>Accessibility improvements:</li>
-                            <ul>
-                                <li>Changed the <code>&lt;div&gt;</code> that holds the main content of the page to be a <code>&lt;main&gt;</code>.</li>
-                                <li>Added more links, and changed some from default Wikipedia entries to websites with more specific examples.</li>
-                            </ul>
+                            <li>
+                                Accessibility improvements:
+                                <ul>
+                                    <li>Changed the <code>&lt;div&gt;</code> that holds the main content of the page to be a <code>&lt;main&gt;</code>.</li>
+                                    <li>Added more links, and changed some from default Wikipedia entries to websites with more specific examples.</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -284,11 +306,13 @@
                             <li>Fixed a bug where not all animations would be turned off/on using the animation setting.</li>
                             <li>Clarified my stance on AI within the AI question on the <a href="/showcase/info/faq">FAQ</a> page</li>
                             <li>Split AI FAQ question into code and non-code parts.</li>
-                            <li>Improved how the Animation and Animated Background settings interact with OS/Browser level settings.</li>
-                            <ul>
-                                <li>The OS/browser level settings will override and restrict the settings on the page.</li>
-                                <li>The settings restrictions will automatically update if the OS/browser level setting is changed.</li>
-                            </ul>
+                            <li>
+                                Improved how the Animation and Animated Background settings interact with OS/Browser level settings.
+                                <ul>
+                                    <li>The OS/browser level settings will override and restrict the settings on the page.</li>
+                                    <li>The settings restrictions will automatically update if the OS/browser level setting is changed.</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -321,7 +345,8 @@
                         <ul>
                             <li>Tweaked accordions to bring them inline with sitewide styles.</li>
                             <li>Tweaked showcase pages to bring other elements inline with sitewide styles.</li>
-                            <li>Removed links where they were excessive; new internal standard set for when to link to outside websites</li>
+                            <li>Removed links where they were excessive; new internal standard set for when to link to outside websites.</li>
+                            <li>Fixed nested <code>&lt;ul&gt;</code>s being inside of <code>&lt;ul&gt;</code>s directly, instead of being wrapped by an <code>&lt;li&gt;</code> first.</li>
                         </ul>
                     </div>
                 </div>
