@@ -7,7 +7,7 @@
 }
 
 .feature-carousel {
-    border-radius: 1vw;
+    border-radius: 20px;
     padding: 0;
     overflow: hidden;
     aspect-ratio: 16/9;
@@ -21,7 +21,7 @@
 
 .feature-carousel .carousel-caption {
     background: #000000ad;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .accordion-body ul {

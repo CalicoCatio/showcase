@@ -206,9 +206,9 @@ a:has(abbr) {
 }
 
 .project-desc {
-    padding: 7px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     border-radius: 20px;
 }
 
@@ -226,19 +226,19 @@ a:has(abbr) {
 
 /* Accordions */
 [data-bs-theme="light"] .accordion-item {
-    border-color: gray;
     color: #212529 !important;
     background-color: #ced4da;
 }
 
 [data-bs-theme="dark"] .accordion-item {
-    border-color: gray;
     color: #dee2e6 !important;
     background-color: #212529;
 }
 
 .accordion-item {
+    border: gray 0.2vw solid;
     text-align: left;
+    margin-bottom: 0!important;
 }
 
 [data-bs-theme="light"] .accordion-button {
@@ -307,6 +307,36 @@ a:has(abbr) {
 
 .accordion-body img {
     height: 24pt;
+}
+
+/* Force accordions inline with sitewide styles */
+.accordion {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 20px;
+    border-width: 0.2vw !important;
+}
+
+.accordion-item:first-of-type {
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+}
+
+.accordion-item:first-of-type .accordion-button {
+    border-top-left-radius: calc(20px - 0.2vw) !important;
+    border-top-right-radius: calc(20px - 0.2vw) !important;
+}
+
+.accordion-item:last-of-type {
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+}
+
+.accordion-item:last-of-type .accordion-button {
+    border-bottom-left-radius: calc(20px - 0.2vw) !important;
+    border-bottom-right-radius: calc(20px - 0.2vw) !important;
 }
 
 /* Footer */
