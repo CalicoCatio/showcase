@@ -5,6 +5,11 @@ html, body {
     background-size: 100% 100%;
     background-attachment: fixed;
     position: relative;
+    /* Custom Font */
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 [data-bs-theme="light"] body {
