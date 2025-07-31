@@ -129,7 +129,7 @@ html {
     padding-right: 5px;
     padding-top: 2pt;
     padding-bottom: 3pt;
-    border: 2px solid;
+    border: min(0.2vw, 0.2vh) solid;
     border-radius: 10pt;
 }
 
@@ -148,7 +148,7 @@ html {
 }
 
 .popover {
-    border: 1px solid #3a3d40;
+    border: min(0.2vw, 0.2vh) solid #3a3d40;
     border-radius: 15px;
 }
 
@@ -202,12 +202,12 @@ a:has(abbr) {
 
 [data-bs-theme="light"] .project-desc {
     background: lightgray;
-    border: 2px solid white;
+    border: min(0.2vw, 0.2vh) solid white;
 }
 
 [data-bs-theme="dark"] .project-desc {
     background: #141414;
-    border: 2px solid #333333;
+    border: min(0.2vw, 0.2vh) solid #333333;
 }
 
 .project-desc {
@@ -241,7 +241,7 @@ a:has(abbr) {
 }
 
 .accordion-item {
-    border: gray 0.2vw solid;
+    border: min(0.2vw, 0.2vh) gray solid;
     text-align: left;
     margin-bottom: 0!important;
 }
@@ -321,7 +321,7 @@ a:has(abbr) {
     padding-left: 0px;
     padding-right: 0px;
     border-radius: 20px;
-    border-width: 0.2vw !important;
+    border-width: min(0.2vw, 0.2vh) !important;
 }
 
 .accordion-item:first-of-type {
@@ -347,12 +347,12 @@ a:has(abbr) {
 /* Footer */
 [data-bs-theme="light"] footer {
     background-color: #ededed;
-    border-top: 5px solid #cacaca;
+    border-top: min(0.2vw, 0.2vh) solid #cacaca;
 }
 
 [data-bs-theme="dark"] footer {
     background-color: #121212;
-    border-top: 5px solid #353535;
+    border-top: min(0.2vw, 0.2vh) solid #353535;
 }
 
 footer {
