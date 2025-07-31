@@ -1,16 +1,9 @@
-[data-bs-theme="light"] .feature-carousel {
-    border: 0.2vw solid black;
-}
-
-[data-bs-theme="dark"] .feature-carousel {
-    border: 0.2vw solid white;  
-}
-
 .feature-carousel {
+    border: max(0.2vw, 0.2vh) solid #808080;
     border-radius: 20px;
-    padding: 0;
     overflow: hidden;
     aspect-ratio: 16/9;
+    padding: 0px;
 }
 
 @media (max-width: 1199px) {
@@ -21,7 +14,6 @@
 
 .feature-carousel .carousel-caption {
     background: #000000ad;
-    border-radius: 20px;
 }
 
 .accordion-body ul {

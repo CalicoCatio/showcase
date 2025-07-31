@@ -129,7 +129,7 @@ html {
     padding-right: 5px;
     padding-top: 2pt;
     padding-bottom: 3pt;
-    border: min(0.2vw, 0.2vh) solid;
+    border: max(0.2vw, 0.2vh) solid;
     border-radius: 10pt;
 }
 
@@ -145,10 +145,19 @@ html {
 
 .popover-header {
     line-height: 22pt;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+}
+
+[data-bs-theme="light"] .popover {
+    border: max(0.2vw, 0.2vh) solid #93999f;
+}
+
+[data-bs-theme="dark"] .popover {
+    border: max(0.2vw, 0.2vh) solid #52575c;
 }
 
 .popover {
-    border: min(0.2vw, 0.2vh) solid #3a3d40;
     border-radius: 15px;
 }
 
@@ -202,15 +211,14 @@ a:has(abbr) {
 
 [data-bs-theme="light"] .project-desc {
     background: lightgray;
-    border: min(0.2vw, 0.2vh) solid white;
 }
 
 [data-bs-theme="dark"] .project-desc {
     background: #141414;
-    border: min(0.2vw, 0.2vh) solid #333333;
 }
 
 .project-desc {
+    border: max(0.2vw, 0.2vh) solid #808080;
     padding: 15px;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -241,9 +249,9 @@ a:has(abbr) {
 }
 
 .accordion-item {
-    border: min(0.2vw, 0.2vh) gray solid;
+    border: max(0.2vw, 0.2vh) gray solid;
     text-align: left;
-    margin-bottom: 0!important;
+    margin-bottom: 0 !important;
 }
 
 [data-bs-theme="light"] .accordion-button {
