@@ -171,7 +171,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v0.2.3e</span>
+							<span id="myVer">v0.2.3f</span>
 						</span>
 					</span>
 				</div>

@@ -16,8 +16,8 @@ cursorX = 0;
 cursorY = 0;
 MIN_DIST_TO_MOUSE = 75;
 DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
-MAX_SPEED = 2;
-MIN_SPEED = 1;
+MAX_SPEED = 1;
+MIN_SPEED = 0.5;
 MAX_DISTANCE_BETWEEN_CONNECTIONS = 100;
 
 lastTime = performance.now();
@@ -81,7 +81,7 @@ function addDot() {
     let dot = {};
     dot.x = Math.random() * mainContent.offsetWidth + 1;
     dot.y = Math.random() * mainContent.offsetHeight + 1;
-    dot.radius = Math.min(window.screen.width / 300, window.screen.height / 300);
+    dot.radius = 4;
     dot.directionDeg = Math.random() * 360 + 1;
     dot.speed = Math.random() * (MAX_SPEED - MIN_SPEED) + MIN_SPEED;
     dot.opacity = 0;
@@ -102,8 +102,7 @@ function update() {
         // Stuff that changes between dots
         const dotX = dot.x;
         const dotY = dot.y;
-        // If screen size changes, the dot size has to, too.
-        const dotRadius = Math.min(window.screen.width / 300, window.screen.height / 300);
+        const dotRadius = dot.radius;
 
         let dotSpeed = dot.speed;
         let dotDirectionDeg = dot.directionDeg;
@@ -131,9 +130,9 @@ function update() {
         }
 
         // Interact with dots
-        if (!window.isTouchDevice()) {
+        if (!window.isTouchDevice()) { // Why run every frame? Becuase there are devices with both touch and mouse capabilites. When mouse, allow, when touch, don't
 
-            // Purposefully lacking Math.sqrt and using X * X over Math.Pow
+            // Purposefully using X * X over Math.Pow
             let distToCursorSquared = (cursorX - dotX)*(cursorX - dotX) + (cursorY - dotY)*(cursorY - dotY);
             if (distToCursorSquared < MIN_DIST_TO_MOUSE * MIN_DIST_TO_MOUSE) {
                 let dy = cursorY - newY;
@@ -141,6 +140,10 @@ function update() {
                 dotDirectionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
                 dotSpeed = Math.min(Math.abs(Math.sqrt(distToCursorSquared) - 50) + 1, MAX_SPEED * 2);
             }
+        }
+
+        if (dotSpeed > MAX_SPEED) {
+            dotSpeed -= 5 * deltaTime;
         }
 
         // Draw lines

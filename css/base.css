@@ -150,11 +150,11 @@ html {
 }
 
 [data-bs-theme="light"] .popover {
-    border: max(0.2vw, 0.2vh) solid #93999f;
+    border: 1px solid #93999f;
 }
 
 [data-bs-theme="dark"] .popover {
-    border: max(0.2vw, 0.2vh) solid #52575c;
+    border: 1px solid #52575c;
 }
 
 .popover {
