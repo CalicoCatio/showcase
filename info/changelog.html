@@ -353,7 +353,6 @@
                             <li>Fixed nested <code>&lt;ul&gt;</code>s being inside of <code>&lt;ul&gt;</code>s directly, instead of being wrapped by an <code>&lt;li&gt;</code> first.</li>
                             <li>Fixed <a href="/showcase/projects/showcase">Showcase</a> v1's descrition being lower than the others</li>
                             <li>Swaped from the default to <a href="https://fonts.google.com/specimen/Nunito" target="_blank">Nunito</a> as the standard font, sitewide.</li>
-
                         </ul>
                     </div>
                 </div>
@@ -386,8 +385,13 @@
                         <ul>
                             <li>Changed popovers to have a set border width (<code>1px</code>).</li>
                             <li>Changed touchscreen detection to a method with less false positives.</li>
-                            <li>Changed the radius of dots in the Animated Background to not scale with screen size.</li>
-                            <li>Changed how dots in the Animated Background interact with cursors. Their speed now decays to within normal limits.</li>
+                            <li>Improvements to the Animated Background:
+                                <ul>
+                                    <li>Dot radius no longer scales with screen size (this was a dumb idea, no idea why I did it in the first place).</li>
+                                    <li>Dots that are pushed by the cursor now have their speed decay down to normal levels.</li>
+                                    <li>Dot speed now uses <a href="https://en.wikipedia.org/wiki/Delta_timing" target="_blank">delta time</a> to keep speed consistent across all refresh rates.</li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>

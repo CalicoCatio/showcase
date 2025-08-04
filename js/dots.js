@@ -16,8 +16,8 @@ cursorX = 0;
 cursorY = 0;
 MIN_DIST_TO_MOUSE = 75;
 DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
-MAX_SPEED = 1;
-MIN_SPEED = 0.5;
+MAX_SPEED = 0.25;
+MIN_SPEED = 0.125;
 MAX_DISTANCE_BETWEEN_CONNECTIONS = 100;
 
 lastTime = performance.now();
@@ -108,8 +108,8 @@ function update() {
         let dotDirectionDeg = dot.directionDeg;
 
         // Move dots (dotDirectionDeg * (Math.PI / 180) converts to radians)
-        const newX = dotX + Math.cos(dotDirectionDeg * (Math.PI / 180)) * dotSpeed;
-        const newY = dotY + Math.sin(dotDirectionDeg * (Math.PI / 180)) * dotSpeed;
+        const newX = dotX + Math.cos(dotDirectionDeg * (Math.PI / 180)) * (dotSpeed) * deltaTime * 1000;
+        const newY = dotY + Math.sin(dotDirectionDeg * (Math.PI / 180)) * (dotSpeed) * deltaTime * 1000;
 
 
         // Offscreen? Add new
@@ -201,7 +201,8 @@ function drawDot(dot) {
     ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
     ctx.fillStyle = 'gray';
 
-    dotOp += 1 * deltaTime;
+    // 1000 multiplier since deltaTime is in ms
+    dotOp += 1 * 1000 * deltaTime;
     if (dotOp > 1) dotOp = 1;
 
     ctx.globalAlpha = dotOp;
