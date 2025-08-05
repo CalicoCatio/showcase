@@ -71,7 +71,7 @@
                                     <li>However, they cannot access features designed soley for desktop use.</li>
                                 </ul>
                             </li>
-                            <li>Improved how FAQ page handles desktop aspect ratios.</li>
+                            <li>Improved how FAQ page handles desktop aspect ratios by limiting the maximum relative width the accordions can be.</li>
                             <li>Fixed how accordions are colored, sitewide.</li>
                             <li>Reduced number of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML</a> tags needed for footer, without reducing form/function.</li>
                             <li>Reduced number of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">CSS</a> classes needed for footer, without reducing form/function.</li>
@@ -135,7 +135,7 @@
                         </ul>
                         Improvements/Fixes:
                         <ul>
-                            <li>Improved how the text content is rendered at medium screen widths on project pages.</li>
+                            <li>Improved how the text content is rendered at medium screen widths on project pages by widening text containers for certain screen widths.</li>
                             <li>Fixed larger than normal spaces being generated inside accordions.</li>
                             <li>Fixed content being shifted to the left when the navbar is opened.</li>
                             <li>Fixed content being shifted to the left when a modal is triggered.</li>
@@ -375,23 +375,44 @@
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#eleven" aria-expanded="false" aria-controls="eleven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#twelve" aria-expanded="false" aria-controls="twelve">
                         v0.2.3f | Aug 4, 2025
                     </button>
                 </h2>
-                <div id="eleven" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
+                <div id="twelve" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
                     <div class="accordion-body">
                         Improvements/Fixes:
                         <ul>
                             <li>Changed popovers to have a set border width (<code>1px</code>).</li>
                             <li>Changed touchscreen detection to a method with less false positives.</li>
-                            <li>Improvements to the Animated Background:
+                            <li>
+                                Improvements to the Animated Background:
                                 <ul>
                                     <li>Dot radius no longer scales with screen size (this was a dumb idea, no idea why I did it in the first place).</li>
                                     <li>Dots that are pushed by the cursor now have their speed decay down to normal levels.</li>
                                     <li>Dot speed now uses <a href="https://en.wikipedia.org/wiki/Delta_timing" target="_blank">delta time</a> to keep speed consistent across all refresh rates.</li>
                                 </ul>
                             </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#thirteen" aria-expanded="false" aria-controls="thirteen">
+                        v0.2.3g | Aug 5, 2025
+                    </button>
+                </h2>
+                <div id="thirteen" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
+                    <div class="accordion-body">
+                        Removals:
+                        <ul>
+                            <li>Deprecated use of <code>.p-text</code>, rolled styles from <code>.p-text</code> into base styles.</li>
+                        </ul>
+                        Improvements/Fixes:
+                        <ul>
+                            <li>Fixed <a href="/showcase/info/about">About</a> page text container streching to fill the screen vertically when unneeded.</li>
+                            <li>Limited the max size a border can be to <code>0.25rem</code>.</li>
                         </ul>
                     </div>
                 </div>

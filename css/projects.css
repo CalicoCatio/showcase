@@ -1,5 +1,5 @@
 .feature-carousel {
-    border: max(0.2vw, 0.2vh) solid #808080;
+    border: min(max(0.2vw, 0.2vh), 0.25rem)solid #808080;
     border-radius: 20px;
     overflow: hidden;
     aspect-ratio: 16/9;

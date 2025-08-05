@@ -10,6 +10,7 @@ html, body {
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    font-size: 14pt;
 }
 
 [data-bs-theme="light"] body {
@@ -125,12 +126,12 @@ html {
 /* Popovers */
 .blue-outline,
 .green-outline {
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 2pt;
-    padding-bottom: 3pt;
-    border: max(0.2vw, 0.2vh) solid;
-    border-radius: 10pt;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    padding-top: 1pt;
+    padding-bottom: 2pt;
+    border: min(max(0.2vw, 0.2vh), 0.25rem) solid;
+    border-radius: 15px;
 }
 
 .green-outline {
@@ -159,6 +160,7 @@ html {
 
 .popover {
     border-radius: 15px;
+    font-size: 12pt;
 }
 
 /* Toasts */
@@ -172,6 +174,7 @@ html {
     width: 1em;
     height: 1em;
     margin-right: 5px;
+    font-size: 12pt;
 }
 
 .success {
@@ -183,18 +186,6 @@ html {
 }
 
 /* Base styles */
-p {
-    font-size: 14pt;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.p-text {
-    font-size: 14pt;
-    padding-left: 10px;
-    padding-right: 10px;
-    line-height: calc(1.75 * 14pt);
-}
 
 a abbr {
     cursor: pointer!important;
@@ -218,7 +209,7 @@ a:has(abbr) {
 }
 
 .project-desc {
-    border: max(0.2vw, 0.2vh) solid #808080;
+    border: min(max(0.2vw, 0.2vh), 0.25rem) solid #808080;
     padding: 15px;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -249,7 +240,7 @@ a:has(abbr) {
 }
 
 .accordion-item {
-    border: max(0.2vw, 0.2vh) gray solid;
+    border: min(max(0.2vw, 0.2vh), 0.25rem)gray solid;
     text-align: left;
     margin-bottom: 0 !important;
 }

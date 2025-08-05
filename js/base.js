@@ -24,7 +24,7 @@ function insertHeader() {
 					<br />
 					<ul class="navbar-nav justify-content-center pe-3">
 						<li class="nav-item">
-							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Showcase v4<br /><span class='green-outline'>HTML, CSS, JS</span> <span class='blue-outline'>Bootstrap</span>" data-bs-content="Is the fourth (and hopefully last) iteration of this very website." href="/showcase/projects/showcase">Showcase v4</a>
+							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Showcase v4<br /><span class='green-outline'>HTML</span> <span class='blue-outline'>Bootstrap</span>" data-bs-content="Is the fourth (and hopefully last) iteration of this very website." href="/showcase/projects/showcase">Showcase v4</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" tabindex="0" data-bs-toggle="popover" data-bs-html="true" data-bs-placement="left" data-bs-trigger="hover" data-bs-title="Blinded by the Dark<br /><span class='green-outline'>C#</span> <span class='blue-outline'>Monogame</span>" data-bs-content="Is a 2D platformer minigame, originally made as a project in college." href="/showcase/projects/blinded-by-the-dark">Blinded by the Dark</a>
@@ -171,7 +171,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v0.2.3f</span>
+							<span id="myVer">v0.2.3g</span>
 						</span>
 					</span>
 				</div>
