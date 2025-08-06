@@ -133,13 +133,16 @@ function update() {
         if (!window.isTouchDevice()) { // Why run every frame? Becuase there are devices with both touch and mouse capabilites. When mouse, allow, when touch, don't
 
             // Purposefully using X * X over Math.Pow
-            let distToCursorSquared = (cursorX - dotX)*(cursorX - dotX) + (cursorY - dotY)*(cursorY - dotY);
+            let distToCursorSquared = (cursorX - dotX) * (cursorX - dotX) + (cursorY - dotY) * (cursorY - dotY);
             if (distToCursorSquared < MIN_DIST_TO_MOUSE * MIN_DIST_TO_MOUSE) {
                 let dy = cursorY - newY;
                 let dx = cursorX - newX;
                 dotDirectionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
                 dotSpeed = Math.min(Math.abs(Math.sqrt(distToCursorSquared) - 50) + 1, MAX_SPEED * 2);
             }
+        } else {
+            cursorX = 100000000; // Super large number to move "cursor" out of the way when mouse and touch device swaps to touch
+            cursorY = 100000000;
         }
 
         if (dotSpeed > MAX_SPEED) {
