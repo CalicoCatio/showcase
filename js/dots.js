@@ -16,8 +16,8 @@ cursorX = 0;
 cursorY = 0;
 MIN_DIST_TO_MOUSE = 75;
 DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
-MAX_SPEED = 0.25;
-MIN_SPEED = 0.125;
+MAX_SPEED = 0.125;
+MIN_SPEED = 0.1;
 MAX_DISTANCE_BETWEEN_CONNECTIONS = 100;
 
 lastTime = performance.now();
@@ -138,7 +138,7 @@ function update() {
                 let dy = cursorY - newY;
                 let dx = cursorX - newX;
                 dotDirectionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
-                dotSpeed = Math.min(Math.abs(Math.sqrt(distToCursorSquared) - 50) + 1, MAX_SPEED * 2);
+                dotSpeed = Math.min(Math.abs(Math.sqrt(distToCursorSquared) - 50) + 1, MAX_SPEED * 3);
             }
         } else {
             cursorX = 100000000; // Super large number to move "cursor" out of the way when mouse and touch device swaps to touch
@@ -146,7 +146,7 @@ function update() {
         }
 
         if (dotSpeed > MAX_SPEED) {
-            dotSpeed -= 5 * deltaTime;
+            dotSpeed -= deltaTime/5;
         }
 
         // Draw lines
