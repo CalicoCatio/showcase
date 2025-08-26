@@ -204,9 +204,12 @@ function drawDot(dot) {
     ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
     ctx.fillStyle = 'gray';
 
-    // 1000 multiplier since deltaTime is in ms
-    dotOp += 1 * 1000 * deltaTime;
-    if (dotOp > 1) dotOp = 1;
+    if (dotOp < 1) {
+        dotOp += deltaTime; // deltaTime is in ms
+    } else if (dotOp > 1) {
+        dotOp = 1;
+    }
+        
 
     ctx.globalAlpha = dotOp;
 
