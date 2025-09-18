@@ -15,9 +15,25 @@ function getScrollbarWidth() {
 
 	return scrollbarWidth;
 }
+function isTouchDevice() {
+	return (window.matchMedia("(pointer: coarse)").matches);
+}
 
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function calcDistance(x1, x2, y1, y2) {
+	dx = Math.abs(x2 - x1);
+	dy = Math.abs(y2 - y1);
+	return Math.sqrt(dx * dx + dy * dy);
+}
+
+// This runs faster, but is less accurate (and is also larger than the actual distance)
+function calcApproxDistance(x1, x2, y1, y2) {
+	dx = Math.abs(x2 - x1);
+	dy = Math.abs(y2 - y1);
+	return Math.max(dx, dy);
 }
 
 function throwToast(type, title, body) {
@@ -65,8 +81,3 @@ function addToastContainer() {
 }
 
 addToastContainer();
-
-
-function isTouchDevice() {
-	return (window.matchMedia("(pointer: coarse)").matches);
-}

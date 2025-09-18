@@ -12,9 +12,13 @@ ctx = canvas.getContext("2d");
 
 dotArray = [];
 lineArray = [];
-cursorX = 0;
-cursorY = 0;
-MIN_DIST_TO_MOUSE = 75;
+
+cursor = {
+    newPos: { x: 0, y: 0 },
+    oldPos: { x: 0, y: 0 }
+};
+
+MIN_DIST_TO_MOUSE = 75; // Anything 75px or closer "collides" with the mouse
 DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
 MAX_SPEED = 0.125;
 MIN_SPEED = 0.1;
@@ -72,8 +76,8 @@ observer.observe(document.documentElement, { attributes: true, attributeFilter: 
 // Grab mouse pos
 document.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
-    cursorX = e.clientX - rect.left;
-    cursorY = e.clientY - rect.top;
+    cursor.newPos.x = e.clientX - rect.left;
+    cursor.newPos.y = e.clientY - rect.top;
 });
 
 // Add in a dot
@@ -111,6 +115,22 @@ function update() {
         const newX = dotX + Math.cos(dotDirectionDeg * (Math.PI / 180)) * (dotSpeed) * deltaTime * 1000;
         const newY = dotY + Math.sin(dotDirectionDeg * (Math.PI / 180)) * (dotSpeed) * deltaTime * 1000;
 
+        // Interact with dots
+        if (!window.isTouchDevice() && (cursor.newPos.x != cursor.oldPos.x || cursor.newPos.y != cursor.oldPos.y)) {
+            // Filter out most cases using approx distance (approx is always > actual)
+            if (window.calcApproxDistance(cursor.newPos.x, newX, cursor.newPos.y, newY) <= MIN_DIST_TO_MOUSE) {
+                distToCursor = window.calcDistance(cursor.newPos.x, newX, cursor.newPos.y, newY)
+                if (distToCursor <= MIN_DIST_TO_MOUSE) {
+                    dy = cursor.newPos.y - newY;
+                    dx = cursor.newPos.x - newX;
+                    dotDirectionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
+                    dotSpeed = Math.min(Math.abs(distToCursor - 50) + 1, MAX_SPEED * 3);
+                }
+            }
+        } else {
+            cursor.newPos.x = 100000000; // Super large number to move "cursor" out of the way when mouse and touch device swaps to touch
+            cursor.newPos.y = 100000000;
+        }
 
         // Offscreen? Add new
         if (newX > canvasWidth + MAX_DISTANCE_BETWEEN_CONNECTIONS + scrollWidth) {
@@ -129,45 +149,30 @@ function update() {
             drawDot(dot);
         }
 
-        // Interact with dots
-        if (!window.isTouchDevice()) { // Why run every frame? Becuase there are devices with both touch and mouse capabilites. When mouse, allow, when touch, don't
-
-            // Purposefully using X * X over Math.Pow
-            let distToCursorSquared = (cursorX - dotX) * (cursorX - dotX) + (cursorY - dotY) * (cursorY - dotY);
-            if (distToCursorSquared < MIN_DIST_TO_MOUSE * MIN_DIST_TO_MOUSE) {
-                let dy = cursorY - newY;
-                let dx = cursorX - newX;
-                dotDirectionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
-                dotSpeed = Math.min(Math.abs(Math.sqrt(distToCursorSquared) - 50) + 1, MAX_SPEED * 3);
-            }
-        } else {
-            cursorX = 100000000; // Super large number to move "cursor" out of the way when mouse and touch device swaps to touch
-            cursorY = 100000000;
-        }
-
         if (dotSpeed > MAX_SPEED) {
             dotSpeed -= deltaTime/5;
         }
 
         // Draw lines
         dotArray.forEach((dot2) => {
-            const dot2X = dot2.x;
-            const dot2Y = dot2.y;
-            if (((Math.abs(newX - dot2X)) < MAX_DISTANCE_BETWEEN_CONNECTIONS || (Math.abs(newY - dot2Y)) < MAX_DISTANCE_BETWEEN_CONNECTIONS)) {
+            // Filter out most cases using approx distance (approx is always > actual)
+            if (window.calcApproxDistance(newX, dot2.x, newY, dot2.y) < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
                 const pairExists = lineArray.some(pair =>
                     (pair[0] === dot && pair[1] === dot2) || (pair[0] === dot2 && pair[1] === dot)
                 );
                 if (!pairExists) {
                     // Purposefully lacking Math.sqrt and using X * X over Math.Pow
-                    let distToDot2Squared = (newX - dot2X)*(newX - dot2X) + (newY - dot2Y)*(newY - dot2Y);
-                    if (distToDot2Squared < MAX_DISTANCE_BETWEEN_CONNECTIONS * MAX_DISTANCE_BETWEEN_CONNECTIONS) {
+                    distToDot2 = window.calcDistance(newX, dot2.x, newY, dot2.y)
+                    if (distToDot2 < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
                         lineArray.push([dot, dot2]);
-                        drawLine(dot, dot2, distToDot2Squared);
+                        drawLine(dot, dot2, distToDot2);
                     }
                 }
             }
         });
 
+
+        // Data that needs to be carried over
         dot.x = newX;
         dot.y = newY;
         dot.radius = dotRadius;
@@ -177,6 +182,10 @@ function update() {
 
     // Line array gets cleared after every frame
     lineArray = [];
+
+    // Carry over cursor pos
+    cursor.oldPos.x = cursor.newPos.x;
+    cursor.oldPos.y = cursor.newPos.y;
 
     // Calculate delta time
     now = performance.now()
@@ -219,9 +228,9 @@ function drawDot(dot) {
     dot.opacity = dotOp;
 }
 
-function drawLine(dot1, dot2, distanceSquared) {
+function drawLine(dot1, dot2, distance) {
 
-    let alpha = 1 - distanceSquared / (MAX_DISTANCE_BETWEEN_CONNECTIONS * MAX_DISTANCE_BETWEEN_CONNECTIONS);
+    let alpha = 1 - distance / MAX_DISTANCE_BETWEEN_CONNECTIONS;
     alpha = Math.min(Math.abs(alpha), 1);
 
     ctx.beginPath();
