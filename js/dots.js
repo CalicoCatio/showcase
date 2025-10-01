@@ -11,18 +11,20 @@ canvas = mainContent.appendChild(canvas);
 ctx = canvas.getContext("2d");
 
 dotArray = [];
-lineArray = [];
 
 cursor = {
     newPos: { x: 0, y: 0 },
     oldPos: { x: 0, y: 0 }
 };
 
-MIN_DIST_TO_MOUSE = 75; // Anything 75px or closer "collides" with the mouse
-DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
-MAX_SPEED = 0.125;
-MIN_SPEED = 0.1;
-MAX_DISTANCE_BETWEEN_CONNECTIONS = 100;
+const MIN_DIST_TO_MOUSE = 75; // Anything 75px or closer "collides" with the mouse
+const DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
+const MAX_SPEED = 0.125;
+const MIN_SPEED = 0.1;
+const MAX_DISTANCE_BETWEEN_CONNECTIONS = 100;F
+
+const DEG_TO_RAD = Math.PI / 180;
+const RAD_TO_DEG = 180 / Math.PI;
 
 lastTime = performance.now();
 frameCount = 0;
@@ -111,9 +113,8 @@ function update() {
         let dotSpeed = dot.speed;
         let dotDirectionDeg = dot.directionDeg;
 
-        // Move dots (dotDirectionDeg * (Math.PI / 180) converts to radians)
-        const newX = dotX + Math.cos(dotDirectionDeg * (Math.PI / 180)) * (dotSpeed) * deltaTime * 1000;
-        const newY = dotY + Math.sin(dotDirectionDeg * (Math.PI / 180)) * (dotSpeed) * deltaTime * 1000;
+        const newX = dotX + Math.cos(dotDirectionDeg * DEG_TO_RAD * dotSpeed * deltaTime * 1000;
+        const newY = dotY + Math.sin(dotDirectionDeg * DEG_TO_RAD * dotSpeed * deltaTime * 1000;
 
         // Interact with dots
         if (!window.isTouchDevice() && (cursor.newPos.x != cursor.oldPos.x || cursor.newPos.y != cursor.oldPos.y)) {
@@ -123,7 +124,7 @@ function update() {
                 if (distToCursor <= MIN_DIST_TO_MOUSE) {
                     dy = cursor.newPos.y - newY;
                     dx = cursor.newPos.x - newX;
-                    dotDirectionDeg = Math.atan2(-dy, -dx) * (180 / Math.PI);
+                    dotDirectionDeg = Math.atan2(-dy, -dx) * RAD_TO_DEG;
                     dotSpeed = Math.min(Math.abs(distToCursor - 50) + 1, MAX_SPEED * 3);
                 }
             }
@@ -154,24 +155,14 @@ function update() {
         }
 
         // Draw lines
-        dotArray.forEach((dot2) => {
-            // Filter out most cases using approx distance (approx is always > actual)
-            if (window.calcApproxDistance(newX, dot2.x, newY, dot2.y) < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
-                const pairExists = lineArray.some(pair =>
-                    (pair[0] === dot && pair[1] === dot2) || (pair[0] === dot2 && pair[1] === dot)
-                );
-                if (!pairExists) {
-                    // Purposefully lacking Math.sqrt and using X * X over Math.Pow
-                    distToDot2 = window.calcDistance(newX, dot2.x, newY, dot2.y)
-                    if (distToDot2 < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
-                        lineArray.push([dot, dot2]);
-                        drawLine(dot, dot2, distToDot2);
-                    }
-                }
+        for (let i = index + 1; i < dotArray.length; i++) {
+            const dot2 = dotArray[i];
+            distToDot2 = window.calcDistance(newX, dot2.x, newY, dot2.y)
+            if (distToDot2 < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
+                drawLine(dot, dot2, distToDot2);
             }
-        });
-
-
+        }
+        
         // Data that needs to be carried over
         dot.x = newX;
         dot.y = newY;
@@ -179,9 +170,6 @@ function update() {
         dot.speed = dotSpeed;
         dot.directionDeg = dotDirectionDeg;
     });
-
-    // Line array gets cleared after every frame
-    lineArray = [];
 
     // Carry over cursor pos
     cursor.oldPos.x = cursor.newPos.x;
