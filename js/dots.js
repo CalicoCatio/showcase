@@ -18,10 +18,10 @@ cursor = {
 };
 
 const MIN_DIST_TO_MOUSE = 75; // Anything 75px or closer "collides" with the mouse
-const DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
+DOT_COUNT = Math.floor(Math.max(canvas.width / 20, canvas.height / 20));
 const MAX_SPEED = 0.125;
 const MIN_SPEED = 0.1;
-const MAX_DISTANCE_BETWEEN_CONNECTIONS = 100;F
+const MAX_DISTANCE_BETWEEN_CONNECTIONS = 100;
 
 const DEG_TO_RAD = Math.PI / 180;
 const RAD_TO_DEG = 180 / Math.PI;
@@ -36,7 +36,7 @@ function canvasResize() {
     if (!(document.documentElement.style.overflow == 'hidden')) {
         canvas.width = mainContent.offsetWidth;
         canvas.style.top = '0px';
-    } 
+    }
     else {
         canvas.width = mainContent.offsetWidth + window.getScrollbarWidth();
         canvas.style.top = `${document.body.querySelector('.navbar').offsetHeight}px`;
@@ -113,8 +113,9 @@ function update() {
         let dotSpeed = dot.speed;
         let dotDirectionDeg = dot.directionDeg;
 
-        const newX = dotX + Math.cos(dotDirectionDeg * DEG_TO_RAD * dotSpeed * deltaTime * 1000;
-        const newY = dotY + Math.sin(dotDirectionDeg * DEG_TO_RAD * dotSpeed * deltaTime * 1000;
+        // Move dots (dotDirectionDeg * (Math.PI / 180) converts to radians)
+        const newX = dotX + Math.cos(dotDirectionDeg * DEG_TO_RAD) * dotSpeed * deltaTime * 1000;
+        const newY = dotY + Math.sin(dotDirectionDeg * DEG_TO_RAD) * dotSpeed * deltaTime * 1000;
 
         // Interact with dots
         if (!window.isTouchDevice() && (cursor.newPos.x != cursor.oldPos.x || cursor.newPos.y != cursor.oldPos.y)) {
@@ -151,18 +152,18 @@ function update() {
         }
 
         if (dotSpeed > MAX_SPEED) {
-            dotSpeed -= deltaTime/5;
+            dotSpeed -= deltaTime / 5;
         }
 
         // Draw lines
-        for (let i = index + 1; i < dotArray.length; i++) {
-            const dot2 = dotArray[i];
+        for (let j = index + 1; j < dotArray.length; j++) {
+            const dot2 = dotArray[j];
             distToDot2 = window.calcDistance(newX, dot2.x, newY, dot2.y)
             if (distToDot2 < MAX_DISTANCE_BETWEEN_CONNECTIONS) {
                 drawLine(dot, dot2, distToDot2);
             }
         }
-        
+
         // Data that needs to be carried over
         dot.x = newX;
         dot.y = newY;
@@ -206,7 +207,7 @@ function drawDot(dot) {
     } else if (dotOp > 1) {
         dotOp = 1;
     }
-        
+
 
     ctx.globalAlpha = dotOp;
 

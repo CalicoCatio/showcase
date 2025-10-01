@@ -187,14 +187,6 @@ html {
 
 /* Base styles */
 
-a abbr {
-    cursor: pointer!important;
-}
-
-a:has(abbr) {
-    text-decoration: underline dotted !important;
-}
-
 .main-content {
     margin-top: 95px;
     min-height: calc(100vh - 95px);
@@ -214,6 +206,27 @@ a:has(abbr) {
     padding-top: 7px;
     padding-bottom: 7px;
     border-radius: 20px;
+}
+
+/* Styles for links */
+
+a:hover,
+.link-out:hover span {
+    text-decoration: none!important;
+}
+
+a .bi-box-arrow-up-right,
+li .bi-box-arrow-up-right {
+    font-size: 0.75em;
+    vertical-align: 0.15em;
+}
+
+.link-out {
+    text-decoration: none;
+}
+
+.link-out span {
+    text-decoration: underline;
 }
 
 .row { /* Bootstrap pushes margin to -12px for some reason */
