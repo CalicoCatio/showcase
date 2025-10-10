@@ -30,14 +30,14 @@ lastTime = performance.now();
 frameCount = 0;
 deltaTime = 0;
 
-collapsing = false;
+accordionCollapsing = false;
 
 // Resize canvas
-function canvasResize(collapsing2) {
-    collapsing = false;
+function canvasResize(accordionResize) {
+    accordionCollapsing = false;
     mainContent.querySelectorAll(".accordion-item").forEach((item) => {
-        if (item.querySelector(".collapsing") || collapsing2) {
-            collapsing = true;
+        if (item.querySelector(".collapsing") || accordionResize) {
+            accordionCollapsing = true;
         }
     });
     const dpr = window.devicePixelRatio || 1;
@@ -67,8 +67,12 @@ canvasResize();
 window.addEventListener('resize', canvasResize);
 // Since accordions can change canvas size and don't trigger the above listener, another trigger is needed
 document.querySelectorAll('.accordion-collapse').forEach(item => {
-    item.addEventListener('show.bs.collapse', canvasResize(true));
-    item.addEventListener('hide.bs.collapse', canvasResize(true));
+    item.addEventListener('show.bs.collapse', function () {
+        canvasResize(true);
+    });
+    item.addEventListener('hide.bs.collapse', function () {
+        canvasResize(true);
+    });
 });
 
 // Check for when scrollbar is removed (it gets removed for modals)
@@ -104,7 +108,7 @@ function addDot() {
 }
 
 function update() {
-    if (collapsing) {
+    if (accordionCollapsing) {
         canvasResize();
     }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
