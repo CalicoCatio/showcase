@@ -158,11 +158,6 @@ function insertFooter() {
 								</a>
 							</li>
 							<li>
-								<a href="https://www.reddit.com/user/CalicoCatio/" target="_blank" class="footer-link footer-text-large">
-									<i class="bi bi-reddit"></i>
-								</a>
-							</li>
-							<li>
 								<a href="https://github.com/CalicoCatio" target="_blank" class="footer-link footer-text-large">
 									<i class="bi bi-github"></i>
 								</a>
@@ -171,7 +166,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v4.2.3k</span>
+							<span id="myVer">v4.2.3l</span>
 						</span>
 					</span>
 				</div>
