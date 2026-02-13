@@ -14,12 +14,12 @@ html, body {
 }
 
 [data-bs-theme="light"] body {
-    color: black;
+    color: #00010f;
     background: linear-gradient(to top, #d8e0e9 0%, white 100%);
 }
 
 [data-bs-theme="dark"] body {
-    color: #ffffffa6;
+    color: #fffef0;
     background: linear-gradient(to top, #212529 0%, black 100%);
 }
 

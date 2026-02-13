@@ -15,6 +15,7 @@ function getScrollbarWidth() {
 
 	return scrollbarWidth;
 }
+
 function isTouchDevice() {
 	return (window.matchMedia("(pointer: coarse)").matches);
 }
@@ -80,4 +81,4 @@ function addToastContainer() {
 	}
 }
 
-addToastContainer();
+addToastContainer(); // Called once on page load, then not needed
