@@ -211,6 +211,17 @@ function update() {
 
 requestAnimationFrame(update);
 
+// If user leaves, stop animating
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === 'visible') {
+        lastTime = performance.now();
+        requestAnimationFrame(update);
+    } else {
+        cancelAnimationFrame(update);
+    }
+});
+
+
 function drawDot(dot) {
     let dotOp = dot.opacity
     ctx.beginPath();

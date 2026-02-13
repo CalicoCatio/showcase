@@ -1,11 +1,13 @@
 isActive = false;
+
+
 function scrollToBottom() {
     if (!isActive) {
         isActive = true;
         const info = document.querySelector('#infoHeader');
         const { top, left, bottom, right } = info.getBoundingClientRect();
         const { innerHeight, innerWidth } = window;
-        
+
         if (info) {
             if ((top > 0 && top < innerHeight) && (left > 0 && left < innerWidth) && (bottom > 0 && bottom < innerHeight) && (right > 0 && right < innerWidth)) {
                 info.classList.add('highlight-anim');
@@ -36,3 +38,13 @@ function scrollToBottom() {
     }
 }
 
+function insertModdedBreadcrumb(site) {
+    if (!"onscrollend" in window) {
+        window.throwToast('warn', "Outdated Browser Warning", "This page utilizes features that aren't supported by your browser. Don't worry, the feature is non-essential and has been automatically disabled.");
+        console.warn(`OUTDATED BROWSER: Browser does not support 'scrollend' event listener.`);
+        isActive = true;
+        insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Info', undefined, site);
+    } else {
+        insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Info', `class="text-decoration-underline" style="cursor: pointer;" onclick="scrollToBottom();"`, site);
+    }
+}

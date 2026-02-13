@@ -184,20 +184,27 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, link2 = null, name3
 	`;
 
 	if (!name2) {
-		// Homepage only
 		breadcrumb += `
 			<li class="breadcrumb-item active" aria-current="page">${name1}</li>
 		`;
 	} else if (!name3) {
-		// 2-level breadcrumb
 		breadcrumb += `
 			<li class="breadcrumb-item">
 				<a ${link1}>${name1}</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">${name2}</li>
 		`;
+	} else if (!link2) {
+		breadcrumb += `
+			<li class="breadcrumb-item">
+				<a ${link1}>${name1}</a>
+			</li>
+			<li class="breadcrumb-item active">
+				${name2}
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">${name3}</li>
+		`;
 	} else {
-		// 3-level breadcrumb
 		breadcrumb += `
 			<li class="breadcrumb-item">
 				<a ${link1}>${name1}</a>

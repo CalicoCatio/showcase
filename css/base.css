@@ -181,6 +181,10 @@ html {
     background: green;
 }
 
+.warn {
+    background: #ffc107;
+}
+
 .fail {
     background: red;
 }

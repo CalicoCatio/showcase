@@ -38,13 +38,17 @@ function calcApproxDistance(x1, x2, y1, y2) {
 }
 
 function throwToast(type, title, body) {
-	if (type == false) {
-		type = 'fail';
-	} else if (type == true) {
-		type = 'success';
+	autohide = true;
+	switch (type) {
+		case 'warn':
+			autohide = false;
+			break;
+		case 'fail':
+			autohide = false;
+			break;
 	}
 	toastHTML = `
-		<div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+		<div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="${autohide}">
 			<div class="toast-header">
 				<div class="div-box ${type}"></div>
 				<strong class="me-auto">${title}</strong>
@@ -81,4 +85,4 @@ function addToastContainer() {
 	}
 }
 
-addToastContainer(); // Called once on page load, then not needed
+addToastContainer(); // Called once on page load

@@ -19,7 +19,7 @@
     <!-- JS needed onload-->
     <script src="/showcase/js/preloadTheme.js"></script>
 </head>
-<body onload="insertBreadcrumb('Home', 'href=&quot;/showcase/&quot;', 'Info', 'class=&quot;text-decoration-underline&quot; style=&quot;cursor: pointer&quot; onclick=&quot;scrollToBottom()&quot;', 'Changelog')">
+<body onload="insertModdedBreadcrumb('Changelog');">
     <main class="main-content row d-flex align-items-start justify-content-center">
         <div class="col-md-2 d-none d-md-block"></div>
         <div class="col-md-8 col-12 accordion mt-3 mb-3" id="changelogAccordion">
@@ -496,12 +496,7 @@
                     <div class="accordion-body">
                         Improvements/Fixes:
                         <ul>
-                            <li>
-                                Improvements to the Animated Background:
-                                <ul>
-                                    <li>Fixed a bug where the background wouldn't resize properly while a tall accordion is opening/closing.</li>
-                                </ul>
-                            </li>
+                            <li>Fixed a bug where the animated background wouldn't resize properly while a tall accordion is opening/closing.</li>
                         </ul>
                     </div>
                 </div>
@@ -517,6 +512,12 @@
                         Additions:
                         <ul>
                             <li>Added a static version of the previously animated introductory text to the <a href="/showcase/">Homepage</a>.</li>
+                            <li>Added a system to detect if the newest browser features are supported by the user's browser.
+                                <ul>
+                                    <li>If they aren't a warning will be thrown and the feature will be disabled.</li>
+                                </ul>
+                            </li>
+                            <li><code>fail</code> or <code>warn</code> toasts will no longer close automatically.</li>
                         </ul>
                         Removals:
                         <ul>
@@ -530,6 +531,15 @@
                                     <li>I am making more of an effort to reduce my use of social media, and this is part of that change.</li>
                                 </ul>
                             </li>
+                            <li>
+                                Improvements to the Animated Background:
+                                <ul>
+                                    <li>Fixed a bug where the animation would spasam when returning to the page after it was left alone for a while.</li>
+                                    <li>The animation now pauses when the page isn't open.</li>
+                                </ul>
+                            </li>
+                            <li>Removed a magic number from the toast system.</li>
+                            <li>Changed from text-numbering to standard numbering for accordion control, improving maintainability.</li>
                         </ul>
                     </div>
                 </div>
@@ -540,8 +550,8 @@
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="/showcase/js/utils.js"></script>
-    <script src="/showcase/js/info.js"></script>
     <script src="/showcase/js/base.js"></script>
     <script src="/showcase/js/settings.js"></script>
+    <script src="/showcase/js/info.js"></script>
 </body>
 </html>

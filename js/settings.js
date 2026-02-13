@@ -50,7 +50,7 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			document.body.querySelectorAll('.anim-override').forEach((element) => {
 				element.disabled = true;
 			});
-			window.throwToast(true, 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>Off</strong>.');
+			window.throwToast('success', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>Off</strong>.');
 		}
 	} else {
 		animOverride.disabled = '';
@@ -64,7 +64,7 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			document.body.querySelectorAll('.anim-override').forEach((element) => {
 				element.disabled = false;
 			});
-			window.throwToast(true, 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>On</strong>.')
+			window.throwToast('success', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>On</strong>.')
 		}
 	}
 }
@@ -161,7 +161,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 					localStorage.clear();
 					location.reload();
 				} catch (error) {
-					window.throwToast(false, 'Reset Settings Error', 'Your settings could not be reset due to an error. Try again later');
+					window.throwToast('fail', 'Reset Settings Error', 'Your settings could not be reset due to an error. Try again later');
 					console.warn(error);
 				}
 				
@@ -209,15 +209,15 @@ function settingsChanged(event, firstLoad) {
 					break;
 				default:
 					// False = Error message, True = Not error
-					window.throwToast(false, 'Theme Change Error', 'Your theme could not be changed due to an error. Reload the page and try again.');
+					window.throwToast('fail', 'Theme Change Error', 'Your theme could not be changed due to an error. Reload the page and try again.');
 					console.warn(`THEME CHANGE BLOCKED: Theme Setting is out of bounds! (${localStorage.getItem('theme')})`);
 					break;
 			}
 			if (!firstLoad) {
-				window.throwToast(true, 'Theme Changed', `Your theme has been changed to ${setType}.`);
+				window.throwToast('success', 'Theme Changed', `Your theme has been changed to ${setType}.`);
 			}
 		} catch (error) {
-			window.throwToast(false, 'Theme Change Error', 'Your theme could not be changed due to an error. Try again later.');
+			window.throwToast('fail', 'Theme Change Error', 'Your theme could not be changed due to an error. Try again later.');
 			console.warn(error);
 		}
 	} else if (event === 'animations') {
@@ -282,15 +282,15 @@ function settingsChanged(event, firstLoad) {
 					break;
 				default:
 					// False = Error message, True = Not error
-					window.throwToast(false, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Reload the page and try again.');
+					window.throwToast('fail', 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Reload the page and try again.');
 					console.warn(`ANIMATION CHANGE BLOCKED: Animation Setting is out of bounds! (${localStorage.getItem('animations')})`);
 					break;
 			}
 			if (!firstLoad) {
-				window.throwToast(true, 'Animation Preference Changed', `Your animation preference has been changed to ${setType}.`);
+				window.throwToast('success', 'Animation Preference Changed', `Your animation preference has been changed to ${setType}.`);
 			}
 		} catch (error) {
-			window.throwToast(false, 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Try again later.');
+			window.throwToast('fail', 'Animation Preference Change Error', 'Your animation preference could not be changed due to an error. Try again later.');
 			console.warn(error);
 		}
 	} else if (event === 'dots') {
@@ -306,7 +306,7 @@ function settingsChanged(event, firstLoad) {
 					break;
 				default:
 					// False = Error message, True = Not error
-					window.throwToast(false, 'Background Change Error', 'The background could not be changed due to an error. Reload the page and try again.');
+					window.throwToast('fail', 'Background Change Error', 'The background could not be changed due to an error. Reload the page and try again.');
 					console.warn(`BACKGROUND CHANGE BLOCKED: Background Setting is out of bounds! (${localStorage.getItem('theme')})`);
 					break;
 			}
@@ -314,7 +314,7 @@ function settingsChanged(event, firstLoad) {
 				location.reload();
 			}
 		} catch (error) {
-			window.throwToast(false, 'Background Change Error', 'The background could not be changed due to an error. Try again later.');
+			window.throwToast('fail', 'Background Change Error', 'The background could not be changed due to an error. Try again later.');
 			console.warn(error);
 		}
 	}
