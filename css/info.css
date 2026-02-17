@@ -13,3 +13,8 @@
         transform: scale(1.5);
     }
 }
+
+.wide-dropdown {
+    max-width: 100vw;
+    width: 20vw;
+}

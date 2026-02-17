@@ -265,7 +265,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#7" aria-expanded="false" aria-controls="7">
-                        v4.2.3a | July 21, 2025
+                        v4.2.3a - k | July 21 - Oct 10, 2025
                     </button>
                 </h2>
                 <div id="7" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
@@ -273,6 +273,7 @@
                         Removals:
                         <ul>
                             <li>Removed <code>.html</code> at the end of all pages/links.</li>
+                            <li>Removed em dash (—) from the <a href="showcase/projects/blinded-by-the-dark">Blinded by the Dark</a> showcase page due to it being to AI-like; replaced with a comma (,).</li>
                         </ul>
                         Improvements/Fixes:
                         <ul>
@@ -283,12 +284,60 @@
                             <li>Clarified sections of the <a href="/showcase/info/about">About</a> page.</li>
                             <li>Added indentations to the About page.</li>
                             <li>Widened About page at various screen widths.</li>
+                            <li>Fixed phantom scrollbar appearing when the navbar is opened in rare occasions.</li>
+                            <li>Fixed inline links still using the <code>.html</code> extension.</li>
+                            <li>Fixed a bug where not all animations would be turned off/on using the animation setting.</li>
+                            <li>Clarified my stance on AI within the AI question on the <a href="/showcase/info/faq">FAQ</a> page</li>
+                            <li>Split AI FAQ question into code and non-code parts.</li>
                             <li>Updated from <a class="link-out" href="https://getbootstrap.com/" target="_blank"><span>Bootstrap</span>&nbsp;<i class="bi bi-box-arrow-up-right"></i></a> v5.3.5 to v5.3.7.</li>
+                            <li>Fixed a bug where reseting settings while animations were overriden turned on the Animated Background.</li>
+                            <li>Fixed a bug where changing the OS/Browser level animation setting didn't show a notification (The bug was that I forgot to add the notification logic).</li>
+                            <li>Tweaked accordions to bring them inline with sitewide styles.</li>
+                            <li>Tweaked showcase pages to bring other elements inline with sitewide styles.</li>
+                            <li>Removed links where they were excessive; new internal standard set for when to link to outside websites.</li>
+                            <li>Fixed nested <code>&lt;ul&gt;</code>s being inside of <code>&lt;ul&gt;</code>s directly, instead of being wrapped by an <code>&lt;li&gt;</code> first.</li>
+                            <li>Fixed <a href="/showcase/projects/showcase">Showcase</a> v1's descrition being lower than the others</li>
+                            <li>Swaped from the default to <a class="link-out" href="https://fonts.google.com/specimen/Nunito" target="_blank"><span>Nunito</span>&nbsp;<i class="bi bi-box-arrow-up-right"></i></a> as the standard font, sitewide.</li>
+                            <li>Unified all border widths to a standard size (<code>max(0.2vw, 0.2vh)</code>).</li>
+                            <li>Fixed a bug where the border of <a class="link-out" href="https://getbootstrap.com/docs/5.3/components/carousel/" target="_blank"><span>carousels</span>&nbsp;<i class="bi bi-box-arrow-up-right"></i></a> weren't the right size.</li>
+                            <li>Changed popovers to have a set border width (<code>1px</code>).</li>
+                            <li>Changed touchscreen detection to a method with less false positives.</li>
+                            <li>Fixed About page text container streching to fill the screen vertically when unneeded.</li>
+                            <li>Fixed misspelt text in the Changelog page.</li>
+                            <li>Limited the max size a border can be to <code>0.25rem</code>.</li>
+                            <li>Fixed a bug where devices with both touch and mouse capabilites could cause a phantom mouse to interact with the Animated Background.</li>
+                            <li>Fixed a bug where dots would snap into existence instead of fading into existence on the Animated Background.</li>
+                            <li>Clarified AI use in <a href="/showcase/info/faq">FAQ</a> question.</li>
+                            <li>Changed external version numbering system to have a 4 in front, signifying that this is version 4 of this site.</li>
+                            <li>All links that open to a new tab (which applies to all exterior links) are now marked with a <i class="bi bi-box-arrow-up-right"></i> symbol</li>
                             <li>
-                                Accessibility improvements:
+                                Improvements to Accessibility:
                                 <ul>
                                     <li>Changed the <code>&lt;div&gt;</code> that holds the main content of the page to be a <code>&lt;main&gt;</code>.</li>
                                     <li>Added more links, and changed some from default Wikipedia entries to websites with more specific examples.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                Improvements to the Animated Background:
+                                <ul>
+                                    <li>Dot radius no longer scales with screen size (this was a dumb idea, no idea why I did it in the first place).</li>
+                                    <li>Dots that are pushed by the cursor now have their speed decay down to normal levels.</li>
+                                    <li>Dot speed now uses <a class="link-out" href="https://en.wikipedia.org/wiki/Delta_timing" target="_blank"><span>delta time</span>&nbsp;<i class="bi bi-box-arrow-up-right"></i></a> to keep speed consistent across all refresh rates.</li>
+                                    <li>Various misc changes to variables.</li>
+                                    <li>Refactored parts of the script, moving certain functions to a global JS script to keep things organized.</li>
+                                    <li>The cursor will only collide with the dots if the cursor is moving.</li>
+                                    <li>Improved performance of the cursor collision detection.</li>
+                                    <li>Fixed a bug where cursor to dot collisions would lag by a frame.</li>
+                                    <li>Significant optimization improvements thanks to new logic for deciding if two dots should have a line drawn between them.</li>
+                                    <li>Cached Degree to Radian and Radian to Degree conversions.</li>
+                                    <li>Fixed a bug where the background wouldn't resize properly while a tall accordion is opening/closing.</li>
+                                    <li>
+                                        Improved how the Animation and Animated Background settings interact with OS/Browser level settings:
+                                        <ul>
+                                            <li>The OS/browser level settings will override and restrict the settings on the page.</li>
+                                            <li>The settings restrictions will automatically update if the OS/browser level setting is changed.</li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -298,216 +347,10 @@
             <div class="accordion-item">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#8" aria-expanded="false" aria-controls="8">
-                        v4.2.3b | July 24, 2025
-                    </button>
-                </h2>
-                <div id="8" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Fixed phantom scrollbar appearing when the navbar is opened in rare occasions.</li>
-                            <li>Fixed inline links still using the <code>.html</code> extension.</li>
-                            <li>Fixed a bug where not all animations would be turned off/on using the animation setting.</li>
-                            <li>Clarified my stance on AI within the AI question on the <a href="/showcase/info/faq">FAQ</a> page</li>
-                            <li>Split AI FAQ question into code and non-code parts.</li>
-                            <li>
-                                Improved how the Animation and Animated Background settings interact with OS/Browser level settings.
-                                <ul>
-                                    <li>The OS/browser level settings will override and restrict the settings on the page.</li>
-                                    <li>The settings restrictions will automatically update if the OS/browser level setting is changed.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#9" aria-expanded="false" aria-controls="9">
-                        v4.2.3c | July 26, 2025
-                    </button>
-                </h2>
-                <div id="9" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Fixed a bug where reseting settings while animations were overriden turned on the Animated Background.</li>
-                            <li>Fixed a bug where changing the OS/Browser level animation setting didn't show a notification (The bug was that I forgot to add the notification logic).</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#10" aria-expanded="false" aria-controls="10">
-                        v4.2.3d | July 30, 2025
-                    </button>
-                </h2>
-                <div id="10" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Tweaked accordions to bring them inline with sitewide styles.</li>
-                            <li>Tweaked showcase pages to bring other elements inline with sitewide styles.</li>
-                            <li>Removed links where they were excessive; new internal standard set for when to link to outside websites.</li>
-                            <li>Fixed nested <code>&lt;ul&gt;</code>s being inside of <code>&lt;ul&gt;</code>s directly, instead of being wrapped by an <code>&lt;li&gt;</code> first.</li>
-                            <li>Fixed <a href="/showcase/projects/showcase">Showcase</a> v1's descrition being lower than the others</li>
-                            <li>Swaped from the default to <a class="link-out" href="https://fonts.google.com/specimen/Nunito" target="_blank"><span>Nunito</span>&nbsp;<i class="bi bi-box-arrow-up-right"></i></a> as the standard font, sitewide.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#11" aria-expanded="false" aria-controls="11">
-                        v4.2.3e | July 31, 2025
-                    </button>
-                </h2>
-                <div id="11" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Unified all border widths to a standard size (<code>max(0.2vw, 0.2vh)</code>).</li>
-                            <li>Fixed a bug where the border of <a class="link-out" href="https://getbootstrap.com/docs/5.3/components/carousel/" target="_blank"><span>carousels</span>&nbsp;<i class="bi bi-box-arrow-up-right"></i></a> weren't the right size.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#12" aria-expanded="false" aria-controls="12">
-                        v4.2.3f | Aug 4, 2025
-                    </button>
-                </h2>
-                <div id="12" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Changed popovers to have a set border width (<code>1px</code>).</li>
-                            <li>Changed touchscreen detection to a method with less false positives.</li>
-                            <li>
-                                Improvements to the Animated Background:
-                                <ul>
-                                    <li>Dot radius no longer scales with screen size (this was a dumb idea, no idea why I did it in the first place).</li>
-                                    <li>Dots that are pushed by the cursor now have their speed decay down to normal levels.</li>
-                                    <li>Dot speed now uses <a class="link-out" href="https://en.wikipedia.org/wiki/Delta_timing" target="_blank"><span>delta time</span>&nbsp;<i class="bi bi-box-arrow-up-right"></i></a> to keep speed consistent across all refresh rates.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#13" aria-expanded="false" aria-controls="13">
-                        v4.2.3g | Aug 5, 2025
-                    </button>
-                </h2>
-                <div id="13" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Removals:
-                        <ul>
-                            <li>Deprecated use of <code>.p-text</code>, rolled styles from <code>.p-text</code> into base styles.</li>
-                        </ul>
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Fixed <a href="/showcase/info/about">About</a> page text container streching to fill the screen vertically when unneeded.</li>
-                            <li>Fixed misspelt text in the Changelog page.</li>
-                            <li>Limited the max size a border can be to <code>0.25rem</code>.</li>
-                            <li>Fixed a bug where devices with both touch and mouse capabilites could cause a phantom mouse to interact with the Animated Background.</li>
-                            <li>Various misc changes to Animated Background variables.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#14" aria-expanded="false" aria-controls="14">
-                        v4.2.3h | Aug 26, 2025
-                    </button>
-                </h2>
-                <div id="14" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Removals:
-                        <ul>
-                            <li>Removed em dash (—) from the <a href="showcase/projects/blinded-by-the-dark">Blinded by the Dark</a> showcase page due to it being to AI-like; replaced with a comma (,).</li>
-                        </ul>
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Fixed a bug where dots would snap into existence instead of fading into existence on the Animated Background.</li>
-                            <li>Clarified AI use in <a href="/showcase/info/faq">FAQ</a> question.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#15" aria-expanded="false" aria-controls="15">
-                        v4.2.3i | Sept 18, 2025
-                    </button>
-                </h2>
-                <div id="15" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Changed external version numbering system.</li>
-                            <li>
-                                Improvements to the Animated Background:
-                                <ul>
-                                    <li>Refactored parts of the script, moving certain functions to a global JS script to keep things organized.</li>
-                                    <li>The cursor will only collide with the dots if the cursor is moving.</li>
-                                    <li>Improved performance of the cursor collision detection.</li>
-                                    <li>Fixed a bug where cursor to dot collisions would lag by a frame.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#16" aria-expanded="false" aria-controls="16">
-                        v4.2.3j | Oct 1, 2025
-                    </button>
-                </h2>
-                <div id="16" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Improvements/Fixes:
-                        <ul>
-                            <li>All links that open to a new tab (which applies to all exterior links) are now marked with a <i class="bi bi-box-arrow-up-right"></i> symbol</li>
-                            <li>
-                                Improvements to the Animated Background:
-                                <ul>
-                                    <li>Significant optimization improvements thanks to new logic for deciding if two dots should have a line drawn between them.</li>
-                                    <li>Cached Degree to Radian and Radian to Degree conversions.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#17" aria-expanded="false" aria-controls="17">
-                        v4.2.3k | Oct 10, 2025
-                    </button>
-                </h2>
-                <div id="17" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
-                    <div class="accordion-body">
-                        Improvements/Fixes:
-                        <ul>
-                            <li>Fixed a bug where the animated background wouldn't resize properly while a tall accordion is opening/closing.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#18" aria-expanded="false" aria-controls="18">
                         v4.2.4 | Feb 13, 2026
                     </button>
                 </h2>
-                <div id="18" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
+                <div id="8" class="accordion-collapse collapse" data-bs-parent="#changelogAccordion">
                     <div class="accordion-body">
                         Additions:
                         <ul>
@@ -533,7 +376,7 @@
                                 </ul>
                             </li>
                             <li>
-                                Improvements to the Animated Background:
+                                
                                 <ul>
                                     <li>Fixed a bug where the animation would spasam when returning to the page after it was left alone for a while.</li>
                                     <li>The animation now pauses when the page isn't open.</li>
@@ -541,6 +384,7 @@
                             </li>
                             <li>Removed a magic number from the toast system.</li>
                             <li>Changed from text-numbering to standard numbering for accordion control, improving maintainability.</li>
+                            <li>Concatenated v4.2.3a - k updates into one change, improving readability.</li>
                         </ul>
                     </div>
                 </div>
