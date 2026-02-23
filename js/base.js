@@ -51,7 +51,7 @@ const searchObserver = new MutationObserver((mutationsList, searchObserver) => {
 	if (input && output && items.length > 0) {
 		searchObserver.disconnect();
 		input.addEventListener("input", async () => {
-			const query = input.value.trim();
+			let query = input.value.trim();
 			if (query.length != 0) {
 				output.innerHTML = '';
 				if (query.charAt(0) === '#') {
@@ -68,7 +68,12 @@ const searchObserver = new MutationObserver((mutationsList, searchObserver) => {
 					});
 					// There is not a project with tag Tag
 					if (output.innerHTML.toString() == '') {
-						output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link text-center">There are no projects that have the tag ${query}.</li>`;
+						if (query == '#') {
+							output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link text-center">The entered tag is blank.</li>`;
+						} else {
+							query = query.substring(1);
+							output.innerHTML = `<li class="nav-item justify-content-center d-flex nav-link text-center">There are no projects that have the tag ${query}.</li>`;
+						}
 					}
 				} else {
 					items.forEach(function (item, i) {

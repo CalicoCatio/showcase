@@ -39,12 +39,13 @@ function scrollToBottom() {
 }
 
 function insertModdedBreadcrumb(site) {
-    if (!"onscrollend" in window) {
+    if ("onscrollend" in window) {
+        insertBreadcrumb('Home', 'href=/showcase/', 'Info', `class="text-decoration-underline" style="cursor: pointer;" onclick="scrollToBottom();"`, site);
+
+    } else {
         window.throwToast('warn', "Outdated Browser Warning", "This page utilizes features that aren't supported by your browser. Don't worry, the feature is non-essential and has been automatically disabled.");
         console.warn(`OUTDATED BROWSER: Browser does not support 'scrollend' event listener.`);
         isActive = true;
         insertBreadcrumb('Home', 'href=/showcase/', 'Info', undefined, site);
-    } else {
-        insertBreadcrumb('Home', 'href=/showcase/', 'Info', `class="text-decoration-underline" style="cursor: pointer;" onclick="scrollToBottom();"`, site);
     }
 }
