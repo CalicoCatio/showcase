@@ -1,14 +1,21 @@
 btnColor = 'btn-outline-light';
 // Apply defaults (0 = Light, 1 = Dark, 2 = Auto)
 if (localStorage.getItem('theme')) {
-	settingsChanged('theme', true); // True for first load only, false otherwise
+	settingsChanged('theme', true); // True stops the toasts from showing
 } else {
 	localStorage.setItem('theme', 2);
 }
 
 // Apply defaults (0 = Off, 1 = On, 2 = Auto)
+if (localStorage.getItem('reduTrans')) {
+	settingsChanged('reduTrans', true); // True stops the toasts from showing
+} else {
+	localStorage.setItem('reduTrans', 2);
+}
+
+// Apply defaults (0 = Off, 1 = On, 2 = Auto)
 if (localStorage.getItem('animations')) {
-	settingsChanged('animations', true); // True for first load only, false otherwise
+	settingsChanged('animations', true); // True stops the toasts from showing
 } else {
 	localStorage.setItem('animations', 2);
 }
@@ -20,12 +27,63 @@ if (!localStorage.getItem('dots')) {
 settingsChanged('dots', true);
 
 // To comply with Browser/OS level settings
+let transOverride = {
+	disabled: '',
+	transInfo: '',
+	modifiedStyle: ''
+};
+
 let animOverride = {
 	disabled: '',
 	animInfo: '',
 	dotsInfo: '',
 	modifiedStyle: ''
 };
+
+function changeOSLevelTheme(light, firstLoad = false) {
+	if (light.matches && localStorage.getItem('theme') == 2 && !firstLoad) {
+		window.throwToast('success', 'OS/Browser Theme Changed', `OS/Browser Transparency Setting has been changed to <strong>Light Mode</strong>.`);
+		settingsChanged('theme', true);
+	} else if (!light.matches && localStorage.getItem('theme') == 2 && !firstLoad) {
+		window.throwToast('success', 'OS/Browser Theme Changed', `OS/Browser Transparency Setting has been changed to <strong>Dark Mode</strong>.`);
+		settingsChanged('theme', true);
+	}
+}
+
+function changeOSLevelTransparency(reduce, firstLoad = false) {
+	if (reduce.matches) {
+		if (localStorage.getItem('reduTrans') == 1) {
+			localStorage.setItem('reduTrans', 0);
+			settingsChanged('reduTrans', firstLoad);
+			if (!firstLoad) {
+				document.body.querySelector('#trans0').checked = true;
+			}
+		}
+		transOverride.disabled = 'disabled';
+		transOverride.transInfo = 'Transparency Setting is being overriden by OS or Browser level setting.';
+		transOverride.modifiedStyle = 'm-0';
+		if (!firstLoad) {
+			document.body.querySelector('#transStyle').classList.add(`${transOverride.modifiedStyle}`);
+			document.body.querySelector('#transInfo').textContent = transOverride.transInfo;
+			document.body.querySelectorAll('.trans-override').forEach((element) => {
+				element.disabled = true;
+			});
+			window.throwToast('warn', 'OS/Browser Transparency Setting Changed', 'OS/Browser Transparency Setting has been changed to <strong>Off</strong>.');
+		}
+	} else {
+		transOverride.disabled = '';
+		transOverride.transInfo = '';
+		transOverride.modifiedStyle = '';
+		if (!firstLoad) {
+			document.body.querySelector('#transStyle').classList.remove('m-0');
+			document.body.querySelector('#transInfo').textContent = transOverride.transInfo;
+			document.body.querySelectorAll('.trans-override').forEach((element) => {
+				element.disabled = false;
+			});
+			window.throwToast('warn', 'OS/Browser Transparency Setting Changed', 'OS/Browser Transparency Setting has been changed to <strong>On</strong>. This will override the settings menu.')
+		}
+	}
+}
 
 function changeOSLevelAnim(motion, firstLoad = false) {
 	if (motion.matches) {
@@ -50,7 +108,7 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			document.body.querySelectorAll('.anim-override').forEach((element) => {
 				element.disabled = true;
 			});
-			window.throwToast('success', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>Off</strong>.');
+			window.throwToast('warn', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>Off</strong>.');
 		}
 	} else {
 		animOverride.disabled = '';
@@ -64,11 +122,16 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			document.body.querySelectorAll('.anim-override').forEach((element) => {
 				element.disabled = false;
 			});
-			window.throwToast('success', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>On</strong>.')
+			window.throwToast('warn', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>On</strong>. This will override the settings menu.')
 		}
 	}
 }
+changeOSLevelTheme(window.matchMedia('(prefers-color-scheme: light)'), true);
+changeOSLevelTransparency(window.matchMedia('(prefers-reduced-transparency: reduce)'), true);
 changeOSLevelAnim(window.matchMedia('(prefers-reduced-motion: reduce)'), true);
+
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', changeOSLevelTheme);
+window.matchMedia('(prefers-reduced-transparency: reduce)').addEventListener('change', changeOSLevelTransparency);
 window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', changeOSLevelAnim);
 
 // Add the settings modal
@@ -96,10 +159,24 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						</div>
 						<hr>
 
+						<p class="d-flex justify-content-center ${transOverride.modifiedStyle}" id="transStyle">Transparency</p>
+						<p class="form-text text-center"" id="transInfo">${transOverride.transInfo}</p>
+						<div class="d-flex justify-content-center">
+							<input type="radio" class="btn-check transOverride" ${transOverride.disabled} name="reduTrans" id="trans1" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="trans1">On</label>
+
+							<input type="radio" class="btn-check" name="reduTrans" id="trans0" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="trans0">Off</label>
+
+							<input type="radio" class="btn-check" name="reduTrans" id="trans2" autocomplete="off">
+							<label class="btn ${btnColor} m-1" for="trans2">Auto Detect</label>
+						</div>
+						<hr>
+
 						<p class="d-flex justify-content-center ${animOverride.modifiedStyle}" id="animStyle">Animations</p>
 						<p class="form-text text-center"" id="animInfo">${animOverride.animInfo}</p>
 						<div class="d-flex justify-content-center">
-							<input type="radio" class="btn-check anim-override" ${animOverride.disabled} name="animations" id="anim1" autocomplete="off">
+							<input type="radio" class="btn-check animOverride" ${animOverride.disabled} name="animations" id="anim1" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="anim1">On</label>
 
 							<input type="radio" class="btn-check" name="animations" id="anim0" autocomplete="off">
@@ -113,7 +190,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<p class="d-flex justify-content-center m-0">Animated Background</p>
 						<p class="form-text text-center"" id="animDots">${animOverride.dotsInfo}</p>
 						<div class="d-flex justify-content-center">
-							<input type="radio" class="btn-check anim-override" ${animOverride.disabled}  name="dots" id="dot1" autocomplete="off">
+							<input type="radio" class="btn-check anim-override" ${animOverride.disabled} name="dots" id="dot1" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="dot1">On</label>
 
 							<input type="radio" class="btn-check" name="dots" id="dot0" autocomplete="off">
@@ -136,6 +213,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		document.querySelector('.navbar-toggler').insertAdjacentHTML('beforebegin', buttonHTML);
 
 		document.querySelector('#settingsModal').querySelector(`#theme${localStorage.getItem('theme')}`).checked = true;
+		document.querySelector('#settingsModal').querySelector(`#trans${localStorage.getItem('reduTrans')}`).checked = true;
 		document.querySelector('#settingsModal').querySelector(`#anim${localStorage.getItem('animations')}`).checked = true;
 		document.querySelector('#settingsModal').querySelector(`#dot${localStorage.getItem('dots')}`).checked = true;
 
@@ -218,6 +296,39 @@ function settingsChanged(event, firstLoad) {
 			}
 		} catch (error) {
 			window.throwToast('fail', 'Theme Change Error', 'Your theme could not be changed due to an error. Try again later.');
+			console.warn(error);
+		}
+	} else if (event == 'reduTrans') {
+		try {
+			switch (localStorage.getItem('reduTrans')) {
+				case '0': // Off
+					document.querySelector('HTML').setAttribute('data-s4-transparency', 'reduce');
+					setType = '<strong>Off</strong>';
+					break;
+				case '1': // On
+					document.querySelector('HTML').setAttribute('data-s4-transparency', 'on');
+					setType = '<strong>On</strong>';
+					break;
+				case '2': // Auto
+					if (window.matchMedia('(prefers-reduced-transparency: reduce)').matches) {
+						setType = '<strong>Auto Detect</strong> (Off)';
+						document.querySelector('HTML').setAttribute('data-s4-transparency', 'reduce');
+					} else {
+						setType = '<strong>Auto Detect</strong> (On)';
+						document.querySelector('HTML').setAttribute('data-s4-transparency', 'on');
+					}
+					break;
+				default:
+					// False = Error message, True = Not error
+					window.throwToast('fail', 'Transparency Preference Change Error', 'Your animation preference could not be changed due to an error. Reload the page and try again.');
+					console.warn(`Transparency CHANGE BLOCKED: Transparency Setting is out of bounds! (${localStorage.getItem('reduTrans')})`);
+					break;
+			}
+			if (!firstLoad) {
+				window.throwToast('success', 'Transparency Preference Changed', `Your transparency preference has been changed to ${setType}.`);
+			}
+		} catch (error) {
+			window.throwToast('fail', 'Transparency Preference Change Error', 'Your transparency preference could not be changed due to an error. Try again later.');
 			console.warn(error);
 		}
 	} else if (event === 'animations') {
