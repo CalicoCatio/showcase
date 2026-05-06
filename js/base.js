@@ -4,7 +4,7 @@ function insertHeader() {
 	<nav class="navbar fixed-top">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="/showcase/">
-				<img src="/showcase/images/global/favicon.png">
+				<img src="/showcase/images/global/favicon.png" alt="An orange A written in cursive">
 			</a>
 			<div id="navbar-end">
 				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#header" aria-controls="header" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@ function insertHeader() {
 			</div>
 			<div class="offcanvas offcanvas-end" tabindex="-1" id="header" aria-labelledby="header-label">
 				<div class="offcanvas-header">
-					<h5 class="offcanvas-title" id="header-label">Where to?</h5>
+					<h3 class="offcanvas-title" id="header-label">Where to?</h3>
 					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
 				<div class="offcanvas-body">
@@ -155,27 +155,27 @@ function insertFooter() {
 						</h5>
 						<ul class="list-unstyled mb-0 d-flex justify-content-center gap-3">
 							<li>
-								<a href="https://youtube.com/@ACalicoCatio" target="_blank" class="footer-link footer-text-large">
+								<a href="https://youtube.com/@ACalicoCatio" target="_blank" class="footer-link footer-text-large" aria-label="Link to my YouTube Channel">
 									<i class="bi bi-youtube"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://twitch.tv/calicocatio" target="_blank" class="footer-link footer-text-large">
+								<a href="https://twitch.tv/calicocatio" target="_blank" class="footer-link footer-text-large" aria-label="Link to my Twitch Channel">
 									<i class="bi bi-twitch"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://steamcommunity.com/id/CalicoCatio/" target="_blank" class="footer-link footer-text-large">
+								<a href="https://steamcommunity.com/id/CalicoCatio/" target="_blank" class="footer-link footer-text-large" aria-label="Link to my Steam Account">
 									<i class="bi bi-steam"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://discordapp.com/users/706284932254662694" target="_blank" class="footer-link footer-text-large">
+								<a href="https://discordapp.com/users/706284932254662694" target="_blank" class="footer-link footer-text-large" aria-label="Link to my Discord Account">
 									<i class="bi bi-discord"></i>
 								</a>
 							</li>
 							<li>
-								<a href="https://github.com/CalicoCatio" target="_blank" class="footer-link footer-text-large">
+								<a href="https://github.com/CalicoCatio" target="_blank" class="footer-link footer-text-large" aria-label="Link to myGitHub Account">
 									<i class="bi bi-github"></i>
 								</a>
 							</li>
@@ -183,7 +183,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v4.3.4</span>
+							<span id="myVer">v4.3.4a</span>
 						</span>
 					</span>
 				</div>

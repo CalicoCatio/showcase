@@ -206,7 +206,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		</div>
 		`;
 		const buttonHTML = `
-		<button class="btn-stealth navbar-settings" data-bs-toggle="modal" data-bs-target="#settingsModal"><i class="bi bi-gear gear-rotate"></i></button>
+		<button class="btn-stealth navbar-settings" data-bs-toggle="modal" data-bs-target="#settingsModal" aria-label="Settings"><i class="bi bi-gear gear-rotate"></i></button>
 		`;
 
 		document.body.insertAdjacentHTML('beforeend', modalHTML);
