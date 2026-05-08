@@ -42,10 +42,10 @@ let animOverride = {
 
 function changeOSLevelTheme(light, firstLoad = false) {
 	if (light.matches && localStorage.getItem('theme') == 2 && !firstLoad) {
-		window.throwToast('success', 'OS/Browser Theme Changed', `OS/Browser Transparency Setting has been changed to <strong>Light Mode</strong>.`);
+		window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Light Mode</strong>.`);
 		settingsChanged('theme', true);
 	} else if (!light.matches && localStorage.getItem('theme') == 2 && !firstLoad) {
-		window.throwToast('success', 'OS/Browser Theme Changed', `OS/Browser Transparency Setting has been changed to <strong>Dark Mode</strong>.`);
+		window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Dark Mode</strong>.`);
 		settingsChanged('theme', true);
 	}
 }
@@ -68,7 +68,7 @@ function changeOSLevelTransparency(reduce, firstLoad = false) {
 			document.body.querySelectorAll('.trans-override').forEach((element) => {
 				element.disabled = true;
 			});
-			window.throwToast('warn', 'OS/Browser Transparency Setting Changed', 'OS/Browser Transparency Setting has been changed to <strong>Off</strong>.');
+			window.throwToast('warn', 'OS/Browser Transparency Setting Changed', 'OS/Browser Transparency Setting has been changed to <strong>Off</strong>. This will override settings set in the settings menu.');
 		}
 	} else {
 		transOverride.disabled = '';
@@ -80,7 +80,7 @@ function changeOSLevelTransparency(reduce, firstLoad = false) {
 			document.body.querySelectorAll('.trans-override').forEach((element) => {
 				element.disabled = false;
 			});
-			window.throwToast('warn', 'OS/Browser Transparency Setting Changed', 'OS/Browser Transparency Setting has been changed to <strong>On</strong>. This will override the settings menu.')
+			window.throwToast('warn', 'OS/Browser Transparency Setting Changed', 'OS/Browser Transparency Setting has been changed to <strong>On</strong>.')
 		}
 	}
 }
@@ -108,7 +108,7 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			document.body.querySelectorAll('.anim-override').forEach((element) => {
 				element.disabled = true;
 			});
-			window.throwToast('warn', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>Off</strong>.');
+			window.throwToast('warn', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>Off</strong>. This will override settings set in the settings menu.');
 		}
 	} else {
 		animOverride.disabled = '';
@@ -122,7 +122,7 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 			document.body.querySelectorAll('.anim-override').forEach((element) => {
 				element.disabled = false;
 			});
-			window.throwToast('warn', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>On</strong>. This will override the settings menu.')
+			window.throwToast('warn', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>On</strong>.')
 		}
 	}
 }
@@ -320,7 +320,7 @@ function settingsChanged(event, firstLoad) {
 					break;
 				default:
 					// False = Error message, True = Not error
-					window.throwToast('fail', 'Transparency Preference Change Error', 'Your animation preference could not be changed due to an error. Reload the page and try again.');
+					window.throwToast('fail', 'Transparency Preference Change Error', 'Your transparency preference could not be changed due to an error. Reload the page and try again.');
 					console.warn(`Transparency CHANGE BLOCKED: Transparency Setting is out of bounds! (${localStorage.getItem('reduTrans')})`);
 					break;
 			}
@@ -408,7 +408,7 @@ function settingsChanged(event, firstLoad) {
 		try {
 			switch (localStorage.getItem('dots')) { // Yes, I could use an if but for the sake of consistency, I won't
 				case '0': // Off
-					// Default state is off, so nothing needs to happen here (thanks to location.reload() @ line 274)
+					// Default state is off, so nothing needs to happen here
 					break;
 				case '1': // On
 					const script = document.createElement('script');
