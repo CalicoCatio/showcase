@@ -183,7 +183,7 @@ function insertFooter() {
 					</div>
 					<span class="d-flex justify-content-end align-items-end">
 						<span class="footer-text">
-							<span id="myVer">v4.3.0a</span>
+							<span id="myVer">v4.3.1</span>
 						</span>
 					</span>
 				</div>
@@ -196,7 +196,7 @@ function insertFooter() {
 // Slap in a custom breadcrumb inside the header
 function insertBreadcrumb(name1, link1 = null, name2 = null, link2 = null, name3 = null) {
 	let breadcrumb = `
-		<nav class="text-truncate d-none d-sm-block" aria-label="breadcrumb">
+		<div class="text-truncate d-none d-sm-block" aria-label="breadcrumb">
 			<ol class="breadcrumb mb-0">
 	`;
 
@@ -235,7 +235,7 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, link2 = null, name3
 
 	breadcrumb += `
 			</ol>
-		</nav>
+		</div>
 		<span class="d-block d-sm-none">
 	`;
 
