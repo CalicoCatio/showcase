@@ -114,7 +114,6 @@ function update() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Stuff that changes only between frames
-    const scrollWidth = window.getScrollbarWidth();
     const canvasWidth = mainContent.offsetWidth;
     const canvasHeight = mainContent.offsetHeight;
 
@@ -150,7 +149,7 @@ function update() {
         }
 
         // Offscreen? Add new
-        if (newX > canvasWidth + MAX_DISTANCE_BETWEEN_CONNECTIONS + scrollWidth) {
+        if (newX > canvasWidth + MAX_DISTANCE_BETWEEN_CONNECTIONS + 12) { // 12 px is the standard width of a scrollbar
             dotArray.splice(index, 1);
             addDot();
         } else if (newX < 0 - MAX_DISTANCE_BETWEEN_CONNECTIONS) {
