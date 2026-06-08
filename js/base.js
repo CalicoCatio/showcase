@@ -175,7 +175,7 @@ function insertFooter() {
 								</a>
 							</li>
 							<li>
-								<a href="https://github.com/CalicoCatio" target="_blank" class="footer-link footer-text-large" aria-label="Link to myGitHub Account">
+								<a href="https://github.com/CalicoCatio" target="_blank" class="footer-link footer-text-large" aria-label="Link to my GitHub Account">
 									<i class="bi bi-github"></i>
 								</a>
 							</li>
