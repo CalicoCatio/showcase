@@ -295,25 +295,28 @@ html {
 
 /* .project-desc also used in about page */
 [data-bs-theme="light"][data-s4-transparency="on"] .project-desc {
-    background: #D3D3D3BF;
+    background: #dfe6ecBF;
     backdrop-filter: blur(2px);
+    border: 1px solid #ced9e3;
 }
 
 [data-bs-theme="light"][data-s4-transparency="reduce"] .project-desc {
-    background: #D3D3D3;
+    background: #dfe6ec;
+    border: 1px solid #ced9e3;
 }
 
 [data-bs-theme="dark"][data-s4-transparency="on"] .project-desc {
-    background: #141414BF;
+    background: #111315BF;
     backdrop-filter: blur(2px);
+    border: 1px solid #333;
 }
 
 [data-bs-theme="dark"][data-s4-transparency="reduce"] .project-desc {
-    background: #141414;
+    background: #111315;
+    border: 1px solid #333;
 }
 
 .project-desc {
-    border: min(max(0.2vw, 0.2vh), 0.25rem) solid #808080;
     padding: 15px;
     padding-top: 7px;
     padding-bottom: 7px;

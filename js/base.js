@@ -17,8 +17,9 @@ function insertHeader() {
 					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
 				<div class="offcanvas-body">
-					<form class="mt-3" role="search">
+					<form class="form-floating mt-3" role="search">
 						<input id="projectSearch" class="form-control" type="search" placeholder="Search For A Project" aria-label="Search For A Project" aria-describedby="projectSearchInfo">
+						<label for="projectSearch">Search For A Project</label>
 						<div id="projectSearchInfo" class="form-text">Enter a #tag or name of a project.</div>
 					</form>
 					<br />
