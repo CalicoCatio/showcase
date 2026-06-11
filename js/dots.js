@@ -47,6 +47,7 @@ function canvasResize(accordionResize) {
     }
     else {
         canvas.width = mainContent.offsetWidth + window.getScrollbarWidth();
+        canvas.style.top = '95px'; // Height of navbar
     }
     canvas.height = mainContent.offsetHeight;
 
