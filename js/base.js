@@ -29,7 +29,7 @@ function insertHeader() {
 								Showcase v4
 								<div class="hover-hidden">
 									<div class="tag-wrapper">
-										<span class="green-outline">HTML</span><span class="blue-outline">Bootstrap</span>
+										<span class="green-outline">HTML</span> | <span class="blue-outline">Bootstrap</span>
 									</div>
 									<hr>
 									<span>Showcase v4 is the fourth (and hopefully last) iteration of this very website.</span>
@@ -41,7 +41,7 @@ function insertHeader() {
 								Blinded by the Dark
 								<div class="hover-hidden">
 									<div class="tag-wrapper">
-										<span class="green-outline">C#</span><span class="blue-outline">Monogame</span>
+										<span class="green-outline">C#</span> | <span class="blue-outline">Monogame</span>
 									</div>
 									<hr>
 									<span>Blinded by the Dark is a 2D platformer minigame, originally made as a project in college.</span>
