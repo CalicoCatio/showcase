@@ -112,24 +112,6 @@ html {
 
 /* Offcanvas */
 
-[data-bs-theme="light"][data-s4-transparency="on"] .offcanvas {
-    background: linear-gradient(to bottom, #d8e0e9BF 0%, #FFFFFFBF 100%);
-    backdrop-filter: blur(2px);
-}
-
-[data-bs-theme="light"][data-s4-transparency="reduce"] .offcanvas {
-    background: linear-gradient(to bottom, #d8e0e9 0%, #FFFFFF 100%);
-}
-
-[data-bs-theme="dark"][data-s4-transparency="on"] .offcanvas {
-    background: linear-gradient(to bottom, #212529BF 0%, #000000BF 100%);
-    backdrop-filter: blur(2px);
-}
-
-[data-bs-theme="dark"][data-s4-transparency="reduce"] .offcanvas {
-    background: linear-gradient(to bottom, #212529 0%, #000000 100%);
-}
-
 .offcanvas {
     border-left: 1px solid rgba(255, 255, 255, 0.15);
     border-top-left-radius: 0.375rem;
@@ -234,26 +216,6 @@ html {
     background: rgba(50, 50, 255, 0.5);
 }
 
-/* Toasts */
-[data-bs-theme="light"][data-s4-transparency="on"] .toast {
-    background: linear-gradient(to bottom, #d8e0e9BF 0%, #FFFFFFBF 100%);
-    backdrop-filter: blur(2px);
-}
-
-[data-bs-theme="light"][data-s4-transparency="reduce"] .toast {
-    background: linear-gradient(to bottom, #d8e0e9 0%, #FFFFFF 100%);
-}
-
-[data-bs-theme="dark"][data-s4-transparency="on"] .toast {
-    background: linear-gradient(to bottom, #212529BF 0%, #000000BF 100%);
-    backdrop-filter: blur(2px);
-}
-
-
-[data-bs-theme="dark"][data-s4-transparency="reduce"] .toast {
-    background: linear-gradient(to bottom, #212529 0%, #000000 100%);
-}
-
 
 .toast {
     border: 2px solid rgba(255, 255, 255, 0.15);
@@ -293,28 +255,41 @@ html {
     min-height: calc(100vh - 95px);
 }
 
-/* .project-desc also used in about page */
-[data-bs-theme="light"][data-s4-transparency="on"] .project-desc {
+[data-bs-theme="light"][data-s4-transparency="on"] .offcanvas,
+[data-bs-theme="light"][data-s4-transparency="on"] .modal-content,
+[data-bs-theme="light"][data-s4-transparency="on"] .project-desc,
+[data-bs-theme="light"][data-s4-transparency="on"] .toast {
     background: #dfe6ecBF;
     backdrop-filter: blur(2px);
     border: 1px solid #ced9e3;
 }
 
-[data-bs-theme="light"][data-s4-transparency="reduce"] .project-desc {
+[data-bs-theme="light"][data-s4-transparency="reduce"] .offcanvas,
+[data-bs-theme="light"][data-s4-transparency="reduce"] .modal-content,
+[data-bs-theme="light"][data-s4-transparency="reduce"] .project-desc,
+[data-bs-theme="light"][data-s4-transparency="reduce"] .toast {
     background: #dfe6ec;
     border: 1px solid #ced9e3;
 }
 
-[data-bs-theme="dark"][data-s4-transparency="on"] .project-desc {
+[data-bs-theme="dark"][data-s4-transparency="on"] .offcanvas,
+[data-bs-theme="dark"][data-s4-transparency="on"] .modal-content,
+[data-bs-theme="dark"][data-s4-transparency="on"] .project-desc,
+[data-bs-theme="dark"][data-s4-transparency="on"] .toast {
     background: #111315BF;
     backdrop-filter: blur(2px);
     border: 1px solid #333;
 }
 
-[data-bs-theme="dark"][data-s4-transparency="reduce"] .project-desc {
+[data-bs-theme="dark"][data-s4-transparency="reduce"] .offcanvas,
+[data-bs-theme="dark"][data-s4-transparency="reduce"] .modal-content,
+[data-bs-theme="dark"][data-s4-transparency="reduce"] .project-desc,
+[data-bs-theme="dark"][data-s4-transparency="reduce"] .toast {
     background: #111315;
     border: 1px solid #333;
 }
+
+/* .project-desc also used in about page */
 
 .project-desc {
     padding: 15px;
@@ -495,25 +470,7 @@ li .bi-box-arrow-up-right {
 
 /* Modals */
 
-[data-bs-theme="light"][data-s4-transparency="on"] .modal-content {
-    background: linear-gradient(to bottom, #d8e0e9BF 0%, #FFFFFFBF 100%);
-    backdrop-filter: blur(2px);
-}
-
-[data-bs-theme="light"][data-s4-transparency="reduce"] .modal-content {
-    background: linear-gradient(to bottom, #d8e0e9 0%, #FFFFFF 100%);
-}
-
-[data-bs-theme="dark"][data-s4-transparency="on"] .modal-content {
-    background: linear-gradient(to bottom, #212529BF 0%, #000000BF 100%);
-    backdrop-filter: blur(2px);
-}
-[data-bs-theme="dark"][data-s4-transparency="reduce"] .modal-content {
-    background: linear-gradient(to bottom, #212529 0%, #000000 100%);
-}
-
 .modal-content {
-    border: 2px solid rgba(255, 255, 255, 0.15);
     border-radius: 0.375rem;
 }
 
