@@ -174,7 +174,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<hr class="ms-3 me-3">
 
 						<p class="d-flex justify-content-center ${animOverride.modifiedStyle}" id="animStyle">Animations</p>
-						<p class="form-text text-center"" id="animInfo">${animOverride.animInfo}</p>
+						<p class="form-text text-center" id="animInfo">${animOverride.animInfo}</p>
 						<div class="d-flex justify-content-center">
 							<input type="radio" class="btn-check animOverride" ${animOverride.disabled} name="animations" id="anim1" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="anim1">On</label>
@@ -188,7 +188,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<hr class="ms-3 me-3">
 
 						<p class="d-flex justify-content-center m-0">Animated Background</p>
-						<p class="form-text text-center"" id="animDots">${animOverride.dotsInfo}</p>
+						<p class="form-text text-center" id="animDots">${animOverride.dotsInfo}</p>
 						<div class="d-flex justify-content-center">
 							<input type="radio" class="btn-check anim-override" ${animOverride.disabled} name="dots" id="dot1" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="dot1">On</label>
