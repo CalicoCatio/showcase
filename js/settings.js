@@ -157,7 +157,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 							<input type="radio" class="btn-check" name="theme" id="theme2" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="theme2">Auto Detect</label>
 						</div>
-						<hr>
+						<hr class="ms-3 me-3">
 
 						<p class="d-flex justify-content-center ${transOverride.modifiedStyle}" id="transStyle">Transparency</p>
 						<p class="form-text text-center"" id="transInfo">${transOverride.transInfo}</p>
@@ -171,7 +171,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 							<input type="radio" class="btn-check" name="reduTrans" id="trans2" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="trans2">Auto Detect</label>
 						</div>
-						<hr>
+						<hr class="ms-3 me-3">
 
 						<p class="d-flex justify-content-center ${animOverride.modifiedStyle}" id="animStyle">Animations</p>
 						<p class="form-text text-center"" id="animInfo">${animOverride.animInfo}</p>
@@ -185,7 +185,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 							<input type="radio" class="btn-check" name="animations" id="anim2" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="anim2">Auto Detect</label>
 						</div>
-						<hr>
+						<hr class="ms-3 me-3">
 
 						<p class="d-flex justify-content-center m-0">Animated Background</p>
 						<p class="form-text text-center"" id="animDots">${animOverride.dotsInfo}</p>
