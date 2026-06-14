@@ -188,7 +188,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 						<hr class="ms-3 me-3">
 
 						<p class="d-flex justify-content-center m-0">Animated Background</p>
-						<p class="form-text text-center" id="animDots">${animOverride.dotsInfo}</p>
+						<p class="form-text text-center mt-0"><small id="animDots">${animOverride.dotsInfo}</small></p>
 						<div class="d-flex justify-content-center">
 							<input type="radio" class="btn-check anim-override" ${animOverride.disabled} name="dots" id="dot1" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="dot1">On</label>
@@ -212,13 +212,15 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		document.body.insertAdjacentHTML('beforeend', modalHTML);
 		document.querySelector('.navbar-toggler').insertAdjacentHTML('beforebegin', buttonHTML);
 
-		document.querySelector('#settingsModal').querySelector(`#theme${localStorage.getItem('theme')}`).checked = true;
-		document.querySelector('#settingsModal').querySelector(`#trans${localStorage.getItem('reduTrans')}`).checked = true;
-		document.querySelector('#settingsModal').querySelector(`#anim${localStorage.getItem('animations')}`).checked = true;
-		document.querySelector('#settingsModal').querySelector(`#dot${localStorage.getItem('dots')}`).checked = true;
+		settingsModal = document.querySelector('#settingsModal');
+
+		settingsModal.querySelector(`#theme${localStorage.getItem('theme')}`).checked = true;
+		settingsModal.querySelector(`#trans${localStorage.getItem('reduTrans')}`).checked = true;
+		settingsModal.querySelector(`#anim${localStorage.getItem('animations')}`).checked = true;
+		settingsModal.querySelector(`#dot${localStorage.getItem('dots')}`).checked = true;
 
 		// Change stuffs
-		document.querySelector('#settingsModal').querySelectorAll('input').forEach((input, index) => {
+		settingsModal.querySelectorAll('input').forEach((input, index) => {
 			input.addEventListener('change', () => {
 				if (input.checked) {
 					localStorage.setItem(`${input.getAttribute('name')}`, `${parseInt(input.getAttribute('id').match(/\d+$/)[0])}`);
@@ -228,7 +230,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 		});
 
 		// Handle resets
-		resetButton = document.querySelector('#settingsModal').querySelector('#resetSettings');
+		resetButton = settingsModal.querySelector('#resetSettings');
 		resetButton.addEventListener('click', () => {
 			if (resetButton.innerHTML == 'Reset Settings') {
 				resetButton.innerHTML = 'Are you sure?';
