@@ -147,7 +147,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 					</div>
 					<div class="modal-body">
 						<p class="d-flex justify-content-center">Theme</p>
-						<div class="d-flex justify-content-center">
+						<div class="d-flex flex-wrap justify-content-center">
 							<input type="radio" class="btn-check" name="theme" id="theme0" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="theme0">Light Mode</label>
 
@@ -161,7 +161,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 
 						<p class="d-flex justify-content-center ${transOverride.modifiedStyle}" id="transStyle">Transparency</p>
 						<p class="form-text text-center"" id="transInfo">${transOverride.transInfo}</p>
-						<div class="d-flex justify-content-center">
+						<div class="d-flex flex-wrap justify-content-center">
 							<input type="radio" class="btn-check transOverride" ${transOverride.disabled} name="reduTrans" id="trans1" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="trans1">On</label>
 
@@ -175,7 +175,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 
 						<p class="d-flex justify-content-center ${animOverride.modifiedStyle}" id="animStyle">Animations</p>
 						<p class="form-text text-center" id="animInfo">${animOverride.animInfo}</p>
-						<div class="d-flex justify-content-center">
+						<div class="d-flex flex-wrap justify-content-center">
 							<input type="radio" class="btn-check animOverride" ${animOverride.disabled} name="animations" id="anim1" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="anim1">On</label>
 
@@ -189,7 +189,7 @@ const settingsObserver = new MutationObserver((mutationsList, settingsObserver) 
 
 						<p class="d-flex justify-content-center m-0">Animated Background</p>
 						<p class="form-text text-center mt-0"><small id="animDots">${animOverride.dotsInfo}</small></p>
-						<div class="d-flex justify-content-center">
+						<div class="d-flex flex-wrap justify-content-center">
 							<input type="radio" class="btn-check anim-override" ${animOverride.disabled} name="dots" id="dot1" autocomplete="off">
 							<label class="btn ${btnColor} m-1" for="dot1">On</label>
 
