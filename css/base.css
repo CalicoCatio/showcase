@@ -314,12 +314,12 @@ li .bi-box-arrow-up-right {
     vertical-align: 0.15em;
 }
 
-.link-out {
-    text-decoration: none;
+.icon-link {
+    gap: 0.25rem;
 }
 
-.link-out span {
-    text-decoration: underline;
+.icon-link > .bi {
+    height: inherit !important;
 }
 
 .row { /* Bootstrap pushes margin to -12px for some reason */
