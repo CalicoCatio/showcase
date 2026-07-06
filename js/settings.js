@@ -374,6 +374,7 @@ function settingsChanged(event, firstLoad) {
 							*::before {
 								animation: none !important;
 								transition: none !important;
+								--bs-accordion-btn-icon-transition: none !important;
 							}
 						}
 					</style>
