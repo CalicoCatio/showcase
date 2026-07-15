@@ -51,14 +51,14 @@ function changeOSLevelTheme(light, firstLoad = false) {
 		if (localStorage.getItem('theme') != 2) {
 			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Light Mode</strong>.`);
 		} else {
-			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Light Mode</strong>.<br>Site Theme has been changed to <strong>Auto Detect</strong> (Light Mode)`);
+			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Light Mode</strong>.<br>Site Theme has been changed to <strong>Auto Detect</strong> (Light Mode).`);
 			settingsChanged('theme', true);
 		}
 	} else {
 		if (localStorage.getItem('theme') != 2) {
 			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Dark Mode</strong>.`);
 		} else {
-			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Dark Mode</strong>.<br>Site Theme has been changed to <strong>Auto Detect</strong> (Dark Mode)`);
+			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Dark Mode</strong>.<br>Site Theme has been changed to <strong>Auto Detect</strong> (Dark Mode).`);
 			settingsChanged('theme', true);
 		}
 	}
@@ -75,7 +75,7 @@ function changeOSLevelTransparency(reduce, firstLoad = false) {
 		if (localStorage.getItem('reduTrans') != 2) {
 			window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>Off</strong>.`);
 		} else {
-			window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>Off</strong>.<br>Site Transparency has been changed to <strong>Auto Detect</strong> (Off)`);
+			window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>Off</strong>.<br>Site Transparency has been changed to <strong>Auto Detect</strong> (Off).`);
 			settingsChanged('reduTrans', true);
 		}
 	} else {
@@ -83,7 +83,7 @@ function changeOSLevelTransparency(reduce, firstLoad = false) {
 			if (localStorage.getItem('reduTrans') != 2) {
 				window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>On</strong>.`);
 			} else {
-				window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>On</strong>.<br>Site Transparency has been changed to <strong>Auto Detect</strong> (On)`);
+				window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>On</strong>.<br>Site Transparency has been changed to <strong>Auto Detect</strong> (On).`);
 				settingsChanged('reduTrans', true);
 			}
 		}
@@ -101,14 +101,14 @@ function changeOSLevelAnim(motion, firstLoad = false) {
 		if (localStorage.getItem('animations') != 2) {
 			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>Off</strong>.`);
 		} else {
-			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>Off</strong>.<br>Site Animation has been changed to <strong>Auto Detect</strong> (Off)`);
+			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>Off</strong>.<br>Site Animation has been changed to <strong>Auto Detect</strong> (Off).`);
 			settingsChanged('animations', true);
 		}
 	} else {
 		if (localStorage.getItem('animations') != 2) {
 			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>On</strong>.`);
 		} else {
-			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>On</strong>.<br>Site Animation has been changed to <strong>Auto Detect</strong> (On)`);
+			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>On</strong>.<br>Site Animation has been changed to <strong>Auto Detect</strong> (On).`);
 			settingsChanged('animations', true);
 		}
 	}
