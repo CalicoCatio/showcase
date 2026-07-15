@@ -40,92 +40,80 @@ let animOverride = {
 	modifiedStyle: ''
 };
 
+/**
+ * Changes the theme of the page if the OS/Browser level theme changed
+ * @param {MediaQueryList} light Light mode
+ * @param {Boolean} firstLoad If toasts should be fired
+ */
 function changeOSLevelTheme(light, firstLoad = false) {
-	if (light.matches && localStorage.getItem('theme') == 2 && !firstLoad) {
-		window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Light Mode</strong>.`);
-		settingsChanged('theme', true);
-	} else if (!light.matches && localStorage.getItem('theme') == 2 && !firstLoad) {
-		window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Dark Mode</strong>.`);
-		settingsChanged('theme', true);
+	if (firstLoad) return;
+	if (light.matches) {
+		if (localStorage.getItem('theme') != 2) {
+			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Light Mode</strong>.`);
+		} else {
+			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Light Mode</strong>. Site Theme has been changed to <strong>Auto Detect</strong> (Light Mode)`);
+			settingsChanged('theme', true);
+		}
+	} else {
+		if (localStorage.getItem('theme') != 2) {
+			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Dark Mode</strong>.`);
+		} else {
+			window.throwToast('success', 'OS/Browser Theme Changed', `Browser Theme has been changed to <strong>Dark Mode</strong>. Site Theme has been changed to <strong>Auto Detect</strong> (Dark Mode)`);
+			settingsChanged('theme', true);
+		}
 	}
 }
 
+/**
+ * Changes the Transparency of the page if the OS/Browser level theme changed
+ * @param {MediaQueryList} reduce Reduce Transparency
+ * @param {Boolean} firstLoad If toasts should be fired
+ */
 function changeOSLevelTransparency(reduce, firstLoad = false) {
+	if (firstLoad) return;
 	if (reduce.matches) {
-		if (localStorage.getItem('reduTrans') == 1) {
-			localStorage.setItem('reduTrans', 0);
-			settingsChanged('reduTrans', firstLoad);
-			if (!firstLoad) {
-				document.body.querySelector('#trans0').checked = true;
-			}
-		}
-		transOverride.disabled = 'disabled';
-		transOverride.transInfo = 'Transparency Setting is being overriden by OS or Browser level setting.';
-		transOverride.modifiedStyle = 'm-0';
-		if (!firstLoad) {
-			document.body.querySelector('#transStyle').classList.add(`${transOverride.modifiedStyle}`);
-			document.body.querySelector('#transInfo').textContent = transOverride.transInfo;
-			document.body.querySelectorAll('.trans-override').forEach((element) => {
-				element.disabled = true;
-			});
-			window.throwToast('warn', 'OS/Browser Transparency Setting Changed', 'OS/Browser Transparency Setting has been changed to <strong>Off</strong>. This will override settings set in the settings menu.');
+		if (localStorage.getItem('reduTrans') != 2) {
+			window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>Off</strong>.`);
+		} else {
+			window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>Off</strong>. Site Transparency has been changed to <strong>Auto Detect</strong> (Off)`);
+			settingsChanged('reduTrans', true);
 		}
 	} else {
-		transOverride.disabled = '';
-		transOverride.transInfo = '';
-		transOverride.modifiedStyle = '';
 		if (!firstLoad) {
-			document.body.querySelector('#transStyle').classList.remove('m-0');
-			document.body.querySelector('#transInfo').textContent = transOverride.transInfo;
-			document.body.querySelectorAll('.trans-override').forEach((element) => {
-				element.disabled = false;
-			});
-			window.throwToast('warn', 'OS/Browser Transparency Setting Changed', 'OS/Browser Transparency Setting has been changed to <strong>On</strong>.')
+			if (localStorage.getItem('reduTrans') != 2) {
+				window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>On</strong>.`);
+			} else {
+				window.throwToast('success', 'OS/Browser Transparency Setting Changed', `OS/Browser Transparency Setting has been changed to <strong>On</strong>. Site Transparency has been changed to <strong>Auto Detect</strong> (On)`);
+				settingsChanged('reduTrans', true);
+			}
 		}
 	}
 }
 
+/**
+ * Changes the Animation of the page if the OS/Browser level theme changed
+ * @param {MediaQueryList} motion Reduce Motion
+ * @param {Boolean} firstLoad If toasts should be fired
+ */
 function changeOSLevelAnim(motion, firstLoad = false) {
+	if (firstLoad) return;
 	if (motion.matches) {
-		if (localStorage.getItem('animations') == 1) {
-			localStorage.setItem('animations', 0);
-			settingsChanged('animations', firstLoad);
-			if (!firstLoad) {
-				document.body.querySelector('#anim0').checked = true; // Dots doesn't need this since that setting change reloads the page
-			}
-		} if (localStorage.getItem('dots') == 1) {
-			localStorage.setItem('dots', 0);
-			settingsChanged('dots', false);
-		}
-		animOverride.disabled = 'disabled';
-		animOverride.animInfo = 'Animation Setting is being overriden by OS or Browser level setting.';
-		animOverride.dotsInfo = 'Animated Background is being overriden by OS or Browser level setting.'
-		animOverride.modifiedStyle = 'm-0';
-		if (!firstLoad) {
-			document.body.querySelector('#animStyle').classList.add(`${animOverride.modifiedStyle}`);
-			document.body.querySelector('#animInfo').textContent = animOverride.animInfo;
-			document.body.querySelector('#animDots').textContent = animOverride.dotsInfo;
-			document.body.querySelectorAll('.anim-override').forEach((element) => {
-				element.disabled = true;
-			});
-			window.throwToast('warn', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>Off</strong>. This will override settings set in the settings menu.');
+		if (localStorage.getItem('animations') != 2) {
+			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>Off</strong>.`);
+		} else {
+			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>Off</strong>. Site Animation has been changed to <strong>Auto Detect</strong> (Off)`);
+			settingsChanged('animations', true);
 		}
 	} else {
-		animOverride.disabled = '';
-		animOverride.animInfo = '';
-		animOverride.dotsInfo = 'Changing this setting will reload the page.'
-		animOverride.modifiedStyle = '';
-		if (!firstLoad) {
-			document.body.querySelector('#animStyle').classList.remove('m-0');
-			document.body.querySelector('#animInfo').textContent = animOverride.animInfo;
-			document.body.querySelector('#animDots').textContent = animOverride.dotsInfo;
-			document.body.querySelectorAll('.anim-override').forEach((element) => {
-				element.disabled = false;
-			});
-			window.throwToast('warn', 'OS/Browser Animation Setting Changed', 'OS/Browser Animation Setting has been changed to <strong>On</strong>.')
+		if (localStorage.getItem('animations') != 2) {
+			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>On</strong>.`);
+		} else {
+			window.throwToast('success', 'OS/Browser Animation Setting Changed', `OS/Browser Animation Setting has been changed to <strong>On</strong>. Site Animation has been changed to <strong>Auto Detect</strong> (On)`);
+			settingsChanged('animations', true);
 		}
 	}
 }
+
 changeOSLevelTheme(window.matchMedia('(prefers-color-scheme: light)'), true);
 changeOSLevelTransparency(window.matchMedia('(prefers-reduced-transparency: reduce)'), true);
 changeOSLevelAnim(window.matchMedia('(prefers-reduced-motion: reduce)'), true);
