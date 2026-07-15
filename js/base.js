@@ -208,14 +208,14 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, link2 = null, name3
 	} else if (!name3) {
 		breadcrumb += `
 			<li class="breadcrumb-item">
-				<a ${link1}>${name1}</a>
+				<a class="icon-link" ${link1}>${name1}</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">${name2}</li>
 		`;
 	} else if (!link2) {
 		breadcrumb += `
 			<li class="breadcrumb-item">
-				<a ${link1}>${name1}</a>
+				<a class="icon-link" ${link1}>${name1}</a>
 			</li>
 			<li class="breadcrumb-item active">
 				${name2}
@@ -225,10 +225,10 @@ function insertBreadcrumb(name1, link1 = null, name2 = null, link2 = null, name3
 	} else {
 		breadcrumb += `
 			<li class="breadcrumb-item">
-				<a ${link1}>${name1}</a>
+				<a class="icon-link" ${link1}>${name1}</a>
 			</li>
 			<li class="breadcrumb-item">
-				<a ${link2}>${name2}</a>
+				<a class="icon-link" ${link2}>${name2}</a>
 			</li>
 			<li class="breadcrumb-item active" aria-current="page">${name3}</li>
 		`;
